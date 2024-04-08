@@ -1,18 +1,12 @@
 {
     "name": "dasundev/payhere",
     "description": "A Laravel plugin for PayHere payment gateway.",
-    "autoload": {
-        "psr-4": {
-            "Dasundev\\PayHere\\": "src/"
-        }
-    },
     "authors": [
         {
             "name": "Dasun Tharanga",
             "email": "hello@dasun.dev"
         }
     ],
-    "minimum-stability": "stable",
     "require": {
         "php": "^8.2",
         "laravel/framework": "^10.0",
@@ -22,6 +16,16 @@
         "larastan/larastan": "^2.9",
         "pestphp/pest": "^2.34",
         "laravel/pint": "^1.15"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dasundev\\PayHere\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dasundev\\PayHere\\Tests\\": "tests"
+        }
     },
     "config": {
         "allow-plugins": {
@@ -35,16 +39,9 @@
             ]
         }
     },
+    "minimum-stability": "stable",
     "scripts": {
         "lint": "pint -v",
-        "refactor": "rector --debug",
-        "test:lint": "pint --test -v",
-        "test:types": "phpstan analyse --ansi",
-        "test:unit": "pest --colors=always",
-        "test": [
-            "@test:lint",
-            "@test:types",
-            "@test:unit"
-        ]
+        "test": "./vendor/bin/pest"
     }
 }
