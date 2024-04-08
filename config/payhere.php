@@ -28,4 +28,21 @@ return [
     */
 
     'merchant_id' => env('PAYHERE_MERCHANT_ID'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | PayHere Merchant Secret
+    |--------------------------------------------------------------------------
+    |
+    | Your merchant secret is important for accessing your merchant account
+    | when connecting to the PayHere API. You can generate a Merchant Secret
+    | by following the steps below:
+    |
+    | 1. Navigate to the Side Menu > Integrations section of your PayHere Account.
+    | 2. Click 'Add Domain/App' > Enter your top-level domain or App package name > Click 'Request to Allow'.
+    | 3. Wait for the approval for your domain/app (This may take up to 24 hours).
+    | 4. Copy the Merchant Secret displayed next to your domain/app.
+    */
+
+    'merchant_secret' => env('PAYHERE_MERCHANT_SECRET'),
 ];
