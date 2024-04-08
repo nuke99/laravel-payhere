@@ -1,5 +1,5 @@
 {
-    "name": "dasundev/payhere",
+    "name": "dasundev/laravel-payhere",
     "description": "A Laravel plugin for PayHere payment gateway.",
     "authors": [
         {
