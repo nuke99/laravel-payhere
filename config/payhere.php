@@ -15,5 +15,5 @@ return [
     | Sandbox URL: https://sandbox.payhere.lk
     */
 
-    'base_url' => env('PAYHERE_BASE_URL', 'https://sandbox.payhere.lk')
+    'base_url' => env('PAYHERE_BASE_URL', 'https://sandbox.payhere.lk'),
 ];
