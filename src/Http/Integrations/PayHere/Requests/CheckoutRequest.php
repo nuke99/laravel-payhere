@@ -1,6 +1,6 @@
 <?php
 
-namespace Dasundev\PayHere\Requests;
+namespace Dasundev\PayHere\Http\Integrations\PayHere\Requests;
 
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
