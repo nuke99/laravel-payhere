@@ -42,7 +42,7 @@
     },
     "minimum-stability": "stable",
     "scripts": {
-        "lint": "pint -v",
+        "lint": "./vendor/bin/pint -v",
         "test": "./vendor/bin/pest"
     }
 }
