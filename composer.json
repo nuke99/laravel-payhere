@@ -1,9 +1,9 @@
 {
-    "name": "dasundev/laravel-payhere",
+    "name": "dasundev/payhere",
     "description": "A Laravel plugin for PayHere payment gateway.",
     "autoload": {
         "psr-4": {
-            "Dasundev\\LaravelPayhere\\": "src/"
+            "Dasundev\\PayHere\\": "src/"
         }
     },
     "authors": [
@@ -26,6 +26,13 @@
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dasundev\\PayHere\\PayHereServiceProvider"
+            ]
         }
     },
     "scripts": {
