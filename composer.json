@@ -1,0 +1,17 @@
+{
+    "name": "dasundev/laravel-payhere",
+    "description": "A Laravel plugin for PayHere payment gateway.",
+    "autoload": {
+        "psr-4": {
+            "Dasundev\\LaravelPayhere\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dasun Tharanga",
+            "email": "hello@dasun.dev"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
