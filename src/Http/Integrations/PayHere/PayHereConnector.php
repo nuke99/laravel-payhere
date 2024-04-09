@@ -1,6 +1,6 @@
 <?php
 
-namespace Dasundev\PayHere;
+namespace Dasundev\PayHere\Http\Integrations\PayHere;
 
 use Saloon\Http\Connector;
 
