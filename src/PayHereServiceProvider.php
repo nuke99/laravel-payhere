@@ -11,6 +11,7 @@ class PayHereServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('payhere')
+            ->hasViews()
             ->hasConfigFile();
     }
 }
