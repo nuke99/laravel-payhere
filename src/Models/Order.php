@@ -19,7 +19,7 @@ class Order extends Model
         return $this->belongsTo(PayHere::$customerModel);
     }
 
-    public function orderLines(): HasMany
+    public function lines(): HasMany
     {
         return $this->hasMany(OrderLine::class);
     }
