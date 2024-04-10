@@ -11,11 +11,12 @@ class PayHereServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('payhere')
-            ->hasViews()
+            ->hasRoute('web')
             ->hasMigrations([
                 'create_orders_table',
                 'create_order_lines_table',
             ])
+            ->hasViews()
             ->runsMigrations()
             ->hasConfigFile();
     }
