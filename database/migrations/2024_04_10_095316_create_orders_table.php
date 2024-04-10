@@ -10,7 +10,7 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(PayHere::$customerModel)->constrained();
+            $table->foreignId('user_id');
             $table->enum('status', [
                 'on_hold',
                 'pending',
@@ -20,7 +20,7 @@ return new class extends Migration {
                 'completed',
                 'refunded',
                 'cancelled',
-            ]);
+            ])->default('on_hold');
             $table->float('total');
             $table->timestamps();
         });
