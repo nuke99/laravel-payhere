@@ -3,6 +3,7 @@
 namespace Dasundev\PayHere\Concerns;
 
 use Dasundev\PayHere\Models\Order;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
 trait HandleCheckout
@@ -25,13 +26,13 @@ trait HandleCheckout
     /**
      * Initiate the checkout process.
      *
-     * @return RedirectResponse
+     * @return View
      */
-    public function checkout(): RedirectResponse
+    public function checkout(): View
     {
-        return to_route('payhere.checkout', [
+        return view('payhere::checkout', [
             'data' => [
-                'first_name' => $this->order->user->payHereFirstName()
+                'first_name' => $this->order->user->payhereFirstName()
             ]
         ]);
     }
