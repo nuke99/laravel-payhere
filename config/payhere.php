@@ -56,4 +56,14 @@ return [
     */
 
     'currency' => env('PAYHERE_CURRENCY', 'LKR'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | PayHere Return URL
+    |--------------------------------------------------------------------------
+    |
+    | The URL to redirect users to after payment approval.
+    */
+
+    'return_url' => env('PAYHERE_RETURN_URL'),
 ];
