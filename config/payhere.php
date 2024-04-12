@@ -66,4 +66,14 @@ return [
     */
 
     'return_url' => env('PAYHERE_RETURN_URL'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | PayHere Cancel URL
+    |--------------------------------------------------------------------------
+    |
+    | The URL to redirect users to when they cancel the payment.
+    */
+
+    'cancel_url' => env('PAYHERE_CANCEL_URL'),
 ];
