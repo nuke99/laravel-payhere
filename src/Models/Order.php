@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property mixed $user
+ * @property integer $id
+ * @property integer $total
  */
 class Order extends Model
 {
