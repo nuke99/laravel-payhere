@@ -45,4 +45,15 @@ return [
     */
 
     'merchant_secret' => env('PAYHERE_MERCHANT_SECRET'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | PayHere Currency
+    |--------------------------------------------------------------------------
+    |
+    | Customize currency settings according to your preferences.
+    | Supports payments in LKR, USD, EUR, GBP, and AUD currencies.
+    */
+
+    'currency' => env('PAYHERE_CURRENCY', 'LKR'),
 ];
