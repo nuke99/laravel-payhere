@@ -38,9 +38,11 @@ trait HandleCheckout
      */
     public function checkout(): View
     {
+        $baseUrl = config('payhere.base_url');
+        
         return view('payhere::checkout', [
             'form' => [
-                'action' => config('payhere.base_url').'/pay/checkout',
+                'action' => "$baseUrl/pay/checkout",
                 'data' => $this->getFormData()
             ]
         ]);
