@@ -11,6 +11,11 @@ trait HandleCheckout
 {
     use FormData;
 
+    /**
+     * The order associated with this object.
+     *
+     * @var Order
+     */
     protected Order $order;
 
     /**
