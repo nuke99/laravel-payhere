@@ -8,16 +8,31 @@ trait FormData
 {
     public function getFormData(): array
     {
-        return array_merge($this->requiredData(), $this->items());
+        return array_merge(
+            $this->customer(),
+            $this->items(),
+            $this->other()
+        );
     }
 
-    private function requiredData(): array
+    private function other(): array
     {
         return [
             'merchant_id' => config('payhere.merchant_id'),
             'return_url' => config('payhere.return_url'),
             'cancel_url' => config('payhere.cancel_url'),
             'notify_url' => URL::signedRoute('payhere.webhook'),
+            'order_id' => $this->order->id,
+            'items' => "Order #{$this->order->id}",
+            'currency' => config('payhere.currency'),
+            'amount' => $this->order->total,
+            'hash' => $this->generateHash(),
+        ];
+    }
+
+    private function customer(): array
+    {
+        return [
             'first_name' => $this->order->user->payhereFirstName(),
             'last_name' => $this->order->user->payhereLastName(),
             'email' => $this->order->user->payhereEmail(),
@@ -25,11 +40,6 @@ trait FormData
             'address' => $this->order->user->payhereAddress(),
             'city' => $this->order->user->payhereCity(),
             'country' => $this->order->user->payhereCountry(),
-            'order_id' => $this->order->id,
-            'items' => "Order #{$this->order->id}",
-            'currency' => config('payhere.currency'),
-            'amount' => $this->order->total,
-            'hash' => $this->generateHash(),
         ];
     }
 
