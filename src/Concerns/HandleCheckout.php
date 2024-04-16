@@ -4,6 +4,7 @@ namespace Dasundev\PayHere\Concerns;
 
 use Dasundev\PayHere\Models\Order;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\URL;
 
@@ -14,19 +15,19 @@ trait HandleCheckout
     /**
      * The order associated with this object.
      *
-     * @var Order
+     * @var Model
      */
-    protected Order $order;
+    protected Model $customer;
 
     /**
      * Set a new order for checkout.
      *
-     * @param Order $order
+     * @param Model $customer
      * @return HandleCheckout
      */
-    public function newOrder(Order $order): static
+    public function customer(Model $customer): static
     {
-        $this->order = $order;
+        $this->customer = $customer;
 
         return $this;
     }
