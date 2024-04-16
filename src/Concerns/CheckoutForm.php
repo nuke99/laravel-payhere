@@ -4,9 +4,9 @@ namespace Dasundev\PayHere\Concerns;
 
 use Illuminate\Support\Facades\URL;
 
-trait FormData
+trait CheckoutForm
 {
-    public function getFormData(): array
+    public function getForm(): array
     {
         return array_merge(
             $this->customer(),
@@ -45,7 +45,10 @@ trait FormData
 
     private function other(): array
     {
+        $baseUrl = config('payhere.base_url');
+
         return [
+            'action' => "$baseUrl/pay/checkout",
             'merchant_id' => config('payhere.merchant_id'),
             'return_url' => config('payhere.return_url'),
             'cancel_url' => config('payhere.cancel_url'),
