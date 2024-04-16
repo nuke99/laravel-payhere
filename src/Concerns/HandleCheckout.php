@@ -13,21 +13,21 @@ trait HandleCheckout
     use CheckoutForm;
 
     /**
-     * Assign a customer to the checkout process.
+     * The order associated with this object.
      *
      * @var Model
      */
-    protected Model $customer;
+    protected Model $order;
 
     /**
      * Set a new order for checkout.
      *
-     * @param Model $customer
+     * @param Model $order
      * @return HandleCheckout
      */
-    public function customer(Model $customer): static
+    public function newOrder(Model $order): static
     {
-        $this->customer = $customer;
+        $this->order = $order;
 
         return $this;
     }
