@@ -15,21 +15,6 @@ trait FormData
         );
     }
 
-    private function other(): array
-    {
-        return [
-            'merchant_id' => config('payhere.merchant_id'),
-            'return_url' => config('payhere.return_url'),
-            'cancel_url' => config('payhere.cancel_url'),
-            'notify_url' => URL::signedRoute('payhere.webhook'),
-            'order_id' => $this->order->id,
-            'items' => "Order #{$this->order->id}",
-            'currency' => config('payhere.currency'),
-            'amount' => $this->order->total,
-            'hash' => $this->generateHash(),
-        ];
-    }
-
     private function customer(): array
     {
         return [
@@ -56,5 +41,20 @@ trait FormData
         }
 
         return $items;
+    }
+
+    private function other(): array
+    {
+        return [
+            'merchant_id' => config('payhere.merchant_id'),
+            'return_url' => config('payhere.return_url'),
+            'cancel_url' => config('payhere.cancel_url'),
+            'notify_url' => URL::signedRoute('payhere.webhook'),
+            'order_id' => $this->order->id,
+            'items' => "Order #{$this->order->id}",
+            'currency' => config('payhere.currency'),
+            'amount' => $this->order->total,
+            'hash' => $this->generateHash(),
+        ];
     }
 }
