@@ -13,7 +13,7 @@ trait HandleCheckout
     use CheckoutForm;
 
     /**
-     * The order associated with this object.
+     * Assign a customer to the checkout process.
      *
      * @var Model
      */
