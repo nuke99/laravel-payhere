@@ -2,6 +2,7 @@
 
 namespace Dasundev\PayHere\Concerns;
 
+use Dasundev\PayHere\PayHere;
 use Illuminate\Support\Facades\URL;
 
 trait CheckoutForm
@@ -9,9 +10,9 @@ trait CheckoutForm
     public function getForm(): array
     {
         return array_merge(
-            $this->customer(),
-            $this->items(),
-            $this->other()
+            ['customer' => $this->customer()],
+            ['items' => $this->items()],
+            ['other' => $this->other()]
         );
     }
 
@@ -30,9 +31,11 @@ trait CheckoutForm
 
     private function items(): array
     {
+        $relationship = PayHere::$orderLinesRelationship;
+
         $items = [];
 
-        foreach ($this->order->lines as $number => $line) {
+        foreach ($this->order->{$relationship} as $number => $line) {
             $number += 1;
             $items["item_number_$number"] = $line->purchasable->id;
             $items["item_name_$number"] = $line->purchasable->title;
