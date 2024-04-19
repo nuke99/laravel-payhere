@@ -18,14 +18,16 @@ trait CheckoutForm
 
     private function customer(): array
     {
+        $relationship = PayHere::$customerRelationship;
+
         return [
-            'first_name' => $this->order->user->payhereFirstName(),
-            'last_name' => $this->order->user->payhereLastName(),
-            'email' => $this->order->user->payhereEmail(),
-            'phone' => $this->order->user->payherePhone(),
-            'address' => $this->order->user->payhereAddress(),
-            'city' => $this->order->user->payhereCity(),
-            'country' => $this->order->user->payhereCountry(),
+            'first_name' => $this->order->{$relationship}->payhereFirstName(),
+            'last_name' => $this->order->{$relationship}->payhereLastName(),
+            'email' => $this->order->{$relationship}->payhereEmail(),
+            'phone' => $this->order->{$relationship}->payherePhone(),
+            'address' => $this->order->{$relationship}->payhereAddress(),
+            'city' => $this->order->{$relationship}->payhereCity(),
+            'country' => $this->order->{$relationship}->payhereCountry(),
         ];
     }
 

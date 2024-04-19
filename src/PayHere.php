@@ -19,6 +19,13 @@ class PayHere
     public static string $orderLinesRelationship = 'lines';
 
     /**
+     * The default customer relationship name.
+     *
+     * @var string
+     */
+    public static string $customerRelationship = 'user';
+
+    /**
      * Set the customer model class name.
      * 
      * @param $customerModel
@@ -37,5 +44,15 @@ class PayHere
     public static function useOrderLinesRelationshipAs(string $relationship): void
     {
         self::$orderLinesRelationship = $relationship;
+    }
+
+    /**
+     * Set the customer relationship name.
+     *
+     * @param string $relationship
+     */
+    public static function useCustomerRelationshipAs(string $relationship): void
+    {
+        self::$customerRelationship = $relationship;
     }
 }
