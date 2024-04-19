@@ -33,9 +33,9 @@
     @endforeach
 </form>
 <script type="application/javascript">
-    // setTimeout(function () {
-    //     document.getElementById('checkout-form').submit()
-    // }, 2000)
+    setTimeout(function () {
+        document.getElementById('checkout-form').submit()
+    }, 2000)
 </script>
 <noscript>Your browser does not support JavaScript!</noscript>
 </body>
