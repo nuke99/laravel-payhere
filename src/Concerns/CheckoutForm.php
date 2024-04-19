@@ -37,10 +37,10 @@ trait CheckoutForm
 
         foreach ($this->order->{$relationship} as $number => $line) {
             $number += 1;
-            $items["item_number_$number"] = $line->purchasable->id;
-            $items["item_name_$number"] = $line->purchasable->title;
-            $items["quantity_$number"] = $line->unit_quantity;
-            $items["amount_$number"] = $line->total;
+            $items["item_number_$number"] = $line->payHereOrderLineId();
+            $items["item_name_$number"] = $line->payHereOrderLineTitle();
+            $items["quantity_$number"] = $line->payHereOrderLineQty();
+            $items["amount_$number"] = $line->payHereOrderLineTotal();
         }
 
         return $items;
