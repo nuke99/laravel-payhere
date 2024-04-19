@@ -72,7 +72,7 @@
 </div>
 <script type="application/javascript">
     document.addEventListener('DOMContentLoaded', function() {
-        countdown(5, document.getElementById('seconds'));
+        countdown(3, document.getElementById('seconds'));
     });
 
     async function countdown(seconds, el) {
