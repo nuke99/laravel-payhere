@@ -40,7 +40,7 @@
 <div class="container">
     <noscript>Your browser does not support JavaScript!</noscript>
     <div>
-        <h1>Processing...</h1>
+        <h1>Redirecting...</h1>
         <p>You will be redirected to the PayHere gateway within <strong id="seconds">3 seconds.</strong></p>
         <p>Please do not refresh the page or click the "Back" or "Close" button of your browser.</p>
     </div>
