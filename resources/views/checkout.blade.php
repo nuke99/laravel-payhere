@@ -11,7 +11,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 </head>
 <body>
-<form action="{{ $form['other']['action'] }}" method="post">
+<form id="checkout-form" action="{{ $form['other']['action'] }}" method="post">
     <input type="hidden" name="merchant_id" value="{{ $form['other']['merchant_id'] }}">
     <input type="hidden" name="return_url" value="{{ $form['other']['return_url'] }}">
     <input type="hidden" name="cancel_url" value="{{ $form['other']['cancel_url'] }}">
@@ -31,7 +31,12 @@
     @foreach($form['items'] as $key => $value)
         <input type="hidden" name="{{ $key }}" value="{{ $value }}">
     @endforeach
-    <input type="submit" value="Checkout">
 </form>
+<script type="application/javascript">
+    setTimeout(function () {
+        document.getElementById('checkout-form').submit()
+    }, 2000)
+</script>
+<noscript>Your browser does not support JavaScript!</noscript>
 </body>
 </html>
