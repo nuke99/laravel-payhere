@@ -19,6 +19,10 @@
             justify-content: center;
         }
 
+        html:hover {
+            cursor: progress;
+        }
+
         body {
             background: #e5e7eb;
         }
