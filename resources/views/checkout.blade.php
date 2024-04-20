@@ -90,7 +90,7 @@
             seconds--;
         }
 
-        //submit();
+        submit();
     }
 
     function submit() {
