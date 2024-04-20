@@ -69,6 +69,18 @@
             <input type="hidden" name="recurrence" value="{{ $form['recurring']['recurrence'] }}">
             <input type="hidden" name="duration" value="{{ $form['recurring']['duration'] }}">
         @endif
+        @if($form['platform'])
+            <input type="hidden" name="platform" value="{{ $form['platform'] }}">
+        @endif
+        @if($form['startup_fee'])
+            <input type="hidden" name="startup_fee" value="{{ $form['startup_fee'] }}">
+        @endif
+        @if($form['custom_1'])
+            <input type="hidden" name="custom_1" value="{{ $form['custom_1'] }}">
+        @endif
+        @if($form['custom_2'])
+            <input type="hidden" name="custom_2" value="{{ $form['custom_2'] }}">
+        @endif
         @foreach($form['items'] as $key => $value)
             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
         @endforeach

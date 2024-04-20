@@ -14,7 +14,7 @@ trait CheckoutForm
     private int $startupFee;
 
     private string $customOne;
-    
+
     private string $customTwo;
 
     public function getForm(): array
@@ -25,6 +25,9 @@ trait CheckoutForm
             ['other' => $this->other()],
             ['recurring' => $this->recurring],
             ['platform' => $this->platform],
+            ['startup_fee' => $this->startupFee],
+            ['custom_1' => $this->customOne],
+            ['custom_2' => $this->customTwo],
         );
     }
 
