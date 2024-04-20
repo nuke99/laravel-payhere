@@ -7,15 +7,15 @@ use Illuminate\Support\Facades\URL;
 
 trait CheckoutForm
 {
-    private array $recurring = [];
+    private ?array $recurring = null;
 
-    private string $platform;
+    private ?string $platform = null;
 
-    private int $startupFee;
+    private ?int $startupFee = null;
 
-    private string $customOne;
+    private ?string $customOne = null;
 
-    private string $customTwo;
+    private ?string $customTwo = null;
 
     public function getForm(): array
     {
