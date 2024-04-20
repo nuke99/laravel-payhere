@@ -30,6 +30,7 @@ return new class extends Migration {
             $table->string('card_holder_name');
             $table->string('card_no');
             $table->string('card_expiry');
+            $table->timestamps();
         });
     }
 };
