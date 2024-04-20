@@ -38,7 +38,6 @@ trait CheckoutForm
         $items = [];
 
         foreach ($this->order->{$relationship} as $number => $line) {
-            $number += 1;
             $items["item_number_$number"] = $line->payHereOrderLineId();
             $items["item_name_$number"] = $line->payHereOrderLineTitle();
             $items["quantity_$number"] = $line->payHereOrderLineQty();
@@ -64,5 +63,10 @@ trait CheckoutForm
             'amount' => $this->order->total,
             'hash' => $this->generateHash(),
         ];
+    }
+
+    public function recurring(string $recurrence, string $duration): array
+    {
+        return array_merge($this->getForm(), ['recurrence' => $recurrence, 'duration' => $duration]);
     }
 }
