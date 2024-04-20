@@ -83,7 +83,7 @@ trait CheckoutFormData
     public function recurring(string $recurrence, string $duration): static
     {
         $this->recurring = [
-               'recurrence' => $recurrence,
+            'recurrence' => $recurrence,
             'duration' => $duration
         ];
 
