@@ -7,12 +7,15 @@ use Illuminate\Support\Facades\URL;
 
 trait CheckoutForm
 {
+    private array $recurring = [];
+
     public function getForm(): array
     {
         return array_merge(
             ['customer' => $this->customer()],
             ['items' => $this->items()],
-            ['other' => $this->other()]
+            ['other' => $this->other()],
+            ['recurring' => $this->recurring]
         );
     }
 
@@ -65,8 +68,13 @@ trait CheckoutForm
         ];
     }
 
-    public function recurring(string $recurrence, string $duration): array
+    public function recurring(string $recurrence, string $duration): static
     {
-        return array_merge($this->getForm(), ['recurrence' => $recurrence, 'duration' => $duration]);
+        $this->recurring = [
+            'recurrence' => $recurrence,
+            'duration' => $duration
+        ];
+
+        return $this;
     }
 }

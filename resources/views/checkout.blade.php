@@ -65,6 +65,10 @@
         <input type="hidden" name="city" value="{{ $form['customer']['city'] }}">
         <input type="hidden" name="country" value="{{ $form['customer']['country'] }}">
         <input type="hidden" name="hash" value="{{ $form['other']['hash'] }}">
+        @if($form['recurring'])
+            <input type="hidden" name="recurrence" value="{{ $form['recurring']['recurrence'] }}">
+            <input type="hidden" name="duration" value="{{ $form['recurring']['duration'] }}">
+        @endif
         @foreach($form['items'] as $key => $value)
             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
         @endforeach
@@ -86,7 +90,7 @@
             seconds--;
         }
 
-        submit();
+        //submit();
     }
 
     function submit() {
