@@ -5,7 +5,7 @@ namespace Dasundev\PayHere\Concerns;
 use Dasundev\PayHere\PayHere;
 use Illuminate\Support\Facades\URL;
 
-trait CheckoutForm
+trait CheckoutFormData
 {
     private ?array $recurring = null;
 
@@ -17,7 +17,7 @@ trait CheckoutForm
 
     private ?string $customTwo = null;
 
-    public function getForm(): array
+    public function getFormData(): array
     {
         return array_merge(
             ['customer' => $this->customer()],

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\URL;
 
 trait HandleCheckout
 {
-    use CheckoutForm;
+    use CheckoutFormData;
 
     /**
      * The order associated with this object.
@@ -40,7 +40,7 @@ trait HandleCheckout
     public function checkout(): View
     {
         return view('payhere::checkout', [
-            'form' => $this->getForm()
+            'form' => $this->getFormData()
         ]);
     }
 }
