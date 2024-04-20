@@ -9,13 +9,22 @@ trait CheckoutForm
 {
     private array $recurring = [];
 
+    private string $platform;
+
+    private int $startupFee;
+
+    private string $customOne;
+    
+    private string $customTwo;
+
     public function getForm(): array
     {
         return array_merge(
             ['customer' => $this->customer()],
             ['items' => $this->items()],
             ['other' => $this->other()],
-            ['recurring' => $this->recurring]
+            ['recurring' => $this->recurring],
+            ['platform' => $this->platform],
         );
     }
 
@@ -71,9 +80,37 @@ trait CheckoutForm
     public function recurring(string $recurrence, string $duration): static
     {
         $this->recurring = [
-            'recurrence' => $recurrence,
+               'recurrence' => $recurrence,
             'duration' => $duration
         ];
+
+        return $this;
+    }
+
+    public function platform(string $platform): static
+    {
+        $this->platform = $platform;
+
+        return $this;
+    }
+
+    public function startupFee(string $fee): static
+    {
+        $this->startupFee = $fee;
+
+        return $this;
+    }
+
+    public function customOne(string $data): static
+    {
+        $this->customOne = $data;
+
+        return $this;
+    }
+
+    public function customTwo(string $data): static
+    {
+        $this->customTwo = $data;
 
         return $this;
     }
