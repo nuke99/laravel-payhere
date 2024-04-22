@@ -9,8 +9,9 @@ return new class extends Migration {
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('payment_id');
-            $table->string('subscription_id');
+            $table->morphs('billable');
+            $table->timestamp('paused_at');
+            $table->timestamp('ends_at');
             $table->timestamps();
         });
     }
