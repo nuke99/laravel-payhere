@@ -2,6 +2,9 @@
 
 namespace Dasundev\PayHere\Enums;
 
+/**
+ * Payment methods supported by PayHere.
+ */
 enum PaymentMethod
 {
     case VISA;
