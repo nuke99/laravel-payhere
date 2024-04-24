@@ -2,11 +2,18 @@
 
 namespace Dasundev\PayHere\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class PayHereController extends Controller
 {
+    /**
+     * Handle PayHere return request.
+     *
+     * @param  Request  $request
+     * @return View
+     */
     public function return(Request $request)
     {
         if (! $request->hasValidSignatureWhileIgnoring(['order_id'])) {
