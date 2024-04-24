@@ -9,6 +9,6 @@ class WebhookRequest extends FormRequest
 {
     public function isRecurring(): bool
     {
-        return $this->request->get('recurring') === 1;
+        return (int) $this->request->get('recurring') === 1;
     }
 }
