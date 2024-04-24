@@ -41,7 +41,7 @@ class PayHere
      *
      * @param string $relationship
      */
-    public static function useOrderLinesRelationshipAs(string $relationship): void
+    public static function useOrderLinesRelationship(string $relationship): void
     {
         self::$orderLinesRelationship = $relationship;
     }
@@ -51,7 +51,7 @@ class PayHere
      *
      * @param string $relationship
      */
-    public static function useCustomerRelationshipAs(string $relationship): void
+    public static function useCustomerRelationship(string $relationship): void
     {
         self::$customerRelationship = $relationship;
     }
