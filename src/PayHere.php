@@ -46,7 +46,7 @@ class PayHere
     /**
      * Verify the payment notification.
      */
-    public function verifyPaymentNotification(array $payload): bool
+    public static function verifyPaymentNotification(array $payload): bool
     {
         $md5 = $payload['md5sig'];
         $statusCode = $payload['status_code'];
