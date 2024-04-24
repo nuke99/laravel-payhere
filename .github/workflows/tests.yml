@@ -37,3 +37,6 @@ jobs:
 
       - name: Run Tests
         run: composer run test
+        env:
+          PAYHERE_MERCHANT_ID: ${{ secrets.PAYHERE_MERCHANT_ID }}
+          PAYHERE_MERCHANT_SECRET: ${{ secrets.PAYHERE_MERCHANT_SECRET }}
