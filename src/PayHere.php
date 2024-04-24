@@ -53,11 +53,11 @@ class PayHere
 
         $localMd5Sig = strtoupper(
             md5(
-                $payload['merchant_id'] .
-                $payload['order_id'] .
-                $payload['payhere_amount'] .
-                $payload['payhere_currency'] .
-                $statusCode .
+                $payload['merchant_id'].
+                $payload['order_id'].
+                $payload['payhere_amount'].
+                $payload['payhere_currency'].
+                $statusCode.
                 strtoupper(md5(config('payhere.merchant_secret')))
             )
         );
