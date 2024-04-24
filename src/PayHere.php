@@ -42,4 +42,26 @@ class PayHere
     {
         self::$customerRelationship = $relationship;
     }
+
+    /**
+     * Verify the payment notification.
+     */
+    public function verifyPaymentNotification(array $payload): bool
+    {
+        $md5 = $payload['md5sig'];
+        $statusCode = $payload['status_code'];
+
+        $localMd5Sig = strtoupper(
+            md5(
+                $payload['merchant_id'] .
+                $payload['order_id'] .
+                $payload['payhere_amount'] .
+                $payload['payhere_currency'] .
+                $statusCode .
+                strtoupper(md5(config('payhere.merchant_secret')))
+            )
+        );
+
+        return $localMd5Sig === $md5 && (int) $statusCode === 2;
+    }
 }
