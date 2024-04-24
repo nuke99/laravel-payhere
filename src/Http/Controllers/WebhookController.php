@@ -18,10 +18,10 @@ class WebhookController extends Controller
         $verified = PayHere::verifyPaymentNotification($payload);
 
         if ($verified) {
-            // TODO: Create the payment
+            // TODO: Create the payment $user->payments()->create($payload)
 
             if ($request->isRecurring()) {
-                // TODO: Create the subscription
+                // TODO: Create the subscription $user->subscriptions()->create($payload)
             }
         }
     }
