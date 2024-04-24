@@ -14,7 +14,7 @@ class PayHereController extends Controller
      * @param  Request  $request
      * @return View
      */
-    public function return(Request $request)
+    public function handleReturn(Request $request)
     {
         if (! $request->hasValidSignatureWhileIgnoring(['order_id'])) {
             abort(401);
