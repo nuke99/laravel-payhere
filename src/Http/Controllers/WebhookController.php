@@ -3,7 +3,6 @@
 namespace Dasundev\PayHere\Http\Controllers;
 
 use Dasundev\PayHere\Http\Requests\WebhookRequest;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class WebhookController extends Controller
