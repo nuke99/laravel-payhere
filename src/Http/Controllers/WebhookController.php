@@ -3,6 +3,7 @@
 namespace Dasundev\PayHere\Http\Controllers;
 
 use Dasundev\PayHere\Http\Requests\WebhookRequest;
+use Dasundev\PayHere\PayHere;
 use Illuminate\Routing\Controller;
 
 class WebhookController extends Controller
@@ -12,10 +13,16 @@ class WebhookController extends Controller
      */
     public function handleWebhook(WebhookRequest $request): void
     {
-        // TODO: Create the payment
+        $payload = $request->all();
 
-        if ($request->isRecurring()) {
-            // TODO: Create the subscription
+        $verified = PayHere::verifyPaymentNotification($payload);
+
+        if ($verified) {
+            // TODO: Create the payment
+
+            if ($request->isRecurring()) {
+                // TODO: Create the subscription
+            }
         }
     }
 }
