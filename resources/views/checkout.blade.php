@@ -48,40 +48,40 @@
         <p>You will be redirected to the PayHere gateway within <strong><span id="seconds"></span> seconds.</strong></p>
         <p>Please do not refresh the page or click the "Back" or "Close" button of your browser.</p>
     </div>
-    <form id="checkout-form" action="{{ $form['other']['action'] }}" method="post">
-        <input type="hidden" name="merchant_id" value="{{ $form['other']['merchant_id'] }}">
-        <input type="hidden" name="return_url" value="{{ $form['other']['return_url'] }}">
-        <input type="hidden" name="cancel_url" value="{{ $form['other']['cancel_url'] }}">
-        <input type="hidden" name="notify_url" value="{{ $form['other']['notify_url'] }}">
-        <input type="hidden" name="order_id" value="{{ $form['other']['order_id'] }}">
-        <input type="hidden" name="items" value="{{ $form['other']['items'] }}">
-        <input type="hidden" name="currency" value="{{ $form['other']['currency'] }}">
-        <input type="hidden" name="amount" value="{{ $form['other']['amount'] }}">
-        <input type="hidden" name="first_name" value="{{ $form['customer']['first_name'] }}">
-        <input type="hidden" name="last_name" value="{{ $form['customer']['last_name'] }}">
-        <input type="hidden" name="email" value="{{ $form['customer']['email'] }}">
-        <input type="hidden" name="phone" value="{{ $form['customer']['phone'] }}">
-        <input type="hidden" name="address" value="{{ $form['customer']['address'] }}">
-        <input type="hidden" name="city" value="{{ $form['customer']['city'] }}">
-        <input type="hidden" name="country" value="{{ $form['customer']['country'] }}">
-        <input type="hidden" name="hash" value="{{ $form['other']['hash'] }}">
-        @if($form['recurring'])
-            <input type="hidden" name="recurrence" value="{{ $form['recurring']['recurrence'] }}">
-            <input type="hidden" name="duration" value="{{ $form['recurring']['duration'] }}">
+    <form id="checkout-form" action="{{ $data['other']['action'] }}" method="post">
+        <input type="hidden" name="merchant_id" value="{{ $data['other']['merchant_id'] }}">
+        <input type="hidden" name="return_url" value="{{ $data['other']['return_url'] }}">
+        <input type="hidden" name="cancel_url" value="{{ $data['other']['cancel_url'] }}">
+        <input type="hidden" name="notify_url" value="{{ $data['other']['notify_url'] }}">
+        <input type="hidden" name="order_id" value="{{ $data['other']['order_id'] }}">
+        <input type="hidden" name="items" value="{{ $data['other']['items'] }}">
+        <input type="hidden" name="currency" value="{{ $data['other']['currency'] }}">
+        <input type="hidden" name="amount" value="{{ $data['other']['amount'] }}">
+        <input type="hidden" name="first_name" value="{{ $data['customer']['first_name'] }}">
+        <input type="hidden" name="last_name" value="{{ $data['customer']['last_name'] }}">
+        <input type="hidden" name="email" value="{{ $data['customer']['email'] }}">
+        <input type="hidden" name="phone" value="{{ $data['customer']['phone'] }}">
+        <input type="hidden" name="address" value="{{ $data['customer']['address'] }}">
+        <input type="hidden" name="city" value="{{ $data['customer']['city'] }}">
+        <input type="hidden" name="country" value="{{ $data['customer']['country'] }}">
+        <input type="hidden" name="hash" value="{{ $data['other']['hash'] }}">
+        @if($data['recurring'])
+            <input type="hidden" name="recurrence" value="{{ $data['recurring']['recurrence'] }}">
+            <input type="hidden" name="duration" value="{{ $data['recurring']['duration'] }}">
         @endif
-        @if($form['platform'])
-            <input type="hidden" name="platform" value="{{ $form['platform'] }}">
+        @if($data['platform'])
+            <input type="hidden" name="platform" value="{{ $data['platform'] }}">
         @endif
-        @if($form['startup_fee'])
-            <input type="hidden" name="startup_fee" value="{{ $form['startup_fee'] }}">
+        @if($data['startup_fee'])
+            <input type="hidden" name="startup_fee" value="{{ $data['startup_fee'] }}">
         @endif
-        @if($form['custom_1'])
-            <input type="hidden" name="custom_1" value="{{ $form['custom_1'] }}">
+        @if($data['custom_1'])
+            <input type="hidden" name="custom_1" value="{{ $data['custom_1'] }}">
         @endif
-        @if($form['custom_2'])
-            <input type="hidden" name="custom_2" value="{{ $form['custom_2'] }}">
+        @if($data['custom_2'])
+            <input type="hidden" name="custom_2" value="{{ $data['custom_2'] }}">
         @endif
-        @foreach($form['items'] as $key => $value)
+        @foreach($data['items'] as $key => $value)
             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
         @endforeach
     </form>

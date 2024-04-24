@@ -40,7 +40,7 @@ trait HandleCheckout
     public function checkout(): View
     {
         return view('payhere::checkout', [
-            'form' => $this->getFormData()
+            'data' => $this->getFormData()
         ]);
     }
 }
