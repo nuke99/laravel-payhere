@@ -50,8 +50,8 @@
     </div>
     <form id="checkout-form" action="{{ $data['other']['action'] }}" method="post">
         <input type="hidden" name="merchant_id" value="{{ $data['other']['merchant_id'] }}">
-        <input type="hidden" name="return_url" value="{{ $data['other']['return_url'] }}">
-        <input type="hidden" name="cancel_url" value="{{ $data['other']['cancel_url'] }}">
+        <input type="hidden" name="return_url" value="{{ $data['other']['return_url'] ?? URL::signedRoute('payhere.success') }}">
+        <input type="hidden" name="cancel_url" value="{{ $data['other']['cancel_url'] ?? url('/') }}">
         <input type="hidden" name="notify_url" value="{{ $data['other']['notify_url'] }}">
         <input type="hidden" name="order_id" value="{{ $data['other']['order_id'] }}">
         <input type="hidden" name="items" value="{{ $data['other']['items'] }}">

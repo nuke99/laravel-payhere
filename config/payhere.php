@@ -65,7 +65,7 @@ return [
     | The URL to redirect users to after payment approval.
     */
 
-    'return_url' => env('PAYHERE_RETURN_URL', url('/payhere/success')),
+    'return_url' => env('PAYHERE_RETURN_URL'),
 
     /*
     |--------------------------------------------------------------------------
@@ -75,5 +75,5 @@ return [
     | The URL to redirect users to when they cancel the payment.
     */
 
-    'cancel_url' => env('PAYHERE_CANCEL_URL', url('/')),
+    'cancel_url' => env('PAYHERE_CANCEL_URL'),
 ];
