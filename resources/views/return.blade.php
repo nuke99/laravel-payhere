@@ -1,1 +1,1 @@
-Order #{{ request()->query('order_id') }} Payment success!
+Order #{{ request()->query('order_id') }} Payment approved!
