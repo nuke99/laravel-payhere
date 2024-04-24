@@ -3,7 +3,7 @@
 use Dasundev\PayHere\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/payhere/success', 'payhere::success')->name('payhere.success');
-Route::post('payhere/webhook', [WebhookController::class, 'handleWebhook'])
-    ->middleware('signed')
-    ->name('payhere.webhook');
+Route::group(['prefix' => 'payhere', 'as' => 'payhere.'], function () {
+    Route::view('/success', 'payhere::success')->name('success');
+    Route::post('/webhook', [WebhookController::class, 'handleWebhook'])->middleware('signed')->name('webhook');
+});
