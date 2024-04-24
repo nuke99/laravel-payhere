@@ -1,6 +1,6 @@
 <?php
 
-namespace Dasundev\PayHere\Http\Http\Requests;
+namespace Dasundev\PayHere\Http\Requests;
 
 
 use Illuminate\Foundation\Http\FormRequest;
