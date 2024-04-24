@@ -2,7 +2,6 @@
 
 namespace Dasundev\PayHere\Http\Requests;
 
-
 use Illuminate\Foundation\Http\FormRequest;
 
 class WebhookRequest extends FormRequest

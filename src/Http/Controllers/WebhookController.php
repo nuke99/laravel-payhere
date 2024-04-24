@@ -9,9 +9,6 @@ class WebhookController extends Controller
 {
     /**
      * Handle incoming webhook notification from PayHere.
-     *
-     * @param  Request  $request
-     * @return void
      */
     public function handleWebhook(Request $request): void
     {

@@ -11,7 +11,6 @@ class PayHereController extends Controller
     /**
      * Handle PayHere return request.
      *
-     * @param  Request  $request
      * @return View
      */
     public function handleReturn(Request $request)

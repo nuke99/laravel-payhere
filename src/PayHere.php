@@ -6,30 +6,21 @@ class PayHere
 {
     /**
      * The default customer model class name.
-     *
-     * @var string
      */
     public static string $customerModel = 'App\\Models\\User';
 
     /**
      * The default order lines relationship name.
-     *
-     * @var string
      */
     public static string $orderLinesRelationship = 'lines';
 
     /**
      * The default customer relationship name.
-     *
-     * @var string
      */
     public static string $customerRelationship = 'user';
 
     /**
      * Set the customer model class name.
-     * 
-     * @param $customerModel
-     * @return void
      */
     public static function useCustomerModel($customerModel): void
     {
@@ -38,8 +29,6 @@ class PayHere
 
     /**
      * Set the order lines relationship name.
-     *
-     * @param string $relationship
      */
     public static function useOrderLinesRelationship(string $relationship): void
     {
@@ -48,8 +37,6 @@ class PayHere
 
     /**
      * Set the customer relationship name.
-     *
-     * @param string $relationship
      */
     public static function useCustomerRelationship(string $relationship): void
     {

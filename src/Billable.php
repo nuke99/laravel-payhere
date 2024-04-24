@@ -12,8 +12,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  */
 trait Billable
 {
-    use HandleCheckout;
     use GenerateHash;
+    use HandleCheckout;
 
     public function payments(): MorphMany
     {
