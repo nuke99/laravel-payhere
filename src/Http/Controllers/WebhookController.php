@@ -4,6 +4,7 @@ namespace Dasundev\PayHere\Http\Controllers;
 
 use Dasundev\PayHere\Http\Requests\WebhookRequest;
 use Dasundev\PayHere\Models\Payment;
+use Dasundev\PayHere\Models\Subscription;
 use Dasundev\PayHere\PayHere;
 use Illuminate\Routing\Controller;
 
@@ -14,14 +15,14 @@ class WebhookController extends Controller
      */
     public function handleWebhook(WebhookRequest $request)
     {
-        $orderId = $request['order_id'];
+        $orderId = $request->order_id;
 
         $verified = PayHere::verifyPaymentNotification(
             orderId: $orderId,
-            amount: $request['amount'],
-            currency: $request['currency'],
-            statusCode: $request['status_code'],
-            md5sig: $request['md5sig'],
+            amount: $request->amount,
+            currency: $request->currency,
+            statusCode: $request->status_code,
+            md5sig: $request->md5sig,
         );
 
         if (! $verified) {
@@ -44,7 +45,11 @@ class WebhookController extends Controller
             ]);
 
             if ($request->isRecurring()) {
-                // TODO: Create the subscription $user->subscriptions()->create($payload)
+                Subscription::create([
+                    'billable_id' => $user->id,
+                    'billable_type' => PayHere::$customerModel,
+                    'ends_at' => $request->item_duration
+                ]);
             }
         }
     }
