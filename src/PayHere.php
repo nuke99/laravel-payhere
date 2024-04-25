@@ -10,6 +10,11 @@ class PayHere
     public static string $customerModel = 'App\\Models\\User';
 
     /**
+     * The default order model class name.
+     */
+    public static string $orderModel = 'App\\Models\\Order';
+
+    /**
      * The default order lines relationship name.
      */
     public static string $orderLinesRelationship = 'lines';
@@ -46,22 +51,24 @@ class PayHere
     /**
      * Verify the payment notification.
      */
-    public static function verifyPaymentNotification(array $payload): bool
-    {
-        $md5 = $payload['md5sig'];
-        $statusCode = $payload['status_code'];
-
+    public static function verifyPaymentNotification(
+        string $orderId,
+        float $amount,
+        string $currency,
+        string|int $statusCode,
+        string $md5sig
+    ): bool {
         $localMd5Sig = strtoupper(
             md5(
-                $payload['merchant_id'].
-                $payload['order_id'].
-                $payload['payhere_amount'].
-                $payload['payhere_currency'].
+                config('payhere.merchant_id').
+                $orderId.
+                $amount.
+                $currency.
                 $statusCode.
                 strtoupper(md5(config('payhere.merchant_secret')))
             )
         );
 
-        return $localMd5Sig === $md5 && (int) $statusCode === 2;
+        return $localMd5Sig === $md5sig && (int) $statusCode === 2;
     }
 }
