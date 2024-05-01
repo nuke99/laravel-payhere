@@ -48,7 +48,7 @@ class WebhookController extends Controller
                 Subscription::create([
                     'billable_id' => $user->id,
                     'billable_type' => PayHere::$customerModel,
-                    'ends_at' => $request->item_duration
+                    'ends_at' => $request->item_duration,
                 ]);
             }
         }
