@@ -2,6 +2,9 @@
 
 namespace Dasundev\PayHere;
 
+use Dasundev\PayHere\Exceptions\MissingAppIdException;
+use Dasundev\PayHere\Exceptions\MissingAppSecretException;
+
 class PayHere
 {
     /**
@@ -70,5 +73,24 @@ class PayHere
         );
 
         return $localMd5Sig === $md5sig && (int) $statusCode === 2;
+    }
+
+    /**
+     * Generates an authorization code for PayHere API.
+     *
+     * @throws MissingAppIdException
+     * @throws MissingAppSecretException
+     */
+    public static function generateAuthorizeCode(): string
+    {
+        if (is_null($appId = config('payhere.app_id'))) {
+            throw new MissingAppIdException;
+        }
+
+        if (is_null($appSecret = config('payhere.app_secret'))) {
+            throw new MissingAppSecretException;
+        }
+
+        return "$appId:$appSecret";
     }
 }
