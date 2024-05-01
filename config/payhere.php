@@ -76,4 +76,28 @@ return [
     */
 
     'cancel_url' => env('PAYHERE_CANCEL_URL'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | PayHere App ID
+    |--------------------------------------------------------------------------
+    |
+    | This is the App ID provided by PayHere for your API Key. You can find
+    | your App ID at https://sandbox.payhere.lk/merchant/settings.
+    |
+    */
+
+    'app_id' => env('PAYHERE_APP_ID'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | PayHere App Secret
+    |--------------------------------------------------------------------------
+    |
+    | This is the App Secret provided by PayHere for your API Key. You can find
+    | your App Secret at https://sandbox.payhere.lk/merchant/settings.
+    |
+    */
+
+    'app_secret' => env('PAYHERE_APP_SECRET'),
 ];
