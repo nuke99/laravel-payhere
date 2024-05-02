@@ -66,8 +66,6 @@ trait CheckoutFormData
 
     private function other(): array
     {
-        $baseUrl = config('payhere.base_url');
-
         return [
             'action' => $this->actionUrl(),
             'merchant_id' => config('payhere.merchant_id'),
