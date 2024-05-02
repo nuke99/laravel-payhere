@@ -29,9 +29,7 @@ class WebhookController extends Controller
             return;
         }
 
-        $order = PayHere::$orderModel::find($orderId);
-
-        if (! $order) {
+        if (! $order = PayHere::$orderModel::find($orderId)) {
             return;
         }
 
