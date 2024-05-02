@@ -9,6 +9,8 @@ trait CheckoutFormData
 {
     private ?array $recurring = null;
 
+    private bool $preApprove = false;
+
     private ?string $platform = null;
 
     private ?int $startupFee = null;
@@ -67,7 +69,7 @@ trait CheckoutFormData
         $baseUrl = config('payhere.base_url');
 
         return [
-            'action' => "$baseUrl/pay/checkout",
+            'action' => $this->actionUrl(),
             'merchant_id' => config('payhere.merchant_id'),
             'return_url' => config('payhere.return_url'),
             'cancel_url' => config('payhere.cancel_url'),
@@ -79,6 +81,23 @@ trait CheckoutFormData
             'hash' => $this->generateHash(),
         ];
     }
+
+    public function preApprove(): static
+    {
+        $this->preApprove = true;
+
+        return $this;
+    }
+
+    private function actionUrl(): string
+    {
+        $baseUrl = config('payhere.base_url');
+
+        $action = $this->preApprove ? 'preapprove' : 'checkout';
+
+        return "$baseUrl/pay/$action";
+    }
+
 
     public function recurring(string $recurrence, string $duration): static
     {
