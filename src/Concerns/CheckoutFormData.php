@@ -9,7 +9,7 @@ trait CheckoutFormData
 {
     private ?array $recurring = null;
 
-    private bool $preApprove = false;
+    private bool $preapproval = false;
 
     private ?string $platform = null;
 
@@ -80,9 +80,9 @@ trait CheckoutFormData
         ];
     }
 
-    public function preApprove(): static
+    public function preapproval(): static
     {
-        $this->preApprove = true;
+        $this->preapproval = true;
 
         return $this;
     }
@@ -91,7 +91,7 @@ trait CheckoutFormData
     {
         $baseUrl = config('payhere.base_url');
 
-        $action = $this->preApprove ? 'preapprove' : 'checkout';
+        $action = $this->preapproval ? 'preapprove' : 'checkout';
 
         return "$baseUrl/pay/$action";
     }
