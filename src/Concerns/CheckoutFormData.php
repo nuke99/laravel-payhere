@@ -96,7 +96,6 @@ trait CheckoutFormData
         return "$baseUrl/pay/$action";
     }
 
-
     public function recurring(string $recurrence, string $duration): static
     {
         $this->recurring = [
