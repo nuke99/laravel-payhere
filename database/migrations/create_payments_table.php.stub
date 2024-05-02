@@ -46,6 +46,9 @@ return new class extends Migration {
             $table->enum('item_rec_status', [0, -1, 1])->nullable();
             $table->date('item_rec_date_next')->nullable();
             $table->int('item_rec_install_paid')->nullable();
+            $table->string('customer_token')->nullable();
+            $table->string('custom_1')->nullable();
+            $table->string('custom_2')->nullable();
             $table->timestamps();
         });
     }
