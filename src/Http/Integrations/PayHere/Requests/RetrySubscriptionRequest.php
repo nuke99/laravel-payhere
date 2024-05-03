@@ -2,15 +2,11 @@
 
 namespace Dasundev\PayHere\Http\Integrations\PayHere\Requests;
 
-use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
-use Saloon\Traits\Body\HasFormBody;
 
-class RetrySubscriptionRequest extends Request implements HasBody
+class RetrySubscriptionRequest extends Request
 {
-    use HasFormBody;
-
     protected Method $method = Method::GET;
 
     public function __construct(
