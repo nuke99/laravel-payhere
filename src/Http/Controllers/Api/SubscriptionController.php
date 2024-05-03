@@ -14,6 +14,8 @@ use Saloon\Exceptions\Request\RequestException;
 class SubscriptionController
 {
     /**
+     * Retrieves all subscriptions from PayHere.
+     *
      * @throws FatalRequestException
      * @throws RequestException
      * @throws JsonException
@@ -32,6 +34,8 @@ class SubscriptionController
     }
 
     /**
+     * Retrieves details of a specific subscription from PayHere.
+     *
      * @throws FatalRequestException
      * @throws RequestException
      * @throws JsonException
@@ -50,6 +54,8 @@ class SubscriptionController
     }
 
     /**
+     * Retry a failed payment for a subscription.
+     *
      * @throws FatalRequestException
      * @throws RequestException
      * @throws JsonException
@@ -70,6 +76,8 @@ class SubscriptionController
     }
 
     /**
+     * Cancel a subscription.
+     * 
      * @throws FatalRequestException
      * @throws RequestException
      * @throws JsonException
