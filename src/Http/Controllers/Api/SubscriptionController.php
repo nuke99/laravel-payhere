@@ -6,7 +6,6 @@ use Dasundev\PayHere\Http\Integrations\PayHere\PayHereConnector;
 use Dasundev\PayHere\Http\Integrations\PayHere\Requests\GetSubscriptionRequest;
 use Dasundev\PayHere\Http\Integrations\PayHere\Requests\RetrieveSubscriptionsRequest;
 use Dasundev\PayHere\Http\Integrations\PayHere\Requests\RetrySubscriptionRequest;
-use Illuminate\Http\Request;
 use JsonException;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;

@@ -2,9 +2,6 @@
 
 namespace Dasundev\PayHere;
 
-use Dasundev\PayHere\Exceptions\MissingAppIdException;
-use Dasundev\PayHere\Exceptions\MissingAppSecretException;
-
 class PayHere
 {
     /**

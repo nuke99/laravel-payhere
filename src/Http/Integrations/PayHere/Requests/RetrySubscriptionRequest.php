@@ -15,17 +15,18 @@ class RetrySubscriptionRequest extends Request implements HasBody
 
     public function __construct(
         private readonly string $subscription
-    ) {}
+    ) {
+    }
 
     public function resolveEndpoint(): string
     {
-        return "merchant/v1/subscription/retry";
+        return 'merchant/v1/subscription/retry';
     }
 
     protected function defaultBody(): array
     {
         return [
-            'subscription_id' => $this->subscription
+            'subscription_id' => $this->subscription,
         ];
     }
 }
