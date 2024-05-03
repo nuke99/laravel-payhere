@@ -3,7 +3,7 @@
 namespace Dasundev\PayHere\Http\Controllers\Api;
 
 use Dasundev\PayHere\Http\Integrations\PayHere\PayHereConnector;
-use Dasundev\PayHere\Http\Integrations\PayHere\Requests\ChargeRequest;
+use Dasundev\PayHere\Http\Integrations\PayHere\Requests\GetSubscriptionRequest;
 use Dasundev\PayHere\Http\Integrations\PayHere\Requests\RetrieveSubscriptionsRequest;
 use JsonException;
 use Saloon\Exceptions\Request\FatalRequestException;
@@ -25,6 +25,24 @@ class SubscriptionController
         $connector->authenticate($authenticator);
 
         $response = $connector->send(new RetrieveSubscriptionsRequest);
+
+        return $response->json();
+    }
+
+    /**
+     * @throws FatalRequestException
+     * @throws RequestException
+     * @throws JsonException
+     */
+    public function show(string $subscription)
+    {
+        $connector = new PayHereConnector;
+
+        $authenticator = $connector->getAccessToken();
+
+        $connector->authenticate($authenticator);
+
+        $response = $connector->send(new GetSubscriptionRequest($subscription));
 
         return $response->json();
     }
