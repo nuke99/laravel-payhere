@@ -7,10 +7,8 @@ use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasFormBody;
 
-class RetrievalRequest extends Request implements HasBody
+class RetrievalRequest extends Request
 {
-    use HasFormBody;
-
     protected Method $method = Method::GET;
 
     public function __construct(
