@@ -20,7 +20,7 @@ class ChargeApi extends Controller
     public function __invoke(Request $request)
     {
         $request->validate([
-            'customer_token' => ['required', 'string']
+            'customer_token' => ['required', 'string'],
         ]);
 
         $connector = new PayHereConnector;

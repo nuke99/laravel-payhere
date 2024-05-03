@@ -2,14 +2,8 @@
 
 namespace Dasundev\PayHere\Http\Integrations\PayHere;
 
-use Dasundev\PayHere\Exceptions\MissingAppIdException;
-use Dasundev\PayHere\Exceptions\MissingAppSecretException;
-use Dasundev\PayHere\PayHere;
-use DateTimeImmutable;
-use Saloon\Contracts\OAuthAuthenticator;
 use Saloon\Helpers\OAuth2\OAuthConfig;
 use Saloon\Http\Auth\BasicAuthenticator;
-use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 use Saloon\Traits\OAuth2\ClientCredentialsGrant;
 

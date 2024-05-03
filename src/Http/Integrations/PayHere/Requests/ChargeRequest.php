@@ -15,7 +15,8 @@ class ChargeRequest extends Request implements HasBody
 
     public function __construct(
         private readonly string $customerToken
-    ) {}
+    ) {
+    }
 
     public function resolveEndpoint(): string
     {

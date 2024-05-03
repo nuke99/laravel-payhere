@@ -15,7 +15,8 @@ class RetrievalRequest extends Request implements HasBody
 
     public function __construct(
         private readonly string $orderId
-    ) {}
+    ) {
+    }
 
     public function resolveEndpoint(): string
     {
