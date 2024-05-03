@@ -3,14 +3,14 @@
 namespace Dasundev\PayHere\Http\Controllers\Api;
 
 use Dasundev\PayHere\Http\Integrations\PayHere\PayHereConnector;
-use Dasundev\PayHere\Http\Integrations\PayHere\Requests\RetrievalRequest;
+use Dasundev\PayHere\Http\Integrations\PayHere\Requests\ChargeRequest;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use JsonException;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
 
-class RetrievalApi extends Controller
+class ChargeController extends Controller
 {
     /**
      * @throws FatalRequestException
@@ -20,7 +20,7 @@ class RetrievalApi extends Controller
     public function __invoke(Request $request)
     {
         $request->validate([
-            'order_id' => ['required', 'string'],
+            'customer_token' => ['required', 'string'],
         ]);
 
         $connector = new PayHereConnector;
@@ -29,8 +29,8 @@ class RetrievalApi extends Controller
 
         $connector->authenticate($authenticator);
 
-        $response = $connector->send(new RetrievalRequest(
-            orderId: $request->order_id
+        $response = $connector->send(new ChargeRequest(
+            customerToken: $request->customer_token
         ));
 
         return $response->json();
