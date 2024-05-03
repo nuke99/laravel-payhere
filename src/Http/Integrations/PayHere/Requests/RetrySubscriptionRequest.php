@@ -11,7 +11,7 @@ class RetrySubscriptionRequest extends Request implements HasBody
 {
     use HasFormBody;
 
-    protected Method $method = Method::GET;
+    protected Method $method = Method::POST;
 
     public function __construct(
         private readonly string $subscription
