@@ -7,7 +7,7 @@ use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasFormBody;
 
-class ChargeRequest extends Request implements HasBody
+class PaymentChargeRequest extends Request implements HasBody
 {
     use HasFormBody;
 

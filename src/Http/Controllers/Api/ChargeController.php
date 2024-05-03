@@ -3,7 +3,7 @@
 namespace Dasundev\PayHere\Http\Controllers\Api;
 
 use Dasundev\PayHere\Http\Integrations\PayHere\PayHereConnector;
-use Dasundev\PayHere\Http\Integrations\PayHere\Requests\ChargeRequest;
+use Dasundev\PayHere\Http\Integrations\PayHere\Requests\PaymentChargeRequest;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use JsonException;
@@ -29,7 +29,7 @@ class ChargeController extends Controller
 
         $connector->authenticate($authenticator);
 
-        $response = $connector->send(new ChargeRequest(
+        $response = $connector->send(new PaymentChargeRequest(
             customerToken: $request->customer_token
         ));
 
