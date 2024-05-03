@@ -5,7 +5,10 @@ namespace Dasundev\PayHere\Http\Integrations\PayHere;
 use Dasundev\PayHere\Exceptions\MissingAppIdException;
 use Dasundev\PayHere\Exceptions\MissingAppSecretException;
 use Dasundev\PayHere\PayHere;
+use DateTimeImmutable;
+use Saloon\Contracts\OAuthAuthenticator;
 use Saloon\Helpers\OAuth2\OAuthConfig;
+use Saloon\Http\Auth\BasicAuthenticator;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 use Saloon\Traits\OAuth2\ClientCredentialsGrant;
@@ -14,15 +17,14 @@ class PayHereConnector extends Connector
 {
     use ClientCredentialsGrant;
 
-    private string $token;
+    private string $clientId;
 
-    /**
-     * @throws MissingAppIdException
-     * @throws MissingAppSecretException
-     */
+    private string $clientSecret;
+
     public function __construct()
     {
-        $this->token = PayHere::generateAuthorizeCode();
+        $this->clientId = config('payhere.app_id');
+        $this->clientSecret = config('payhere.app_secret');
     }
 
     public function resolveBaseUrl(): string
@@ -33,13 +35,16 @@ class PayHereConnector extends Connector
     protected function defaultOauthConfig()
     {
         return OAuthConfig::make()
-            ->setClientId(config('payhere.app_id'))
-            ->setClientSecret(config('payhere.app_secret'))
+            ->setClientId($this->clientId)
+            ->setClientSecret($this->clientSecret)
             ->setTokenEndpoint('/merchant/v1/oauth/token');
     }
 
-    protected function defaultAuth(): TokenAuthenticator
+    protected function defaultAuth(): BasicAuthenticator
     {
-        return new TokenAuthenticator($this->token);
+        return new BasicAuthenticator(
+            username: $this->clientId,
+            password: $this->clientSecret
+        );
     }
 }

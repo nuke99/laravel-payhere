@@ -11,7 +11,7 @@ class PayHereServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('payhere')
-            ->hasRoute('web')
+            ->hasRoutes(['web', 'api'])
             ->hasMigrations([
                 'create_payments_table',
             ])
