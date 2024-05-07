@@ -13,12 +13,10 @@ trait HandleCheckout
     /**
      * The order associated with this object.
      */
-    protected Model $order;
+    protected ?Model $order = null;
 
     /**
      * Set a new order for checkout.
-     *
-     * @return HandleCheckout
      */
     public function newOrder(Model $order): static
     {
