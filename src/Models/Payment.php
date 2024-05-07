@@ -4,7 +4,7 @@ namespace Dasundev\PayHere\Models;
 
 use Dasundev\PayHere\Enums\PaymentMethod;
 use Dasundev\PayHere\Enums\PaymentStatus;
-use Dasundev\PayHere\Enums\RecurringStatus;
+use Dasundev\PayHere\Enums\MessageType;
 use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
@@ -14,6 +14,6 @@ class Payment extends Model
     protected $casts = [
         'method' => PaymentMethod::class,
         'status_code' => PaymentStatus::class,
-        'message_type' => RecurringStatus::class
+        'message_type' => MessageType::class
     ];
 }

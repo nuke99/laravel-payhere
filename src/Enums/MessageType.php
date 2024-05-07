@@ -2,7 +2,7 @@
 
 namespace Dasundev\PayHere\Enums;
 
-enum RecurringStatus
+enum MessageType
 {
     case AUTHORIZATION_SUCCESS;
     case AUTHORIZATION_FAILED;
