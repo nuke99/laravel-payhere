@@ -5,6 +5,15 @@ namespace Dasundev\PayHere\Concerns;
 use Dasundev\PayHere\PayHere;
 use Illuminate\Support\Facades\URL;
 
+/**
+ * @method payhereFirstName()
+ * @method payhereLastName()
+ * @method payhereEmail()
+ * @method payherePhone()
+ * @method payhereAddress()
+ * @method payhereCity()
+ * @method payhereCountry()
+ */
 trait CheckoutFormData
 {
     private ?array $recurring = null;
@@ -21,30 +30,28 @@ trait CheckoutFormData
 
     public function getFormData(): array
     {
-        return array_merge(
-            ['customer' => $this->customer()],
-            ['items' => $this->items()],
-            ['other' => $this->other()],
-            ['recurring' => $this->recurring],
-            ['platform' => $this->platform],
-            ['startup_fee' => $this->startupFee],
-            ['custom_1' => $this->customOne],
-            ['custom_2' => $this->customTwo],
-        );
+        return [
+            'customer' => $this->customer(),
+            'items' => $this->items(),
+            'other' => $this->other(),
+            'recurring' => $this->recurring,
+            'platform' => $this->platform,
+            'startup_fee' => $this->startupFee,
+            'custom_1' => $this->customOne,
+            'custom_2' => $this->customTwo
+        ];
     }
 
     private function customer(): array
     {
-        $relationship = PayHere::$customerRelationship;
-
         return [
-            'first_name' => $this->order->{$relationship}->payhereFirstName(),
-            'last_name' => $this->order->{$relationship}->payhereLastName(),
-            'email' => $this->order->{$relationship}->payhereEmail(),
-            'phone' => $this->order->{$relationship}->payherePhone(),
-            'address' => $this->order->{$relationship}->payhereAddress(),
-            'city' => $this->order->{$relationship}->payhereCity(),
-            'country' => $this->order->{$relationship}->payhereCountry(),
+            'first_name' => $this->payhereFirstName(),
+            'last_name' => $this->payhereLastName(),
+            'email' => $this->payhereEmail(),
+            'phone' => $this->payherePhone(),
+            'address' => $this->payhereAddress(),
+            'city' => $this->payhereCity(),
+            'country' => $this->payhereCountry(),
         ];
     }
 
