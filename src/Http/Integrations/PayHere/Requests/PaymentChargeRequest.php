@@ -20,7 +20,7 @@ class PaymentChargeRequest extends Request implements HasBody
 
     public function resolveEndpoint(): string
     {
-        return '/merchant/v1/payment/charge';
+        return 'merchant/v1/payment/charge';
     }
 
     protected function defaultBody(): array
