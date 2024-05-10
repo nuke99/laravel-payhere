@@ -45,7 +45,7 @@
     <noscript>Your browser does not support JavaScript!</noscript>
     <div>
         <h1>Redirecting...</h1>
-        <p>You will be redirected to the PayHere gateway within <strong><span id="seconds"></span> seconds.</strong></p>
+        <p>You will be redirected to the PayHere gateway within <strong>3 seconds.</strong></p>
         <p>Please do not refresh the page or click the "Back" or "Close" button of your browser.</p>
     </div>
     <form id="checkout-form" action="{{ $data['other']['action'] }}" method="post">
@@ -88,26 +88,10 @@
 </div>
 <script type="application/javascript">
     document.addEventListener('DOMContentLoaded', function() {
-        countdown(3, document.getElementById('seconds'));
+        setTimeout(function () {
+            document.getElementById('checkout-form').submit()
+        }, 3000)
     });
-
-    async function countdown(seconds, el) {
-        const delay = 1000;
-
-        while (seconds > 0) {
-            el.innerHTML = seconds;
-
-            await new Promise(resolve => setTimeout(resolve, delay));
-
-            seconds--;
-        }
-
-        submit();
-    }
-
-    function submit() {
-        document.getElementById('checkout-form').submit()
-    }
 </script>
 </body>
 </html>
