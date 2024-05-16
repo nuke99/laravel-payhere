@@ -77,7 +77,7 @@ class SubscriptionController
 
     /**
      * Cancel a subscription.
-     * 
+     *
      * @throws FatalRequestException
      * @throws RequestException
      * @throws JsonException

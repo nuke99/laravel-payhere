@@ -28,12 +28,12 @@ class PaymentChargeRequest extends Request implements HasBody
     protected function defaultBody(): array
     {
         $order = PayHere::$orderModel::find($this->orderId);
-        
+
         return [
             'customer_token' => $order->payherePayment->customer_token,
             'items' => "Order #{$order->id}",
             'amount' => $order->total,
-            'currency' => config('payhere.currency')
+            'currency' => config('payhere.currency'),
         ];
     }
 }

@@ -38,7 +38,7 @@ trait CheckoutFormData
             'platform' => $this->platform,
             'startup_fee' => $this->startupFee,
             'custom_1' => $this->customOne,
-            'custom_2' => $this->customTwo
+            'custom_2' => $this->customTwo,
         ];
     }
 

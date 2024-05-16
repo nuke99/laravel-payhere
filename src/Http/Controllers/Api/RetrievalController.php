@@ -4,7 +4,6 @@ namespace Dasundev\PayHere\Http\Controllers\Api;
 
 use Dasundev\PayHere\Http\Integrations\PayHere\PayHereConnector;
 use Dasundev\PayHere\Http\Integrations\PayHere\Requests\ListPaymentsRequest;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use JsonException;
 use Saloon\Exceptions\Request\FatalRequestException;

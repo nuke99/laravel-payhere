@@ -20,7 +20,7 @@ class ChargeController extends Controller
     public function __invoke(Request $request)
     {
         $request->validate([
-            'order_id' => ['required', 'string']
+            'order_id' => ['required', 'string'],
         ]);
 
         $connector = new PayHereConnector;
