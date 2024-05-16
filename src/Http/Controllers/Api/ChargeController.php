@@ -20,7 +20,7 @@ class ChargeController extends Controller
     public function __invoke(Request $request)
     {
         $request->validate([
-            'customer_token' => ['required', 'string'],
+            'order_id' => ['required', 'string']
         ]);
 
         $connector = new PayHereConnector;
@@ -30,7 +30,7 @@ class ChargeController extends Controller
         $connector->authenticate($authenticator);
 
         $response = $connector->send(new PaymentChargeRequest(
-            customerToken: $request->customer_token
+            order: $request->order_id
         ));
 
         return $response->json();

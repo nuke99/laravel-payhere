@@ -2,20 +2,22 @@
 
 namespace Dasundev\PayHere\Http\Integrations\PayHere\Requests;
 
+use Dasundev\PayHere\PayHere;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
-use Saloon\Traits\Body\HasFormBody;
+use Saloon\Traits\Body\HasJsonBody;
 
 class PaymentChargeRequest extends Request implements HasBody
 {
-    use HasFormBody;
+    use HasJsonBody;
 
     protected Method $method = Method::POST;
 
     public function __construct(
-        private readonly string $customerToken
+        private $order
     ) {
+        $this->order = PayHere::$orderModel::find($order);
     }
 
     public function resolveEndpoint(): string
@@ -26,7 +28,10 @@ class PaymentChargeRequest extends Request implements HasBody
     protected function defaultBody(): array
     {
         return [
-            'customer_token' => $this->customerToken,
+            'customer_token' => $this->order->payherePayment->customer_token,
+            'items' => "Order #{$this->order->id}",
+            'amount' => $this->order->total,
+            'currency' => config('payhere.currency')
         ];
     }
 }
