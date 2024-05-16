@@ -30,7 +30,7 @@ class ChargeController extends Controller
         $connector->authenticate($authenticator);
 
         $response = $connector->send(new PaymentChargeRequest(
-            order: $request->order_id
+            orderId: $request->order_id
         ));
 
         return $response->json();
