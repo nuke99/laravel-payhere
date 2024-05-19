@@ -9,9 +9,10 @@ seeders:
   - Workbench\Database\Seeders\DatabaseSeeder
 
 workbench:
+  welcome: true
+  install: true
   start: '/'
-  user: 'hello@dasun.dev'
-  install: true,
+  user: hello@dasun.dev
   guard: web
   discovers:
     web: true
