@@ -16,7 +16,7 @@ class RetrievalController extends Controller
      * @throws RequestException
      * @throws JsonException
      */
-    public function __invoke(string $order)
+    public function __invoke(string $orderId)
     {
         $connector = new PayHereConnector;
 
@@ -25,7 +25,7 @@ class RetrievalController extends Controller
         $connector->authenticate($authenticator);
 
         $response = $connector->send(new ListPaymentsRequest(
-            orderId: $order
+            orderId: $orderId
         ));
 
         return $response->json();
