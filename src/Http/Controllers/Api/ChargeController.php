@@ -4,6 +4,7 @@ namespace Dasundev\PayHere\Http\Controllers\Api;
 
 use Dasundev\PayHere\Http\Integrations\PayHere\PayHereConnector;
 use Dasundev\PayHere\Http\Integrations\PayHere\Requests\PaymentChargeRequest;
+use Dasundev\PayHere\Rules\ChargeType;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use JsonException;
@@ -20,7 +21,10 @@ class ChargeController extends Controller
     public function __invoke(Request $request)
     {
         $request->validate([
+            'type' => ['sometimes', 'string', new ChargeType],
             'order_id' => ['required', 'string'],
+            'custom_1' => ['sometimes', 'string'],
+            'custom_2' => ['sometimes', 'string'],
         ]);
 
         $connector = new PayHereConnector;
