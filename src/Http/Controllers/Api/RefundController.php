@@ -33,7 +33,7 @@ class RefundController extends Controller
 
         $response = $connector->send(new RefundPaymentRequest(
             description: $request->description,
-            paymentId: $request->paymentId,
+            paymentId: $request->payment_id,
             authorizationToken: $request->authorization_token
         ));
 
