@@ -20,6 +20,8 @@ trait CheckoutFormData
 
     private bool $preapproval = false;
 
+    private bool $authorize = false;
+
     private ?string $platform = null;
 
     private ?int $startupFee = null;
@@ -94,11 +96,26 @@ trait CheckoutFormData
         return $this;
     }
 
+    public function authorize(): static
+    {
+        $this->authorize = true;
+
+        return $this;
+    }
+
     private function actionUrl(): string
     {
         $baseUrl = config('payhere.base_url');
 
-        $action = $this->preapproval ? 'preapprove' : 'checkout';
+        $action = 'checkout';
+
+        if ($this->preapproval) {
+            $action = 'preapprove';
+        }
+
+        if ($this->authorize) {
+            $action = 'authorize';
+        }
 
         return "$baseUrl/pay/$action";
     }
