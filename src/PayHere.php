@@ -33,6 +33,14 @@ class PayHere
     }
 
     /**
+     * Set the order model class name.
+     */
+    public static function useOrderModel($model): void
+    {
+        static::$customerModel = $model;
+    }
+
+    /**
      * Set the order lines relationship name.
      */
     public static function useOrderLinesRelationship(string $relationship): void
