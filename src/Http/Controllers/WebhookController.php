@@ -6,6 +6,8 @@ use Dasundev\PayHere\Http\Requests\WebhookRequest;
 use Dasundev\PayHere\Models\Payment;
 use Dasundev\PayHere\Models\Subscription;
 use Dasundev\PayHere\PayHere;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class WebhookController extends Controller
@@ -37,6 +39,24 @@ class WebhookController extends Controller
 
         $user = $order->{$relationship};
 
+        $this->createPayment($user, $request);
+
+        if ($request->isRecurring()) {
+            $this->createSubscription($user, $request);
+        }
+    }
+
+    private function createSubscription(Model $user, Request $request)
+    {
+        Subscription::create([
+            'billable_id' => $user->id,
+            'billable_type' => PayHere::$customerModel,
+            'ends_at' => $request->item_duration,
+        ]);
+    }
+
+    private function createPayment(Model $user, Request $request): void
+    {
         Payment::create([
             'billable_id' => $user->id,
             'billable_type' => PayHere::$customerModel,
@@ -61,13 +81,5 @@ class WebhookController extends Controller
             'custom_1' => $request->custom_1,
             'custom_2' => $request->custom_2,
         ]);
-
-        if ($request->isRecurring()) {
-            Subscription::create([
-                'billable_id' => $user->id,
-                'billable_type' => PayHere::$customerModel,
-                'ends_at' => $request->item_duration,
-            ]);
-        }
     }
 }
