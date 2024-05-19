@@ -17,7 +17,10 @@ class PaymentChargeRequest extends Request implements HasBody
     protected Method $method = Method::POST;
 
     public function __construct(
-        private readonly string $orderId
+        private readonly string $orderId,
+        private readonly ?string $type = null,
+        private readonly ?string $customOne = null,
+        private readonly ?string $customTwo = null,
     ) {
 
     }
@@ -28,7 +31,7 @@ class PaymentChargeRequest extends Request implements HasBody
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     protected function defaultBody(): array
     {
@@ -41,10 +44,22 @@ class PaymentChargeRequest extends Request implements HasBody
         }
 
         return [
+            'type' => $this->type,
+            'order_id' => $order->id,
+            'custom_1' => $this->customOne,
+            'custom_2' => $this->customTwo,
             'customer_token' => $order->payherePayment->customer_token,
             'items' => "Order #{$order->id}",
             'amount' => $order->total,
             'currency' => config('payhere.currency'),
+            'itemList' => $order->lines->map(function ($line) {
+                return [
+                    'name' => $line->payHereOrderLineTitle(),
+                    'number' => $line->payHereOrderLineId(),
+                    'quantity' => $line->payHereOrderLineQty(),
+                    'unit_amount' => $line->payHereOrderLineUnitAmount(),
+                ];
+            }),
         ];
     }
 }
