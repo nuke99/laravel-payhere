@@ -16,7 +16,8 @@
     "require-dev": {
         "larastan/larastan": "^2.9",
         "pestphp/pest": "^2.34",
-        "laravel/pint": "^1.15"
+        "laravel/pint": "^1.15",
+        "orchestra/testbench": "^8.22"
     },
     "autoload": {
         "psr-4": {
