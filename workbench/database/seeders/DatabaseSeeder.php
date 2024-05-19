@@ -2,8 +2,8 @@
 
 namespace Workbench\Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Workbench\App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,6 +12,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        User::create([
+            'name' => 'Dasun Tharanga',
+            'email' => 'hello@dasun.dev',
+            'password' => 'password',
+            'phone' => '0770689524',
+            'address' => '358, Maussakanda, Nikakatiya',
+            'city' => 'Bulutota',
+            'country' => 'Sri Lanka'
+        ]);
     }
 }
