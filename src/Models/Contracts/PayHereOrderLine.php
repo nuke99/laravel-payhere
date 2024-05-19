@@ -23,4 +23,9 @@ interface PayHereOrderLine
      * Get the total amount for the order line.
      */
     public function payHereOrderLineTotal(): float;
+
+    /**
+     * Get the unit amount for the order line.
+     */
+    public function payHereOrderLineUnitPrice(): float;
 }
