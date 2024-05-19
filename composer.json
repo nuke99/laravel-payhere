@@ -26,7 +26,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Dasundev\\PayHere\\Tests\\": "tests"
+            "Dasundev\\PayHere\\Tests\\": "tests",
+            "Workbench\\App\\": "workbench/app/"
         }
     },
     "config": {
