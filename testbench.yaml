@@ -1,0 +1,28 @@
+providers:
+  - Dasundev\PayHere\PayHereServiceProvider
+  - Workbench\App\Providers\WorkbenchServiceProvider
+
+migrations:
+  - workbench/database/migrations
+
+seeders:
+  - Workbench\Database\Seeders\DatabaseSeeder
+
+workbench:
+  welcome: true
+  install: true
+  start: '/'
+  user: hello@dasun.dev
+  guard: web
+  discovers:
+    web: true
+    api: true
+    commands: false
+    components: false
+    views: false
+  build:
+    - create-sqlite-db
+    - migrate:fresh
+    - db:seed
+  assets: []
+  sync: []

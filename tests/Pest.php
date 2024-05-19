@@ -11,7 +11,10 @@
 |
 */
 
-// uses(Tests\TestCase::class)->in('Feature');
+use Dasundev\PayHere\Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+uses(TestCase::class, RefreshDatabase::class)->in(__DIR__);
 
 /*
 |--------------------------------------------------------------------------
