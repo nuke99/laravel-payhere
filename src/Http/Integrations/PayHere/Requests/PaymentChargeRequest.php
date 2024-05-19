@@ -5,6 +5,7 @@ namespace Dasundev\PayHere\Http\Integrations\PayHere\Requests;
 use Dasundev\PayHere\Models\Contracts\PayHereOrder;
 use Dasundev\PayHere\PayHere;
 use Exception;
+use Illuminate\Support\Facades\URL;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
@@ -52,6 +53,7 @@ class PaymentChargeRequest extends Request implements HasBody
             'items' => "Order #{$order->id}",
             'amount' => $order->total,
             'currency' => config('payhere.currency'),
+            'notify_url' => URL::signedRoute('payhere.webhook'),
             'itemList' => $order->lines->map(function ($line) {
                 return [
                     'name' => $line->payHereOrderLineTitle(),
