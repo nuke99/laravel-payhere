@@ -11,7 +11,9 @@
 |
 */
 
-// uses(Tests\TestCase::class)->in('Feature');
+use Dasundev\PayHere\Tests\TestCase;
+
+uses(TestCase::class)->in(__DIR__);
 
 /*
 |--------------------------------------------------------------------------
