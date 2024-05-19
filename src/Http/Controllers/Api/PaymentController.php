@@ -16,6 +16,8 @@ use Saloon\Exceptions\Request\RequestException;
 class PaymentController
 {
     /**
+     * Search for payments by order ID.
+     *
      * @throws FatalRequestException
      * @throws RequestException
      * @throws JsonException
@@ -36,6 +38,8 @@ class PaymentController
     }
 
     /**
+     * Charge a payment.
+     *
      * @throws FatalRequestException
      * @throws RequestException
      * @throws JsonException
@@ -66,6 +70,8 @@ class PaymentController
     }
 
     /**
+     * Charge a payment.
+     *
      * @throws FatalRequestException
      * @throws RequestException
      * @throws JsonException
@@ -94,6 +100,8 @@ class PaymentController
     }
 
     /**
+     * Refund a payment.
+     * 
      * @throws FatalRequestException
      * @throws RequestException
      * @throws JsonException
