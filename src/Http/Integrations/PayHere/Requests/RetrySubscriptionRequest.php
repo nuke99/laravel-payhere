@@ -5,11 +5,11 @@ namespace Dasundev\PayHere\Http\Integrations\PayHere\Requests;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
-use Saloon\Traits\Body\HasFormBody;
+use Saloon\Traits\Body\HasJsonBody;
 
 class RetrySubscriptionRequest extends Request implements HasBody
 {
-    use HasFormBody;
+    use HasJsonBody;
 
     protected Method $method = Method::POST;
 
