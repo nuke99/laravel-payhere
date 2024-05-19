@@ -36,7 +36,7 @@ jobs:
           composer update --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
 
       - name: Run Tests
-        run: ./vendor/bin/testbench package:test
+        run: composer run test
         env:
           PAYHERE_MERCHANT_ID: ${{ secrets.PAYHERE_MERCHANT_ID }}
           PAYHERE_MERCHANT_SECRET: ${{ secrets.PAYHERE_MERCHANT_SECRET }}
