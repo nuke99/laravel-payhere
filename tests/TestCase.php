@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests;
+namespace Dasundev\PayHere\Tests;
 
-use PHPUnit\Framework\TestCase as BaseTestCase;
+use Orchestra\Testbench\Concerns\WithWorkbench;
 
-abstract class TestCase extends BaseTestCase
+abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
-    //
+    use WithWorkbench;
 }
