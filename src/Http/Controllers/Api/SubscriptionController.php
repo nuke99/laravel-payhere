@@ -68,9 +68,7 @@ class SubscriptionController
 
         $connector->authenticate($authenticator);
 
-        $response = $connector->send(new RetrySubscriptionRequest(
-            subscription: $subscription
-        ));
+        $response = $connector->send(new RetrySubscriptionRequest($subscription));
 
         return $response->json();
     }
@@ -90,9 +88,7 @@ class SubscriptionController
 
         $connector->authenticate($authenticator);
 
-        $response = $connector->send(new CancelSubscriptionRequest(
-            subscription: $subscription
-        ));
+        $response = $connector->send(new CancelSubscriptionRequest($subscription));
 
         return $response->json();
     }
