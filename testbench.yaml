@@ -1,5 +1,6 @@
 providers:
-  # - Workbench\App\Providers\WorkbenchServiceProvider
+  - Dasundev\PayHere\PayHereServiceProvider
+  - Workbench\App\Providers\WorkbenchServiceProvider
 
 migrations:
   - workbench/database/migrations
@@ -12,7 +13,7 @@ workbench:
   install: true
   discovers:
     web: true
-    api: false
+    api: true
     commands: false
     components: false
     views: false
