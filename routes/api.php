@@ -1,18 +1,15 @@
 <?php
 
-use Dasundev\PayHere\Http\Controllers\Api\ChargeController;
 use Dasundev\PayHere\Http\Controllers\Api\PaymentController;
-use Dasundev\PayHere\Http\Controllers\Api\RefundController;
-use Dasundev\PayHere\Http\Controllers\Api\RetrievalController;
 use Dasundev\PayHere\Http\Controllers\Api\SubscriptionController;
 
 Route::group(['prefix' => 'payhere/api', 'as' => 'payhere.api.'], function () {
-    Route::post('/charge', ChargeController::class)->name('charge');
-    Route::get('/retrieval/{order}', RetrievalController::class)->name('retrieval');
+    Route::post('/payment/charge', [PaymentController::class, 'charge'])->name('payment.charge');
+    Route::get('/payment/search/{order?}', [PaymentController::class, 'search'])->name('payment.search');
     Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');
     Route::get('/subscriptions/{subscription}', [SubscriptionController::class, 'show'])->name('subscriptions.show');
     Route::post('/subscriptions/{subscription}/retry', [SubscriptionController::class, 'retry'])->name('subscriptions.retry');
     Route::delete('/subscriptions/{subscription}', [SubscriptionController::class, 'cancel'])->name('subscriptions.cancel');
-    Route::post('/refund', RefundController::class)->name('refund');
+    Route::post('/payment/refund', [PaymentController::class, 'refund'])->name('payment.refund');
     Route::post('/payment/capture', [PaymentController::class, 'capture'])->name('payment.capture');
 });

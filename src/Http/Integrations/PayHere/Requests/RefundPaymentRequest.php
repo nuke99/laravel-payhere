@@ -31,7 +31,7 @@ class RefundPaymentRequest extends Request implements HasBody
         return [
             'payment_id' => $this->paymentId,
             'description' => $this->description,
-            'authorization_token' => $this->authorizationToken
+            'authorization_token' => $this->authorizationToken,
         ];
     }
 }
