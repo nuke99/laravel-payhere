@@ -3,13 +3,17 @@
 use Dasundev\PayHere\Http\Controllers\Api\PaymentController;
 use Dasundev\PayHere\Http\Controllers\Api\SubscriptionController;
 
-Route::group(['prefix' => 'payhere/api', 'as' => 'payhere.api.'], function () {
-    Route::get('/payment/search/{order?}', [PaymentController::class, 'search'])->name('payment.search');
-    Route::post('/payment/charge', [PaymentController::class, 'charge'])->name('payment.charge');
-    Route::post('/payment/refund', [PaymentController::class, 'refund'])->name('payment.refund');
-    Route::post('/payment/capture', [PaymentController::class, 'capture'])->name('payment.capture');
-    Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');
-    Route::get('/subscriptions/{subscription}', [SubscriptionController::class, 'show'])->name('subscriptions.show');
-    Route::post('/subscriptions/{subscription}/retry', [SubscriptionController::class, 'retry'])->name('subscriptions.retry');
-    Route::delete('/subscriptions/{subscription}', [SubscriptionController::class, 'cancel'])->name('subscriptions.cancel');
+Route::prefix('payhere/api')->as('payhere.api.')->group(function () {
+    Route::prefix('payments')->as('payment.')->group(function () {
+        Route::get('search/{order?}', [PaymentController::class, 'search'])->name('search');
+        Route::post('charge', [PaymentController::class, 'charge'])->name('charge');
+        Route::post('refund', [PaymentController::class, 'refund'])->name('refund');
+        Route::post('capture', [PaymentController::class, 'capture'])->name('capture');
+    });
+    Route::prefix('subscriptions')->as('subscription.')->group(function () {
+        Route::get('/', [SubscriptionController::class, 'index'])->name('index');
+        Route::get('{subscription}', [SubscriptionController::class, 'show'])->name('show');
+        Route::post('{subscription}/retry', [SubscriptionController::class, 'retry'])->name('retry');
+        Route::delete('{subscription}', [SubscriptionController::class, 'cancel'])->name('cancel');
+    });
 });
