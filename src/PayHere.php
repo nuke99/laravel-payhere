@@ -37,7 +37,7 @@ class PayHere
      */
     public static function useOrderModel($model): void
     {
-        static::$customerModel = $model;
+        static::$orderModel = $model;
     }
 
     /**
