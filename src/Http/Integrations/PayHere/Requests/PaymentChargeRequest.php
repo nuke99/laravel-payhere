@@ -57,7 +57,7 @@ class PaymentChargeRequest extends Request implements HasBody
                     'name' => $line->payHereOrderLineTitle(),
                     'number' => $line->payHereOrderLineId(),
                     'quantity' => $line->payHereOrderLineQty(),
-                    'unit_amount' => $line->payHereOrderLineUnitAmount(),
+                    'unit_amount' => $line->payHereOrderLineUnitPrice(),
                 ];
             }),
         ];
