@@ -24,9 +24,7 @@ class RetrievalController extends Controller
 
         $connector->authenticate($authenticator);
 
-        $response = $connector->send(new ListPaymentsRequest(
-            orderId: $orderId
-        ));
+        $response = $connector->send(new ListPaymentsRequest($orderId));
 
         return $response->json();
     }
