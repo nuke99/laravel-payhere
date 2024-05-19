@@ -1,6 +1,7 @@
 <?php
 
 use Dasundev\PayHere\Http\Controllers\Api\ChargeController;
+use Dasundev\PayHere\Http\Controllers\Api\PaymentController;
 use Dasundev\PayHere\Http\Controllers\Api\RefundController;
 use Dasundev\PayHere\Http\Controllers\Api\RetrievalController;
 use Dasundev\PayHere\Http\Controllers\Api\SubscriptionController;
@@ -13,4 +14,5 @@ Route::group(['prefix' => 'payhere/api', 'as' => 'payhere.api.'], function () {
     Route::post('/subscriptions/{subscription}/retry', [SubscriptionController::class, 'retry'])->name('subscriptions.retry');
     Route::delete('/subscriptions/{subscription}', [SubscriptionController::class, 'cancel'])->name('subscriptions.cancel');
     Route::post('/refund', RefundController::class)->name('refund');
+    Route::post('/payment/capture', [PaymentController::class, 'capture'])->name('payment.capture');
 });
