@@ -15,7 +15,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
-| Enable Headless Mode
+| Enable Headless Mode for Testbench Dusk
 |--------------------------------------------------------------------------
 |
 | This setting enables headless mode for Testbench Dusk, allowing browser
