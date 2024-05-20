@@ -14,7 +14,6 @@ workbench:
   start: '/'
   discovers:
     web: true
-    api: true
   build:
     - create-sqlite-db
     - migrate:fresh
