@@ -1,5 +1,8 @@
 <?php
 
+use Dasundev\PayHere\Tests\DuskTestCase;
+use Dasundev\PayHere\Tests\TestCase;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -10,9 +13,6 @@
 | need to change it using the "uses()" function to bind a different classes or traits.
 |
 */
-
-use Dasundev\PayHere\Tests\DuskTestCase;
-use Dasundev\PayHere\Tests\TestCase;
 
 uses(
     TestCase::class,
