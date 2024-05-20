@@ -14,4 +14,6 @@ use Workbench\App\Http\Controllers\Checkout;
 |
 */
 
-Route::get('/checkout', Checkout::class);
+Route::get('/checkout', Checkout::class)
+    ->middleware('auth')
+    ->name('checkout');

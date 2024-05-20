@@ -14,8 +14,8 @@ class CheckoutTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
-                ->visit('/welcome')
-                ->assertUrlIs('/welcome');
+                ->visitRoute('checkout')
+                ->assertRouteIs('checkout');
         });
     }
 }
