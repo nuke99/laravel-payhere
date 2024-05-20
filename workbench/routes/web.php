@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Workbench\App\Controllers\Checkout;
+use Workbench\App\Http\Controllers\Checkout;
 
 /*
 |--------------------------------------------------------------------------
