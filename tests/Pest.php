@@ -11,10 +11,22 @@
 |
 */
 
+use Dasundev\PayHere\Tests\DuskTestCase;
 use Dasundev\PayHere\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Orchestra\Testbench\Dusk\Options;
 
-uses(TestCase::class, RefreshDatabase::class)->in(__DIR__);
+uses(
+    TestCase::class,
+    RefreshDatabase::class
+)->in('Feature');
+
+uses(
+    DuskTestCase::class,
+    RefreshDatabase::class
+)->in('Browser');
+
+Options::withoutUI();
 
 /*
 |--------------------------------------------------------------------------
