@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
+        User::factory()->state([
             'name' => 'Dasun Tharanga',
             'email' => 'hello@dasun.dev',
             'password' => 'password',
@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
             'address' => '358, Maussakanda, Nikakatiya',
             'city' => 'Bulutota',
             'country' => 'Sri Lanka'
-        ]);
+        ])->create();
     }
 }

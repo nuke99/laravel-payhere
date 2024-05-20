@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Workbench\Database\Factories\OrderFactory;
 
 class Order extends Model implements PayHereOrder
 {
@@ -29,5 +30,10 @@ class Order extends Model implements PayHereOrder
     public function payherePayment(): HasOne
     {
         return $this->hasOne(Payment::class);
+    }
+
+    protected static function newFactory(): OrderFactory
+    {
+        return new OrderFactory;
     }
 }

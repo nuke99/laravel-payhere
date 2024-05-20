@@ -6,6 +6,7 @@ use Dasundev\PayHere\Models\Contracts\PayHereOrderLine;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Workbench\Database\Factories\OrderLineFactory;
 
 class OrderLine extends Model implements PayHereOrderLine
 {
@@ -41,5 +42,10 @@ class OrderLine extends Model implements PayHereOrderLine
     public function payHereOrderLineUnitPrice(): float
     {
         return $this->unit_price;
+    }
+
+    protected static function newFactory(): OrderLineFactory
+    {
+        return new OrderLineFactory;
     }
 }
