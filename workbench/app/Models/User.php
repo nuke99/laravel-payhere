@@ -4,6 +4,7 @@ namespace Workbench\App\Models;
 
 use Dasundev\PayHere\Billable;
 use Dasundev\PayHere\Models\Contracts\PayHereCustomer;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -11,6 +12,7 @@ class User extends Authenticatable implements PayHereCustomer
 {
     use Billable;
     use Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
