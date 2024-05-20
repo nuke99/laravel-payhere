@@ -2,7 +2,7 @@
 
 use Workbench\App\Models\User;
 
-it('it can render checkout page', function () {
+it('it can render the checkout page', function () {
     $user = User::factory()->create();
 
     $this->actingAs($user);
