@@ -14,7 +14,7 @@ class OrderFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'total' => 1000
+            'total' => 1000,
         ];
     }
 }

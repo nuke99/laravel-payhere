@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Workbench\App\Models\Order;
 use Workbench\App\Models\OrderLine;
-use Workbench\App\Models\Product;
-use Workbench\App\Models\User;
 
 class Checkout extends Controller
 {

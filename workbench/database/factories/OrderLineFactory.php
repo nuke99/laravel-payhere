@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Workbench\App\Models\Order;
 use Workbench\App\Models\OrderLine;
 use Workbench\App\Models\Product;
-use Workbench\App\Models\User;
 
 class OrderLineFactory extends Factory
 {
@@ -24,7 +23,7 @@ class OrderLineFactory extends Factory
             'purchasable_id' => Product::factory(),
             'unit_price' => $unitPrice,
             'unit_quantity' => $unitQty,
-            'total' => $total
+            'total' => $total,
         ];
     }
 }

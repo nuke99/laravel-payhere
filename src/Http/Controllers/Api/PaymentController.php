@@ -101,7 +101,7 @@ class PaymentController
 
     /**
      * Refund a payment.
-     * 
+     *
      * @throws FatalRequestException
      * @throws RequestException
      * @throws JsonException

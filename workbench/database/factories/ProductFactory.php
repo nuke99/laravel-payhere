@@ -13,7 +13,7 @@ class ProductFactory extends Factory
     {
         return [
             'title' => fake()->title,
-            'price' => fake()->numberBetween(100, 1000)
+            'price' => fake()->numberBetween(100, 1000),
         ];
     }
 }

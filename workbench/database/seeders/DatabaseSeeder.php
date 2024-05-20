@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             'phone' => '0770689524',
             'address' => '358, Maussakanda, Nikakatiya',
             'city' => 'Bulutota',
-            'country' => 'Sri Lanka'
+            'country' => 'Sri Lanka',
         ])->create();
     }
 }

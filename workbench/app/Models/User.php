@@ -12,8 +12,8 @@ use Workbench\Database\Factories\UserFactory;
 class User extends Authenticatable implements PayHereCustomer
 {
     use Billable;
-    use Notifiable;
     use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -27,7 +27,7 @@ class User extends Authenticatable implements PayHereCustomer
         'phone',
         'address',
         'city',
-        'country'
+        'country',
     ];
 
     /**

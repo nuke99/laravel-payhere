@@ -22,7 +22,7 @@ class UserFactory extends Factory
             'phone' => fake()->phoneNumber,
             'address' => fake()->address,
             'city' => fake()->city,
-            'country' => fake()->country
+            'country' => fake()->country,
         ];
     }
 }

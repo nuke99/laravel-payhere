@@ -1,6 +1,5 @@
 <?php
 
-
 use Workbench\App\Models\User;
 
 it('it can render checkout page', function () {
