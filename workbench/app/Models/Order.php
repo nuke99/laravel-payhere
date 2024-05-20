@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Order extends Model implements PayHereOrder
 {
     use HasFactory;
-    
+
     protected $guarded = [];
 
     public function user(): BelongsTo

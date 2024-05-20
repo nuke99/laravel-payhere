@@ -3,11 +3,14 @@
 namespace Workbench\App\Models;
 
 use Dasundev\PayHere\Models\Contracts\PayHereOrderLine;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class OrderLine extends Model implements PayHereOrderLine
 {
+    use HasFactory;
+
     protected $guarded = [];
 
     public function purchasable(): MorphTo
