@@ -4,6 +4,7 @@ namespace Workbench\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Workbench\App\Models\Order;
+use Workbench\App\Models\User;
 
 class OrderFactory extends Factory
 {
@@ -12,7 +13,7 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => UserFactory::class,
+            'user_id' => User::factory(),
             'total' => 1000
         ];
     }

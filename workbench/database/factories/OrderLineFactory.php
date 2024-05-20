@@ -3,7 +3,9 @@
 namespace Workbench\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Workbench\App\Models\Order;
 use Workbench\App\Models\OrderLine;
+use Workbench\App\Models\Product;
 use Workbench\App\Models\User;
 
 class OrderLineFactory extends Factory
@@ -17,9 +19,9 @@ class OrderLineFactory extends Factory
         $total = $unitPrice * $unitQty;
 
         return [
-            'order_id' => OrderFactory::class,
-            'purchasable_type' => User::class,
-            'purchasable_id' => UserFactory::class,
+            'order_id' => Order::factory(),
+            'purchasable_type' => Product::class,
+            'purchasable_id' => Product::factory(),
             'unit_price' => $unitPrice,
             'unit_quantity' => $unitQty,
             'total' => $total
