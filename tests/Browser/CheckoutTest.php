@@ -4,7 +4,6 @@ namespace Dasundev\PayHere\Tests\Browser;
 
 use Dasundev\PayHere\Tests\DuskTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Dusk\Browser;
 use PHPUnit\Framework\Attributes\Test;
 use Workbench\App\Models\User;
