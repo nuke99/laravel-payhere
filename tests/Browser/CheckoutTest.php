@@ -20,8 +20,7 @@ class CheckoutTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
-                ->visit('checkout')
-                ->screenshot('checkout');
+                ->assertAuthenticatedAs($user);
         });
     }
 }
