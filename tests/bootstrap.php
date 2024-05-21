@@ -1,5 +1,7 @@
 <?php
 
+use Orchestra\Testbench\Dusk\Options as DuskOptions;
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
@@ -22,4 +24,5 @@ require __DIR__.'/../vendor/autoload.php';
 | tests to run without a graphical user interface.
 |
 */
-\Orchestra\Testbench\Dusk\Options::withoutUI();
+
+DuskOptions::withoutUI();
