@@ -10,8 +10,6 @@ use Workbench\App\Models\User;
 
 class CheckoutTest extends DuskTestCase
 {
-    use RefreshDatabase;
-
     #[Test]
     public function it_can_render_checkout_page()
     {
