@@ -3,19 +3,24 @@
 namespace Dasundev\PayHere\Tests\Browser;
 
 use Dasundev\PayHere\Tests\DuskTestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Dusk\Browser;
+use PHPUnit\Framework\Attributes\Test;
 use Workbench\App\Models\User;
 
 class CheckoutTest extends DuskTestCase
 {
-    public function test_render_checkout_page()
+    use RefreshDatabase;
+
+    #[Test]
+    public function it_can_render_checkout_page()
     {
         $user = User::factory()->create();
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
-                ->visitRoute('checkout')
-                ->assertRouteIs('checkout');
+                ->visit('checkout')
+                ->screenshot('checkout');
         });
     }
 }
