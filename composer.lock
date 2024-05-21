@@ -7060,16 +7060,16 @@
         },
         {
             "name": "orchestra/testbench-dusk",
-            "version": "v8.24.1",
+            "version": "v8.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench-dusk.git",
-                "reference": "b72e738ab746d6d7a432026815cd00d81bbef811"
+                "reference": "7e6f89b81fcb925fbe5601d99c628344bdfd7af7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench-dusk/zipball/b72e738ab746d6d7a432026815cd00d81bbef811",
-                "reference": "b72e738ab746d6d7a432026815cd00d81bbef811",
+                "url": "https://api.github.com/repos/orchestral/testbench-dusk/zipball/7e6f89b81fcb925fbe5601d99c628344bdfd7af7",
+                "reference": "7e6f89b81fcb925fbe5601d99c628344bdfd7af7",
                 "shasum": ""
             },
             "require": {
@@ -7077,15 +7077,16 @@
                 "laravel/dusk": "^7.13 || ^8.1",
                 "laravel/serializable-closure": "^1.0",
                 "orchestra/dusk-updater": "^2.3",
-                "orchestra/testbench": "^8.22",
-                "orchestra/testbench-core": "^8.23.6",
+                "orchestra/testbench": "^8.23",
+                "orchestra/testbench-core": "^8.24",
                 "php": "^8.1",
                 "php-webdriver/webdriver": "^1.9",
                 "symfony/polyfill-php83": "^1.28"
             },
             "require-dev": {
                 "laravel/pint": "^1.6",
-                "phpstan/phpstan": "^1.10.7",
+                "laravel/tinker": "^2.9",
+                "phpstan/phpstan": "^1.11",
                 "phpunit/phpunit": "^10.1"
             },
             "bin": [
@@ -7126,9 +7127,9 @@
             "description": "Laravel Dusk Testing Helper for Packages Development",
             "support": {
                 "issues": "https://github.com/orchestral/testbench-dusk/issues",
-                "source": "https://github.com/orchestral/testbench-dusk/tree/v8.24.1"
+                "source": "https://github.com/orchestral/testbench-dusk/tree/v8.25.0"
             },
-            "time": "2024-04-07T10:57:20+00:00"
+            "time": "2024-05-21T02:21:14+00:00"
         },
         {
             "name": "orchestra/workbench",
