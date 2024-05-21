@@ -11,10 +11,9 @@ seeders:
 workbench:
   welcome: true
   install: true
-  start: '/'
   discovers:
     web: true
   build:
     - create-sqlite-db
-    - migrate:fresh
+    - migrate:refresh
     - db:seed
