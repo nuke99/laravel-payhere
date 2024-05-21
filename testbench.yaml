@@ -5,9 +5,6 @@ providers:
 migrations:
   - workbench/database/migrations
 
-seeders:
-  - Workbench\Database\Seeders\DatabaseSeeder
-
 workbench:
   welcome: true
   install: true
@@ -16,4 +13,3 @@ workbench:
   build:
     - create-sqlite-db
     - migrate:refresh
-    - db:seed
