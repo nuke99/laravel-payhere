@@ -33,7 +33,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          composer update --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
+          composer install --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
 
       - name: Start Chrome Driver
         run: vendor/laravel/dusk/bin/chromedriver-linux &
