@@ -15,8 +15,6 @@ class CheckoutTest extends DuskTestCase
     #[Test]
     public function it_can_render_checkout_page()
     {
-        set_time_limit(0);
-
         $user = User::factory()->create();
 
         $this->browse(function (Browser $browser) use ($user) {
