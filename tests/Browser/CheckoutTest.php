@@ -27,7 +27,9 @@ class CheckoutTest extends DuskTestCase
             $browser->visit(new Checkout)
                 ->pay($user);
 
-            $browser->waitForText('Payment Approved', 10);
+            $browser->waitForRoute('payhere.return')
+                ->assertSee('Payment approved')
+                ->assertQueryStringHas('order_id');
         });
     }
 }
