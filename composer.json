@@ -47,7 +47,7 @@
     "minimum-stability": "stable",
     "scripts": {
         "lint": "./vendor/bin/pint -v",
-        "test": "./vendor/bin/pest --parallel",
+        "test": "./vendor/bin/pest",
         "post-autoload-dump": [
             "@clear",
             "@prepare",
