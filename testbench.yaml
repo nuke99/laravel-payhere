@@ -8,6 +8,7 @@ migrations:
 workbench:
   welcome: true
   install: true
+  guard: web
   discovers:
     web: true
   build:
