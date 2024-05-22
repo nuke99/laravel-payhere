@@ -47,8 +47,7 @@ class Checkout extends Page
             $iframe->type('@card-holder-name', $user->name)
                 ->assertInputValue('@card-holder-name', $user->name);
 
-            $iframe
-                ->type('@card-no', '4916217501611292')
+            $iframe->type('@card-no', '4916217501611292')
                 ->assertInputValue('@card-no', '4916217501611292');
 
             $iframe->type('@card-secure-id', '123')

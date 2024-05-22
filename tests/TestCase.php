@@ -13,7 +13,7 @@ abstract class TestCase extends BaseTestCase
     protected function getPackageProviders($app): array
     {
         return [
-            PayHereServiceProvider::class
+            PayHereServiceProvider::class,
         ];
     }
 }

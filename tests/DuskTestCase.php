@@ -21,7 +21,7 @@ abstract class DuskTestCase extends TestCase
     protected function getPackageProviders($app): array
     {
         return [
-            PayHereServiceProvider::class
+            PayHereServiceProvider::class,
         ];
     }
 }

@@ -8,10 +8,10 @@ it('it can search payments without an order id', function () {
         ->assertJsonStructure([
             'status',
             'msg',
-            'data'
+            'data',
         ])
         ->assertJsonFragment([
-            'status' => 1
+            'status' => 1,
         ]);
 });
 
@@ -23,7 +23,7 @@ it('it can search payments with an order id', function () {
         ->assertJsonStructure([
             'status',
             'msg',
-            'data'
+            'data',
         ])
         ->assertJsonFragment([
             'status' => 1,
