@@ -33,7 +33,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          composer install --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
+          composer update --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
 
       - name: Start Chrome Driver
         run: vendor/laravel/dusk/bin/chromedriver-linux &
@@ -41,7 +41,7 @@ jobs:
       - name: Run Tests
         run: composer run test
         env:
-          PAYHERE_MERCHANT_ID: ${{ env.PAYHERE_MERCHANT_ID }}
-          PAYHERE_MERCHANT_SECRET: ${{ env.PAYHERE_MERCHANT_SECRET }}
-          PAYHERE_APP_ID: ${{ env.PAYHERE_APP_ID }}
-          PAYHERE_APP_SECRET: ${{ env.PAYHERE_APP_SECRET }}
+          PAYHERE_MERCHANT_ID: ${{ secrets.PAYHERE_MERCHANT_ID }}
+          PAYHERE_MERCHANT_SECRET: ${{ secrets.PAYHERE_MERCHANT_SECRET }}
+          PAYHERE_APP_ID: ${{ secrets.PAYHERE_APP_ID }}
+          PAYHERE_APP_SECRET: ${{ secrets.PAYHERE_APP_SECRET }}
