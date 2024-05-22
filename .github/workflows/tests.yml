@@ -35,6 +35,12 @@ jobs:
         run: |
           composer update --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
 
+      - name: Create database
+        run: php vendor/bin/testbench package:create-sqlite-db
+
+      - name: Start Chrome Driver
+        run: vendor/laravel/dusk/bin/chromedriver-linux &
+
       - name: Run Tests
         run: composer run test
         env:
