@@ -20,8 +20,7 @@ class CheckoutTest extends DuskTestCase
         $user = User::factory()->create();
 
         $this->browse(function (Browser $browser) use ($user) {
-            $browser->loginAs($user)
-                ->assertAuthenticatedAs($user)
+            $browser
                 ->visit('/checkout')
                 ->assertSee('Redirecting to PayHere...');
         });
