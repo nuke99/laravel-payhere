@@ -19,7 +19,9 @@ class CheckoutTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
-                ->assertAuthenticatedAs($user);
+                ->visit('/checkout')
+                ->assertAuthenticatedAs($user)
+                ->assertTitle('Redirecting to PayHere...');
         });
     }
 }
