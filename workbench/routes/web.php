@@ -14,5 +14,6 @@ use Workbench\App\Http\Controllers\Checkout;
 |
 */
 
-Route::get('/checkout', fn() => 'Redirecting to PayHere...')
+Route::get('/checkout', Checkout::class)
+    ->middleware('auth')
     ->name('checkout');
