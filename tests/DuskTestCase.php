@@ -11,6 +11,8 @@ abstract class DuskTestCase extends TestCase
 {
     use WithWorkbench;
 
+    protected static $baseServeHost = 'localhost';
+
     protected function getEnvironmentSetUp($app): void
     {
         $app['config']->set('auth.providers.users.model', User::class);
