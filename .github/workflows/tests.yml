@@ -31,12 +31,9 @@ jobs:
           tools: composer:v2
           coverage: none
 
-      - name: Install Composer Dependencies
+      - name: Install Dependencies
         run: |
           composer update --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
-
-      - name: Start Chrome Driver
-        run: ./vendor/laravel/dusk/bin/chromedriver-linux &
 
       - name: Run Tests
         run: composer run test
