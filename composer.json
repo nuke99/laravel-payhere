@@ -51,7 +51,8 @@
         "post-autoload-dump": [
             "@clear",
             "@prepare",
-            "@dusk:install-chromedriver"
+            "@dusk:install-chromedriver",
+            "@package:create-sqlite-db"
         ],
         "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
