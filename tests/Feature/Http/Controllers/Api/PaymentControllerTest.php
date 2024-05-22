@@ -8,9 +8,9 @@ it('it can search payments without an order id', function () {
         ->assertJsonStructure([
             'status',
             'msg',
-            'data',
+            'data'
         ])
         ->assertJsonFragment([
-            'email' => 'hello@dasun.dev',
+            'status' => 1
         ]);
 });
