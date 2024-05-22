@@ -23,7 +23,7 @@ class CheckoutTest extends DuskTestCase
             $browser->loginAs($user)
                 ->assertAuthenticatedAs($user)
                 ->visit('/checkout')
-                ->assertTitle('Redirecting to PayHere...');
+                ->assertSee('Redirecting to PayHere...');
         });
     }
 }
