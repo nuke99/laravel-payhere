@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Workbench\App\Http\Controllers\Checkout;
 use Workbench\App\Http\Controllers\Preapproval;
 use Workbench\App\Http\Controllers\Authorize;
+use Workbench\App\Http\Controllers\Recurring;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,7 @@ Route::get('/preapproval', Preapproval::class)
 Route::get('/authorize', Authorize::class)
     ->middleware('auth')
     ->name('authorize');
+
+Route::get('/recurring', Recurring::class)
+    ->middleware('auth')
+    ->name('recurring');
