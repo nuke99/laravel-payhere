@@ -2,7 +2,6 @@
 
 namespace Dasundev\PayHere\Tests\Browser;
 
-use Dasundev\PayHere\Tests\Browser\Pages\Preapproval;
 use Dasundev\PayHere\Tests\Browser\Pages\Recurring;
 use Dasundev\PayHere\Tests\DuskTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

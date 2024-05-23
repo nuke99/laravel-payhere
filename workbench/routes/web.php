@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Workbench\App\Http\Controllers\Authorize;
 use Workbench\App\Http\Controllers\Checkout;
 use Workbench\App\Http\Controllers\Preapproval;
-use Workbench\App\Http\Controllers\Authorize;
 use Workbench\App\Http\Controllers\Recurring;
 
 /*

@@ -3,7 +3,6 @@
 namespace Dasundev\PayHere\Tests\Browser;
 
 use Dasundev\PayHere\Tests\Browser\Pages\Authorize;
-use Dasundev\PayHere\Tests\Browser\Pages\Checkout;
 use Dasundev\PayHere\Tests\DuskTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
