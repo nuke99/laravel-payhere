@@ -83,8 +83,8 @@ class PayHere
     /**
      * Verify if the provided merchant ID matches the configured PayHere merchant ID.
      */
-    public static function verifyMerchantId(string $merchantId): bool
+    public static function verifyMerchantId(string $id): bool
     {
-        return config('payhere.merchant_id') === $merchantId;
+        return config('payhere.merchant_id') === $id;
     }
 }
