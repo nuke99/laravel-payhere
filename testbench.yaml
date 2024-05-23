@@ -13,4 +13,4 @@ workbench:
     web: true
   build:
     - create-sqlite-db
-    - migrate:refresh
+    - migrate:fresh
