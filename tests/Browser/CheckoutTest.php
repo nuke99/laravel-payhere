@@ -16,7 +16,7 @@ class CheckoutTest extends DuskTestCase
 
     #[Test]
     #[WithMigration]
-    public function it_processes_a_payment_successfully()
+    public function it_can_processes_a_payment_for_checkout()
     {
         $user = User::factory()->create();
 
