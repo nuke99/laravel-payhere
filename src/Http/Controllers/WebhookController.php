@@ -19,7 +19,7 @@ class WebhookController extends Controller
     {
         $orderId = $request->order_id;
 
-        $verified = PayHere::verifyPaymentNotification(
+        $verifiedPayment = PayHere::verifyPaymentNotification(
             orderId: $orderId,
             amount: $request->amount,
             currency: $request->currency,
@@ -27,7 +27,11 @@ class WebhookController extends Controller
             md5sig: $request->md5sig,
         );
 
-        if (! $verified) {
+        $merchantId = $request->merchant_id;
+
+        $verifiedMerchant = PayHere::verifyMerchantId($merchantId);
+
+        if (! $verifiedPayment && $verifiedMerchant) {
             return;
         }
 

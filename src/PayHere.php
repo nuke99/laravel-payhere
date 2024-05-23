@@ -79,4 +79,12 @@ class PayHere
 
         return $localMd5Sig === $md5sig && (int) $statusCode === 2;
     }
+
+    /**
+     * Verify if the provided merchant ID matches the configured PayHere merchant ID.
+     */
+    public static function verifyMerchantId(string $merchantId): bool
+    {
+        return config('payhere.merchant_id') === $merchantId;
+    }
 }
