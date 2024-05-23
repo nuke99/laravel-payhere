@@ -59,6 +59,7 @@
         "build": "@php vendor/bin/testbench workbench:build --ansi",
         "dusk:install-chromedriver": "@php vendor/bin/dusk-updater detect --auto-update --ansi",
         "package:create-sqlite-db": "@php vendor/bin/testbench-dusk package:create-sqlite-db --ansi",
+        "smee": "smee -u https://smee.io/laravel-payhere -t https://127.0.0.1:8000",
         "serve": [
             "Composer\\Config::disableProcessTimeout",
             "@build",
