@@ -1,6 +1,6 @@
 <?php
 
-namespace Dasundev\PayHere\Tests\Concerns;
+namespace Dasundev\PayHere\Tests\Browser\Concerns;
 
 trait HasPayHereSiteElements
 {

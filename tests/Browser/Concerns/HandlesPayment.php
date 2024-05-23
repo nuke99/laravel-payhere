@@ -1,6 +1,6 @@
 <?php
 
-namespace Dasundev\PayHere\Tests\Concerns;
+namespace Dasundev\PayHere\Tests\Browser\Concerns;
 
 use Laravel\Dusk\Browser;
 use Workbench\App\Models\User;

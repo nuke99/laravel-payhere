@@ -2,7 +2,7 @@
 
 namespace Dasundev\PayHere\Tests\Browser\Pages;
 
-use Dasundev\PayHere\Tests\Concerns\HandlesPayment;
+use Dasundev\PayHere\Tests\Browser\Concerns\HandlesPayment;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Page;
 
