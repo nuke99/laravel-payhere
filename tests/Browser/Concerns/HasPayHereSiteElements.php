@@ -12,7 +12,7 @@ trait HasPayHereSiteElements
             '@card-holder-name' => "input[name='cardHolderName']",
             '@card-no' => "input[name='cardNo']",
             '@card-secure-id' => "input[name='cardSecureId']",
-            '@card-expiry' => "input[name='cardExpiry']",
+            '@card-expiry-date' => "input[name='cardExpiry']",
             '@pay' => "button[type='submit'].btn-primary",
         ];
     }
