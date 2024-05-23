@@ -2,6 +2,9 @@
 
 namespace Dasundev\PayHere;
 
+use Dasundev\PayHere\Enums\PaymentStatus;
+use Illuminate\Support\Facades\Log;
+
 class PayHere
 {
     /**
@@ -63,21 +66,21 @@ class PayHere
         string $orderId,
         float $amount,
         string $currency,
-        string|int $statusCode,
+        int $statusCode,
         string $md5sig
     ): bool {
         $localMd5Sig = strtoupper(
             md5(
                 config('payhere.merchant_id').
                 $orderId.
-                $amount.
+                number_format($amount, 2, '.', '').
                 $currency.
                 $statusCode.
                 strtoupper(md5(config('payhere.merchant_secret')))
             )
         );
 
-        return $localMd5Sig === $md5sig && (int) $statusCode === 2;
+        return $localMd5Sig === $md5sig && ($statusCode === PaymentStatus::SUCCESS->value || $statusCode === PaymentStatus::AUTHORIZATION_SUCCESS->value);
     }
 
     /**

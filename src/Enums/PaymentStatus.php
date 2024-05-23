@@ -4,6 +4,7 @@ namespace Dasundev\PayHere\Enums;
 
 enum PaymentStatus: int
 {
+    case AUTHORIZATION_SUCCESS = 3;
     case SUCCESS = 2;
     case PENDING = 0;
     case CANCELLED = -1;

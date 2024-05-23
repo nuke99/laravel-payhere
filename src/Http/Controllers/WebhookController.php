@@ -9,6 +9,7 @@ use Dasundev\PayHere\PayHere;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Log;
 
 class WebhookController extends Controller
 {
@@ -21,8 +22,8 @@ class WebhookController extends Controller
 
         $verifiedPayment = PayHere::verifyPaymentNotification(
             orderId: $orderId,
-            amount: $request->amount,
-            currency: $request->currency,
+            amount: $request->payhere_amount,
+            currency: $request->payhere_currency,
             statusCode: $request->status_code,
             md5sig: $request->md5sig,
         );
