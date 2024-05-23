@@ -78,8 +78,8 @@ trait CheckoutFormData
         return [
             'action' => $this->actionUrl(),
             'merchant_id' => config('payhere.merchant_id'),
-            'return_url' => config('payhere.return_url'),
-            'cancel_url' => config('payhere.cancel_url'),
+            'return_url' => config('payhere.return_url') ?? URL::signedRoute('payhere.return'),
+            'cancel_url' => config('payhere.cancel_url') ?? url('/'),
             'notify_url' => config('payhere.notify_url') ?? URL::signedRoute('payhere.webhook'),
             'order_id' => $this->order->id,
             'items' => "Order #{$this->order->id}",
