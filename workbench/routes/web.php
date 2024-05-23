@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Workbench\App\Http\Controllers\Checkout;
 use Workbench\App\Http\Controllers\Preapproval;
+use Workbench\App\Http\Controllers\Authorize;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,7 @@ Route::get('/checkout', Checkout::class)
 Route::get('/preapproval', Preapproval::class)
     ->middleware('auth')
     ->name('preapproval');
+
+Route::get('/authorize', Authorize::class)
+    ->middleware('auth')
+    ->name('authorize');
