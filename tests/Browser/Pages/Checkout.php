@@ -14,12 +14,12 @@ class Checkout extends Page
 
     public function url(): string
     {
-        return '/preapproval';
+        return '/checkout';
     }
 
     public function assert(Browser $browser): void
     {
-        $browser->assertRouteIs('preapproval')
+        $browser->assertRouteIs('checkout')
             ->assertTitle('Redirecting to PayHere...');
     }
 }

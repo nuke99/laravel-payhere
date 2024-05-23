@@ -3,12 +3,14 @@
 namespace Dasundev\PayHere\Tests\Browser\Pages;
 
 use Dasundev\PayHere\Tests\Browser\Concerns\HandlesPayment;
+use Dasundev\PayHere\Tests\Browser\Concerns\HasPayHereSiteElements;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Page;
 
 class Preapproval extends Page
 {
     use HandlesPayment;
+    use HasPayHereSiteElements;
 
     public function url(): string
     {
@@ -17,20 +19,7 @@ class Preapproval extends Page
 
     public function assert(Browser $browser): void
     {
-        $browser->assertRouteIs('checkout')
+        $browser->assertRouteIs('preapproval')
             ->assertTitle('Redirecting to PayHere...');
-    }
-
-    public static function siteElements(): array
-    {
-        return [
-            '@visa' => 'div#payment_container_VISA',
-            '@payment-frame' => 'iframe#pg_iframe',
-            '@card-holder-name' => "input[name='cardHolderName']",
-            '@card-no' => "input[name='cardNo']",
-            '@card-secure-id' => "input[name='cardSecureId']",
-            '@card-expiry' => "input[name='cardExpiry']",
-            '@pay' => "button[type='submit'].btn-primary",
-        ];
     }
 }
