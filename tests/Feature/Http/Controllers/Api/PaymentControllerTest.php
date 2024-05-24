@@ -1,6 +1,6 @@
 <?php
 
-it('it can search payments without an order id', function () {
+it('can search payments without an order id', function () {
     $response = $this->getJson('payhere/api/payments/search');
 
     $response
@@ -15,7 +15,7 @@ it('it can search payments without an order id', function () {
         ]);
 });
 
-it('it can search payments with an order id', function () {
+it('can search payments with an order id', function () {
     $response = $this->getJson('payhere/api/payments/search?order_id=1');
 
     $response
