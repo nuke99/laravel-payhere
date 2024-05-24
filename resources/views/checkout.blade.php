@@ -46,7 +46,7 @@
         }
 
         h1 {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 500;
         }
 
@@ -56,7 +56,7 @@
 
         em {
             color: var(--accent-color);
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .progress-bar {
@@ -144,7 +144,7 @@
 </div>
 <script>
     setTimeout(function () {
-        document.getElementById('checkout-form').submit();
+        //document.getElementById('checkout-form').submit();
     }, 1000);
 </script>
 </body>
