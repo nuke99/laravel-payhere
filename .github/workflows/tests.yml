@@ -45,3 +45,10 @@ jobs:
           PAYHERE_MERCHANT_SECRET: ${{ secrets.PAYHERE_MERCHANT_SECRET }}
           PAYHERE_APP_ID: ${{ secrets.PAYHERE_APP_ID }}
           PAYHERE_APP_SECRET: ${{ secrets.PAYHERE_APP_SECRET }}
+
+      - name: Upload Failed Screenshots
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: screenshots
+          path: tests/Browser/screenshots/*
