@@ -3,7 +3,6 @@
 namespace Dasundev\PayHere;
 
 use Dasundev\PayHere\Enums\PaymentStatus;
-use Illuminate\Support\Facades\Log;
 
 class PayHere
 {

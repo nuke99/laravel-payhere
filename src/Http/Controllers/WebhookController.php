@@ -9,7 +9,6 @@ use Dasundev\PayHere\PayHere;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Log;
 
 class WebhookController extends Controller
 {
