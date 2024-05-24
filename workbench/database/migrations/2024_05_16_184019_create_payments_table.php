@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
         Schema::create('payments', function (Blueprint $table) {
@@ -31,7 +32,7 @@ return new class extends Migration {
                 'VISHWA',
                 'PAYAPP',
                 'HNB',
-                'FRIMI'
+                'FRIMI',
             ]);
             $table->string('card_holder_name');
             $table->string('card_no');
@@ -43,7 +44,7 @@ return new class extends Migration {
                 'RECURRING_INSTALLMENT_SUCCESS',
                 'RECURRING_INSTALLMENT_FAILED',
                 'RECURRING_COMPLETE',
-                'RECURRING_STOPPED'
+                'RECURRING_STOPPED',
             ])->nullable();
             $table->string('item_recurrence')->nullable();
             $table->string('item_duration')->nullable();

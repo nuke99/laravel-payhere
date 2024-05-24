@@ -15,7 +15,7 @@ abstract class TestCase extends BaseTestCase
     {
         return [
             PayHereServiceProvider::class,
-            WorkbenchServiceProvider::class
+            WorkbenchServiceProvider::class,
         ];
     }
 }

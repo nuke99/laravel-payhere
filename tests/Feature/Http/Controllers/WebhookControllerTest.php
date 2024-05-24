@@ -43,7 +43,7 @@ it('can handle webhook for authorize checkout', function () {
     $data = [
         'merchant_id' => config('payhere.merchant_id'),
         'order_id' => $order->id,
-        'authorization_token' => "ad7c02f1-bd40-4ed1-816d-a5bcd8ddaa73",
+        'authorization_token' => 'ad7c02f1-bd40-4ed1-816d-a5bcd8ddaa73',
         'payhere_amount' => 1000.00,
         'payhere_currency' => 'LKR',
         'status_code' => 3,
@@ -71,7 +71,7 @@ it('can handle webhook for preapproval checkout', function () {
     $data = [
         'merchant_id' => config('payhere.merchant_id'),
         'order_id' => $order->id,
-        'payment_id' => "320032387270",
+        'payment_id' => '320032387270',
         'payhere_amount' => 1000.00,
         'payhere_currency' => 'LKR',
         'status_code' => 2,
@@ -82,7 +82,7 @@ it('can handle webhook for preapproval checkout', function () {
         'card_no' => '************1292',
         'card_expiry' => '09/06',
         'recurring' => 0,
-        'customer_token' => '25995925C631FEF3AF5C11DD8496D7AA'
+        'customer_token' => '25995925C631FEF3AF5C11DD8496D7AA',
     ];
 
     $this->post($uri, $data);
@@ -100,7 +100,7 @@ it('can handle webhook for recurring checkout', function () {
     $data = [
         'merchant_id' => config('payhere.merchant_id'),
         'order_id' => $order->id,
-        'payment_id' => "320032387276",
+        'payment_id' => '320032387276',
         'payhere_amount' => 1000.00,
         'payhere_currency' => 'LKR',
         'status_code' => 2,
