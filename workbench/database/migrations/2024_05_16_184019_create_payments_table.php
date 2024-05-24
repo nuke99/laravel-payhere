@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->morphs('billable');
-            $table->foreignId('order_id');
+            $table->foreignUuid('order_id')->constrained();
             $table->string('merchant_id')->unique();
             $table->string('payment_id')->unique()->nullable();
             $table->string('authorization_token')->nullable();
