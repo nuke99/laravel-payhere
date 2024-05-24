@@ -3,12 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>{{ __('Redirecting to PayHere...') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=Figtree:300,400,600&display=swap" rel="stylesheet">
 
     <style>
         html {
@@ -25,14 +24,13 @@
 
         h1 {
             font-size: 24px;
+            font-weight: 500;
         }
 
         .container {
-            background: #ffffff;
             max-width: 768px;
             margin: 0 auto;
-            padding: 1rem 3rem;
-            border-radius: 1rem;
+            padding: 0 1rem;
         }
 
         p {
@@ -61,13 +59,46 @@
 
         @keyframes indeterminateAnimation {
             0% {
-                transform:  translateX(0) scaleX(0);
+                transform: translateX(0) scaleX(0);
             }
             40% {
-                transform:  translateX(0) scaleX(0.4);
+                transform: translateX(0) scaleX(0.4);
             }
             100% {
-                transform:  translateX(100%) scaleX(0.5);
+                transform: translateX(100%) scaleX(0.5);
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            h1 {
+                font-size: 18px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            em {
+                font-size: 10px;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #111827;
+            }
+
+            h1,
+            p {
+                color: #f3f4f6;
+            }
+
+            .progress-bar {
+                background-color: #283487;
+            }
+
+            .progress-bar-value {
+                background-color: #5978fb;
             }
         }
     </style>
@@ -86,44 +117,34 @@
         </div>
     </div>
     <form id="checkout-form" action="{{ $data['other']['action'] }}" method="post">
-        <input type="hidden" name="merchant_id" value="{{ $data['other']['merchant_id'] }}">
-        <input type="hidden" name="return_url" value="{{ $data['other']['return_url'] }}">
-        <input type="hidden" name="cancel_url" value="{{ $data['other']['cancel_url'] }}">
-        <input type="hidden" name="notify_url" value="{{ $data['other']['notify_url'] }}">
-        <input type="hidden" name="order_id" value="{{ $data['other']['order_id'] }}">
-        <input type="hidden" name="items" value="{{ $data['other']['items'] }}">
-        <input type="hidden" name="currency" value="{{ $data['other']['currency'] }}">
-        <input type="hidden" name="amount" value="{{ $data['other']['amount'] }}">
-        <input type="hidden" name="first_name" value="{{ $data['customer']['first_name'] }}">
-        <input type="hidden" name="last_name" value="{{ $data['customer']['last_name'] }}">
-        <input type="hidden" name="email" value="{{ $data['customer']['email'] }}">
-        <input type="hidden" name="phone" value="{{ $data['customer']['phone'] }}">
-        <input type="hidden" name="address" value="{{ $data['customer']['address'] }}">
-        <input type="hidden" name="city" value="{{ $data['customer']['city'] }}">
-        <input type="hidden" name="country" value="{{ $data['customer']['country'] }}">
-        <input type="hidden" name="hash" value="{{ $data['other']['hash'] }}">
-        @if($data['recurring'])
+        @foreach ($data['other'] as $key => $value)
+            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+        @endforeach
+        @foreach ($data['customer'] as $key => $value)
+            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+        @endforeach
+        @isset($data['recurring'])
             <input type="hidden" name="recurrence" value="{{ $data['recurring']['recurrence'] }}">
             <input type="hidden" name="duration" value="{{ $data['recurring']['duration'] }}">
-        @endif
-        @if($data['platform'])
+        @endisset
+        @isset($data['platform'])
             <input type="hidden" name="platform" value="{{ $data['platform'] }}">
-        @endif
-        @if($data['startup_fee'])
+        @endisset
+        @isset($data['startup_fee'])
             <input type="hidden" name="startup_fee" value="{{ $data['startup_fee'] }}">
-        @endif
-        @if($data['custom_1'])
+        @endisset
+        @isset($data['custom_1'])
             <input type="hidden" name="custom_1" value="{{ $data['custom_1'] }}">
-        @endif
-        @if($data['custom_2'])
+        @endisset
+        @isset($data['custom_2'])
             <input type="hidden" name="custom_2" value="{{ $data['custom_2'] }}">
-        @endif
-        @foreach($data['items'] as $key => $value)
+        @endisset
+        @foreach ($data['items'] as $key => $value)
             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
         @endforeach
     </form>
 </div>
-<script type="application/javascript">
+<script>
     document.getElementById('checkout-form').submit()
 </script>
 </body>
