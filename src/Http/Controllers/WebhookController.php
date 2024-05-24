@@ -66,6 +66,7 @@ class WebhookController extends Controller
             'billable_type' => PayHere::$customerModel,
             'order_id' => $request->order_id,
             'payment_id' => $request->payment_id,
+            'authorization_token' => $request->authorization_token,
             'subscription_id' => $request->subscription_id,
             'payhere_amount' => $request->payhere_amount,
             'payhere_currency' => $request->payhere_currency,
