@@ -124,7 +124,7 @@
     </form>
 </div>
 <script type="application/javascript">
-    //document.getElementById('checkout-form').submit()
+    document.getElementById('checkout-form').submit()
 </script>
 </body>
 </html>
