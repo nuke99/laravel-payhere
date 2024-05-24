@@ -7,19 +7,42 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Figtree:300,400,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.bunny.net/css?family=Figtree:400&display=swap" rel="stylesheet">
 
     <style>
-        html {
-            font-family: 'Figtree', sans-serif;
+        :root {
+            --font-family: 'Figtree', sans-serif;
+            --background-color: #ffffff;
+            --text-color: #000000;
+            --accent-color: #6b7280;
+            --progress-bg-color: #deecff;
+            --progress-value-color: #2A41EF;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #111827;
+                --text-color: #e5e7eb;
+                --progress-bg-color: #283487;
+                --progress-value-color: #5978fb;
+            }
+        }
+
+        html, body {
+            font-family: var(--font-family);
             height: 100vh;
+            margin: 0;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: var(--background-color);
+            color: var(--text-color);
         }
 
-        body {
-            background: #ffffff;
+        .container {
+            max-width: 768px;
+            margin: 0 auto;
+            padding: 1rem;
         }
 
         h1 {
@@ -27,24 +50,18 @@
             font-weight: 500;
         }
 
-        .container {
-            max-width: 768px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
         p {
             font-size: 18px;
         }
 
         em {
-            color: #6b7280;
+            color: var(--accent-color);
             font-size: 14px;
         }
 
         .progress-bar {
             height: 4px;
-            background-color: #deecff;
+            background-color: var(--progress-bg-color);
             width: 100%;
             overflow: hidden;
         }
@@ -52,7 +69,7 @@
         .progress-bar-value {
             width: 100%;
             height: 100%;
-            background-color: #2A41EF;
+            background-color: var(--progress-value-color);
             animation: indeterminateAnimation 1s infinite linear;
             transform-origin: 0 50%;
         }
@@ -82,25 +99,6 @@
                 font-size: 10px;
             }
         }
-
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: #111827;
-            }
-
-            h1,
-            p {
-                color: #f3f4f6;
-            }
-
-            .progress-bar {
-                background-color: #283487;
-            }
-
-            .progress-bar-value {
-                background-color: #5978fb;
-            }
-        }
     </style>
 </head>
 <body>
@@ -109,7 +107,7 @@
     <div>
         <h1>Redirecting...</h1>
         <p>You will be redirected to the payment gateway in a few seconds.</p>
-        <div class="progress-bar">
+        <div class="progress-bar" role="progressbar" aria-valuetext="Redirecting...">
             <div class="progress-bar-value"></div>
         </div>
         <div style="margin-top: 10px">
@@ -146,8 +144,8 @@
 </div>
 <script>
     setTimeout(function () {
-        document.getElementById('checkout-form').submit()
-    }, 1000)
+        //document.getElementById('checkout-form').submit();
+    }, 1000);
 </script>
 </body>
 </html>
