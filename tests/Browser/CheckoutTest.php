@@ -2,7 +2,10 @@
 
 namespace Dasundev\PayHere\Tests\Browser;
 
+use Dasundev\PayHere\Tests\Browser\Pages\Authorize;
 use Dasundev\PayHere\Tests\Browser\Pages\Checkout;
+use Dasundev\PayHere\Tests\Browser\Pages\Preapproval;
+use Dasundev\PayHere\Tests\Browser\Pages\Recurring;
 use Dasundev\PayHere\Tests\DuskTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
@@ -16,7 +19,7 @@ class CheckoutTest extends DuskTestCase
 
     #[Test]
     #[WithMigration]
-    public function it_can_processes_a_payment_for_checkout()
+    public function it_can_process_a_payment_for_normal_checkout()
     {
         $user = User::factory()->create();
 
@@ -25,6 +28,54 @@ class CheckoutTest extends DuskTestCase
                 ->assertAuthenticatedAs($user);
 
             $browser->visit(new Checkout)
+                ->payAs($user)
+                ->assertPaymentApproved();
+        });
+    }
+
+    #[Test]
+    #[WithMigration]
+    public function it_can_process_a_payment_for_authorize_checkout()
+    {
+        $user = User::factory()->create();
+
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->loginAs($user)
+                ->assertAuthenticatedAs($user);
+
+            $browser->visit(new Authorize)
+                ->payAs($user)
+                ->assertPaymentApproved();
+        });
+    }
+
+    #[Test]
+    #[WithMigration]
+    public function it_can_process_a_payment_for_preapproval_checkout()
+    {
+        $user = User::factory()->create();
+
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->loginAs($user)
+                ->assertAuthenticatedAs($user);
+
+            $browser->visit(new Preapproval)
+                ->payAs($user)
+                ->assertPaymentApproved();
+        });
+    }
+
+    #[Test]
+    #[WithMigration]
+    public function it_can_process_a_payment_for_recurring_checkout()
+    {
+        $user = User::factory()->create();
+
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->loginAs($user)
+                ->assertAuthenticatedAs($user);
+
+            $browser->visit(new Recurring)
                 ->payAs($user)
                 ->assertPaymentApproved();
         });
