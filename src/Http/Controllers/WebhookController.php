@@ -79,6 +79,7 @@ class WebhookController extends Controller
             'card_holder_name' => $request->card_holder_name,
             'card_no' => $request->card_no,
             'card_expiry' => $request->card_expiry,
+            'recurring' => $request->recurring,
             'message_type' => $request->message_type,
             'item_recurrence' => $request->item_recurrence,
             'item_duration' => $request->item_duration,
