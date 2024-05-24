@@ -11,7 +11,7 @@ it('can handle webhook for normal checkout', function () {
 
     $uri = URL::signedRoute('payhere.webhook');
 
-    $this->post($uri, [
+    $data = [
         'merchant_id' => config('payhere.merchant_id'),
         'order_id' => $order->id,
         'payment_id' => 320032387268,
@@ -26,13 +26,11 @@ it('can handle webhook for normal checkout', function () {
         'card_no' => '************1292',
         'card_expiry' => '09/06',
         'recurring' => 0,
-    ]);
+    ];
 
-    $this->assertDatabaseHas('payments', [
-        'order_id' => $order->id,
-        'payment_id' => 320032387268,
-        'md5sig' => 'C7A4E240E6927F2F580BFEE05E5BC8B0',
-    ]);
+    $this->post($uri, $data);
+
+    $this->assertDatabaseHas('payments', $data);
 });
 
 it('can handle webhook for authorize checkout', function () {
@@ -42,7 +40,7 @@ it('can handle webhook for authorize checkout', function () {
 
     $uri = URL::signedRoute('payhere.webhook');
 
-    $this->post($uri, [
+    $data = [
         'merchant_id' => config('payhere.merchant_id'),
         'order_id' => $order->id,
         'authorization_token' => "ad7c02f1-bd40-4ed1-816d-a5bcd8ddaa73",
@@ -56,11 +54,42 @@ it('can handle webhook for authorize checkout', function () {
         'card_no' => '************1292',
         'card_expiry' => '09/06',
         'recurring' => 0,
-    ]);
+    ];
+
+    $this->post($uri, $data);
+
+    $this->assertDatabaseHas('payments', $data);
+});
+
+it('can handle webhook for preapproval checkout', function () {
+    $order = Order::factory()
+        ->has(OrderLine::factory()->count(2), 'lines')
+        ->create();
+
+    $uri = URL::signedRoute('payhere.webhook');
+
+    $data = [
+        'merchant_id' => config('payhere.merchant_id'),
+        'order_id' => $order->id,
+        'payment_id' => "320032387270",
+        'payhere_amount' => 1000.00,
+        'payhere_currency' => 'LKR',
+        'status_code' => 2,
+        'md5sig' => 'C7A4E240E6927F2F580BFEE05E5BC8B0',
+        'status_message' => 'Successfully received the VISA payment',
+        'method' => 'VISA',
+        'card_holder_name' => 'Dasun Tharanga',
+        'card_no' => '************1292',
+        'card_expiry' => '09/06',
+        'recurring' => 0,
+        'customer_token' => '25995925C631FEF3AF5C11DD8496D7AA'
+    ];
+
+    $this->post($uri, $data);
 
     $this->assertDatabaseHas('payments', [
         'order_id' => $order->id,
-        'authorization_token' => "ad7c02f1-bd40-4ed1-816d-a5bcd8ddaa73",
-        'md5sig' => 'BD72AC93E8685273093DE0737C9E668C',
+        'customer_token' => "25995925C631FEF3AF5C11DD8496D7AA",
+        'md5sig' => 'C7A4E240E6927F2F580BFEE05E5BC8B0',
     ]);
 });
