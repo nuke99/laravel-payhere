@@ -27,7 +27,7 @@ class PayHereServiceProvider extends PackageServiceProvider
                     ->publishMigrations()
                     ->askToRunMigrations()
                     ->askToStarRepoOnGitHub('dasundev/laravel-payhere')
-                    ->endWith(function(InstallCommand $command) {
+                    ->endWith(function (InstallCommand $command) {
                         $command->newLine();
                         $command->info('Thank you so much for purchasing Laravel PayHere package!');
                         $command->info("If you need any assistance, don't hesitate to reach out to me at hello@dasun.dev.");
