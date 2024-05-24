@@ -145,7 +145,9 @@
     </form>
 </div>
 <script>
-    document.getElementById('checkout-form').submit()
+    setTimeout(function () {
+        document.getElementById('checkout-form').submit()
+    }, 1000)
 </script>
 </body>
 </html>
