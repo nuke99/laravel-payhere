@@ -5,7 +5,7 @@ use Dasundev\PayHere\Http\Controllers\Api\SubscriptionController;
 
 Route::prefix('payhere/api')->as('payhere.api.')->group(function () {
     Route::prefix('payments')->as('payment.')->group(function () {
-        Route::get('search/{order?}', [PaymentController::class, 'search'])->name('search');
+        Route::get('search', [PaymentController::class, 'search'])->name('search');
         Route::post('charge', [PaymentController::class, 'charge'])->name('charge');
         Route::post('refund', [PaymentController::class, 'refund'])->name('refund');
         Route::post('capture', [PaymentController::class, 'capture'])->name('capture');
