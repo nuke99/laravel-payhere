@@ -9,7 +9,7 @@ trait PayHereBrowserAssertions
     public function assertPaymentApproved(Browser $browser): void
     {
         $browser->waitForRoute('payhere.return')
-            ->assertSee('Payment approved')
+            ->assertSee('Payment successful')
             ->assertQueryStringHas('order_id');
     }
 }
