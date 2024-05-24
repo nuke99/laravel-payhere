@@ -19,12 +19,12 @@
             justify-content: center;
         }
 
-        html:hover {
-            cursor: progress;
+        body {
+            background: #ffffff;
         }
 
-        body {
-            background: #e5e7eb;
+        h1 {
+            font-size: 24px;
         }
 
         .container {
@@ -38,6 +38,38 @@
         p {
             font-size: 18px;
         }
+
+        em {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background-color: #deecff;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .progress-bar-value {
+            width: 100%;
+            height: 100%;
+            background-color: #2A41EF;
+            animation: indeterminateAnimation 1s infinite linear;
+            transform-origin: 0 50%;
+        }
+
+        @keyframes indeterminateAnimation {
+            0% {
+                transform:  translateX(0) scaleX(0);
+            }
+            40% {
+                transform:  translateX(0) scaleX(0.4);
+            }
+            100% {
+                transform:  translateX(100%) scaleX(0.5);
+            }
+        }
     </style>
 </head>
 <body>
@@ -45,8 +77,13 @@
     <noscript>Your browser does not support JavaScript!</noscript>
     <div>
         <h1>Redirecting...</h1>
-        <p>You will be redirected to the PayHere gateway within <strong>3 seconds.</strong></p>
-        <p>Please do not refresh the page or click the "Back" or "Close" button of your browser.</p>
+        <p>You will be redirected to the payment gateway in a few seconds.</p>
+        <div class="progress-bar">
+            <div class="progress-bar-value"></div>
+        </div>
+        <div style="margin-top: 10px">
+            <em>Please do not refresh the page or click the "Back" or "Close" button of your browser.</em>
+        </div>
     </div>
     <form id="checkout-form" action="{{ $data['other']['action'] }}" method="post">
         <input type="hidden" name="merchant_id" value="{{ $data['other']['merchant_id'] }}">
@@ -87,11 +124,7 @@
     </form>
 </div>
 <script type="application/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function () {
-            document.getElementById('checkout-form').submit()
-        }, 3000)
-    });
+    //document.getElementById('checkout-form').submit()
 </script>
 </body>
 </html>
