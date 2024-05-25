@@ -1,7 +1,7 @@
 <h1 align="center">Laravel PayHere</h1>
 
 <p align="center">
-    <a href="https://www.payhere.lk" target="_blank"><img src="./art/payhere_short_banner_dark.png" alt="PayHere" /></a>
+    <a href="https://www.payhere.lk" target="_blank"><img src="./art/payhere_short_banner_dark.png" alt="PayHere" width="400" /></a>
 </p>
 
 <p align="center">
