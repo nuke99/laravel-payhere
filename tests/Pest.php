@@ -1,6 +1,5 @@
 <?php
 
-use Dasundev\PayHere\Tests\DuskTestCase;
 use Dasundev\PayHere\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

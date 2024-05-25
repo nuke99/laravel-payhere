@@ -26,7 +26,7 @@ it('can search payments with an order id', function () {
 
 it('can not charge payment without order id', function () {
     $response = $this->postJson('payhere/api/payments/charge', [
-        'type' => 'PAYMENT'
+        'type' => 'PAYMENT',
     ]);
 
     $response->assertStatus(422);
@@ -40,7 +40,7 @@ it('can charge payment', function () {
 
     $response = $this->postJson('payhere/api/payments/charge', [
         'order_id' => $payment->order->id,
-        'type' => 'PAYMENT'
+        'type' => 'PAYMENT',
     ]);
 
     $response
@@ -48,6 +48,6 @@ it('can charge payment', function () {
         ->assertJsonStructure(['status', 'msg', 'data'])
         ->assertJsonFragment([
             'status' => 1,
-            'msg' => 'Automatic payment charged successfully'
+            'msg' => 'Automatic payment charged successfully',
         ]);
 });
