@@ -23,6 +23,11 @@ class Payment extends Model
         'message_type' => MessageType::class,
     ];
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(PayHere::$customerModel);
+    }
+
     public function order(): BelongsTo
     {
         return $this->belongsTo(PayHere::$orderModel);
