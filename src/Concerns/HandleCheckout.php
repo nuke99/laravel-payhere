@@ -2,7 +2,6 @@
 
 namespace Dasundev\PayHere\Concerns;
 
-use Dasundev\PayHere\Models\Order;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 

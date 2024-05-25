@@ -53,6 +53,9 @@ class WebhookController extends Controller
         }
     }
 
+    /**
+     * Activate a subscription for the given user.
+     */
     private function activateSubscription($user, Request $request)
     {
         $subscriptionId = $request->custom_id;
@@ -65,6 +68,9 @@ class WebhookController extends Controller
         ]);
     }
 
+    /**
+     * Create a payment record for the given user.
+     */
     private function createPayment(Model $user, Request $request): void
     {
         Payment::create([

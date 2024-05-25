@@ -6,28 +6,63 @@ use Dasundev\PayHere\PayHere;
 use Illuminate\Support\Facades\URL;
 
 /**
- * @method payhereFirstName()
- * @method payhereLastName()
- * @method payhereEmail()
- * @method payherePhone()
- * @method payhereAddress()
- * @method payhereCity()
- * @method payhereCountry()
+ * @method string payhereFirstName()
+ * @method string payhereLastName()
+ * @method string payhereEmail()
+ * @method string payherePhone()
+ * @method string payhereAddress()
+ * @method string payhereCity()
+ * @method string payhereCountry()
  */
 trait CheckoutFormData
 {
+    /**
+     * Recurring payment details.
+     *
+     * @var array|null
+     */
     private ?array $recurring = null;
 
+    /**
+     * Indicates if preapproval is required.
+     *
+     * @var bool
+     */
     private bool $preapproval = false;
 
+    /**
+     * Indicates if authorization is required.
+     *
+     * @var bool
+     */
     private bool $authorize = false;
 
+    /**
+     * Platform information.
+     *
+     * @var string|null
+     */
     private ?string $platform = null;
 
+    /**
+     * Startup fee amount.
+     *
+     * @var int|null
+     */
     private ?int $startupFee = null;
 
+    /**
+     * Custom data for the checkout form.
+     *
+     * @var array|null
+     */
     private ?array $customData = null;
 
+    /**
+     * Get the form data for the checkout.
+     *
+     * @return array
+     */
     public function getFormData(): array
     {
         return [
@@ -42,6 +77,11 @@ trait CheckoutFormData
         ];
     }
 
+    /**
+     * Get customer details for the form.
+     *
+     * @return array
+     */
     private function customer(): array
     {
         return [
@@ -55,10 +95,14 @@ trait CheckoutFormData
         ];
     }
 
+    /**
+     * Get item details for the form.
+     *
+     * @return array
+     */
     private function items(): array
     {
         $relationship = PayHere::$orderLinesRelationship;
-
         $items = [];
 
         foreach ($this->order->{$relationship} as $number => $line) {
@@ -71,6 +115,11 @@ trait CheckoutFormData
         return $items;
     }
 
+    /**
+     * Get other necessary details for the form.
+     *
+     * @return array
+     */
     private function other(): array
     {
         return [
@@ -87,6 +136,11 @@ trait CheckoutFormData
         ];
     }
 
+    /**
+     * Set preapproval for the payment.
+     *
+     * @return static
+     */
     public function preapproval(): static
     {
         $this->preapproval = true;
@@ -94,6 +148,11 @@ trait CheckoutFormData
         return $this;
     }
 
+    /**
+     * Set authorization for the payment.
+     *
+     * @return static
+     */
     public function authorize(): static
     {
         $this->authorize = true;
@@ -101,10 +160,14 @@ trait CheckoutFormData
         return $this;
     }
 
+    /**
+     * Generate the action URL for the form.
+     *
+     * @return string
+     */
     private function actionUrl(): string
     {
         $baseUrl = config('payhere.base_url');
-
         $action = 'checkout';
 
         if ($this->preapproval) {
@@ -118,6 +181,13 @@ trait CheckoutFormData
         return "$baseUrl/pay/$action";
     }
 
+    /**
+     * Set recurring payment details.
+     *
+     * @param string $recurrence The recurrence interval.
+     * @param string $duration The duration of the subscription.
+     * @return static
+     */
     public function recurring(string $recurrence, string $duration): static
     {
         $this->recurring = [
@@ -137,6 +207,12 @@ trait CheckoutFormData
         return $this;
     }
 
+    /**
+     * Set the platform for the form.
+     *
+     * @param string $platform The platform name.
+     * @return static
+     */
     public function platform(string $platform): static
     {
         $this->platform = $platform;
@@ -144,6 +220,12 @@ trait CheckoutFormData
         return $this;
     }
 
+    /**
+     * Set the startup fee for the form.
+     *
+     * @param string $fee The startup fee amount.
+     * @return static
+     */
     public function startupFee(string $fee): static
     {
         $this->startupFee = $fee;
@@ -151,6 +233,12 @@ trait CheckoutFormData
         return $this;
     }
 
+    /**
+     * Set custom data for the form.
+     *
+     * @param string ...$data The custom data values.
+     * @return static
+     */
     private function customData(string ...$data): static
     {
         $this->customData = [

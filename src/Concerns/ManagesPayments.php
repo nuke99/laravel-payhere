@@ -2,13 +2,16 @@
 
 namespace Dasundev\PayHere\Concerns;
 
-use Dasundev\PayHere\PayHere;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Dasundev\PayHere\Models\Payment;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 trait ManagesPayments
 {
-    public function payments(): MorphMany
+    /**
+     * Sets up a one-to-one relationship with the Payment model.
+     */
+    public function payments(): HasOne
     {
-        return $this->morphMany(PayHere::$customerModel, 'billable');
+        return $this->hasOne(Payment::class);
     }
 }
