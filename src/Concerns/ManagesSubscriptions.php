@@ -10,22 +10,6 @@ trait ManagesSubscriptions
 {
     private ?string $trialEndsAt = null;
 
-    private function createSubscription(): Subscription
-    {
-        $duration = $this->recurring['duration'];
-
-        $subscription = $this->subscriptions()->create([
-            'user_id' => $this->id,
-            'order_id' => $this->order->id,
-            'ends_at' => now()->add($duration),
-            'trial_ends_at' => $this->trialEndsAt
-        ]);
-        
-        $this->customOne($subscription->id);
-
-        return $subscription;
-    }
-
     public function trialDays($trialDays): static
     {
         $this->trialEndsAt = now()->addDays($trialDays);

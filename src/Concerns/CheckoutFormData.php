@@ -26,9 +26,7 @@ trait CheckoutFormData
 
     private ?int $startupFee = null;
 
-    private ?string $customOne = null;
-
-    private ?string $customTwo = null;
+    private ?array $customData = null;
 
     public function getFormData(): array
     {
@@ -39,8 +37,8 @@ trait CheckoutFormData
             'recurring' => $this->recurring,
             'platform' => $this->platform,
             'startup_fee' => $this->startupFee,
-            'custom_1' => $this->customOne,
-            'custom_2' => $this->customTwo,
+            'custom_1' => $this->customData['custom_1'],
+            'custom_2' => $this->customData['custom_2']
         ];
     }
 
@@ -127,7 +125,14 @@ trait CheckoutFormData
             'duration' => $duration,
         ];
 
-        $this->createSubscription();
+        $subscription = $this->subscriptions()->create([
+            'user_id' => $this->id,
+            'order_id' => $this->order->id,
+            'ends_at' => now()->add($duration),
+            'trial_ends_at' => $this->trialEndsAt
+        ]);
+
+        $this->customData($subscription->id);
 
         return $this;
     }
@@ -146,16 +151,12 @@ trait CheckoutFormData
         return $this;
     }
 
-    private function customOne(string $data): static
+    private function customData(string ...$data): static
     {
-        $this->customOne = $data;
-
-        return $this;
-    }
-
-    public function customTwo(string $data): static
-    {
-        $this->customTwo = $data;
+        $this->customData = [
+            'custom_1' => isset($data[0]) ?? null,
+            'custom_2' => isset($data[1]) ?? null
+        ];
 
         return $this;
     }
