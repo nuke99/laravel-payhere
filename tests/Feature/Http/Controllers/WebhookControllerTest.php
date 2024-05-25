@@ -143,3 +143,35 @@ it('can handle webhook for recurring checkout', function () {
         'status' => SubscriptionStatus::ACTIVE->name,
     ]);
 });
+
+it('can handle webhook for a payment charge', function () {
+    $order = Order::factory()
+        ->state(['id' => '9c1ef26d-29ef-463f-a541-2ccf4bfdb7aa'])
+        ->has(OrderLine::factory()->count(2), 'lines')
+        ->has(Subscription::factory(), 'payhereSubscription')
+        ->create();
+
+    $uri = URL::signedRoute('payhere.webhook');
+
+    $data = [
+        'merchant_id' => config('payhere.merchant_id'),
+        'order_id' => '9c1ef26d-29ef-463f-a541-2ccf4bfdb7aa',
+        'payment_id' => '320032387276',
+        'payhere_amount' => 1000.00,
+        'captured_amount' => 1000.00,
+        'payhere_currency' => 'LKR',
+        'status_code' => 2,
+        'md5sig' => '6FE468ECB69B54E58911E007F424379F',
+        'status_message' => 'Successfully received the VISA payment',
+        'method' => 'VISA',
+        'card_holder_name' => 'Dasun Tharanga',
+        'card_no' => '************1292',
+        'card_expiry' => '09/06',
+        'recurring' => 0,
+    ];
+
+    $this->post($uri, $data);
+
+    $this->assertDatabaseHas('orders', ['id' => $order->id]);
+    $this->assertDatabaseHas('payments', $data);
+});
