@@ -1,7 +1,14 @@
+# IDE
 /.idea
 /.vscode
+
+# PHPUnit
 /.phpunit.cache/*
 /.phpunit.result.cache
+
+# Deps
 /vendor
+
+# Other
 .env
 phpunit.xml
