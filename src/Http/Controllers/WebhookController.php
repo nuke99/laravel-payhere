@@ -3,6 +3,8 @@
 namespace Dasundev\PayHere\Http\Controllers;
 
 use Dasundev\PayHere\Enums\SubscriptionStatus;
+use Dasundev\PayHere\Events\PaymentCreated;
+use Dasundev\PayHere\Events\SubscriptionActivated;
 use Dasundev\PayHere\Http\Requests\WebhookRequest;
 use Dasundev\PayHere\Models\Payment;
 use Dasundev\PayHere\Models\Subscription;
@@ -46,34 +48,43 @@ class WebhookController extends Controller
 
         $user = $order->{$relationship};
 
-        $this->createPayment($user, $request);
+        $payment = $this->createPayment($user, $request);
+
+        event(new PaymentCreated($payment));
 
         if ($request->isRecurring()) {
-            $this->activateSubscription($user, $request);
+            $subscription = $this->activateSubscription($user, $request);
+            event(new SubscriptionActivated($subscription));
         }
     }
 
     /**
      * Activate a subscription for the given user.
      */
-    private function activateSubscription($user, Request $request)
+    private function activateSubscription($user, Request $request): Subscription
     {
         $subscriptionId = $request->custom_id;
 
-        Subscription::find($subscriptionId)->update([
+        $subscription = Subscription::find($subscriptionId);
+
+        $subscription->update([
             'billable_id' => $user->id,
             'billable_type' => PayHere::$customerModel,
             'ends_at' => $request->item_duration,
             'status' => SubscriptionStatus::ACTIVE,
         ]);
+
+        $subscription->refresh();
+
+        return $subscription;
     }
 
     /**
      * Create a payment record for the given user.
      */
-    private function createPayment(Model $user, Request $request): void
+    private function createPayment(Model $user, Request $request): Payment
     {
-        Payment::create([
+        return Payment::create([
             'user_id' => $user->id,
             'merchant_id' => $request->merchant_id,
             'order_id' => $request->order_id,
