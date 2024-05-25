@@ -31,10 +31,12 @@ class WebhookController extends Controller
 
         $verifiedMerchant = PayHere::verifyMerchantId($merchantId);
 
+        // Verify that both the payment and the merchant are validated before proceeding.
         if (! $verifiedPayment && $verifiedMerchant) {
             return;
         }
 
+        // Abort if order not found.
         if (! $order = PayHere::$orderModel::find($orderId)) {
             return;
         }
