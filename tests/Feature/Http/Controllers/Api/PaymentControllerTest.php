@@ -7,14 +7,8 @@ it('can search payments without an order id', function () {
 
     $response
         ->assertStatus(200)
-        ->assertJsonStructure([
-            'status',
-            'msg',
-            'data',
-        ])
-        ->assertJsonFragment([
-            'status' => 1,
-        ]);
+        ->assertJsonStructure(['status', 'msg', 'data'])
+        ->assertJsonFragment(['status' => 1]);
 });
 
 it('can search payments with an order id', function () {
