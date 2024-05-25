@@ -15,7 +15,7 @@ trait ManagesSubscriptions
     /**
      * Set the trial period in days.
      */
-    public function trialDays($trialDays): static
+    public function trialDays(int $trialDays): static
     {
         $this->trialEndsAt = now()->addDays($trialDays);
 
