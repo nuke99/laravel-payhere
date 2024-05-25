@@ -2,17 +2,13 @@
 
 namespace Dasundev\PayHere\Http\Controllers;
 
-use Dasundev\PayHere\Enums\SubscriptionStatus;
 use Dasundev\PayHere\Events\PaymentCreated;
 use Dasundev\PayHere\Events\SubscriptionActivated;
 use Dasundev\PayHere\Http\Requests\WebhookRequest;
 use Dasundev\PayHere\Models\Payment;
-use Dasundev\PayHere\Models\Subscription;
 use Dasundev\PayHere\PayHere;
 use Dasundev\PayHere\Repositories\PaymentRepository;
 use Dasundev\PayHere\Repositories\SubscriptionRepository;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class WebhookController extends Controller
@@ -20,8 +16,7 @@ class WebhookController extends Controller
     public function __construct(
         private readonly PaymentRepository $paymentRepository,
         private readonly SubscriptionRepository $subscriptionRepository,
-    )
-    {
+    ) {
     }
 
     /**
