@@ -64,8 +64,7 @@ class WebhookController extends Controller
     private function createPayment(Model $user, Request $request): void
     {
         Payment::create([
-            'billable_id' => $user->id,
-            'billable_type' => PayHere::$customerModel,
+            'user_id' => $user->id,
             'merchant_id' => $request->merchant_id,
             'order_id' => $request->order_id,
             'payment_id' => $request->payment_id,
