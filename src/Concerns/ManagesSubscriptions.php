@@ -4,7 +4,6 @@ namespace Dasundev\PayHere\Concerns;
 
 use Dasundev\PayHere\Models\Subscription;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait ManagesSubscriptions
 {

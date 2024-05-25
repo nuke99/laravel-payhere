@@ -61,7 +61,7 @@ class WebhookController extends Controller
             'billable_id' => $user->id,
             'billable_type' => PayHere::$customerModel,
             'ends_at' => $request->item_duration,
-            'status' => SubscriptionStatus::ACTIVE
+            'status' => SubscriptionStatus::ACTIVE,
         ]);
     }
 

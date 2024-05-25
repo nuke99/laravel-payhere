@@ -14,7 +14,7 @@ class Subscription extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'status' => SubscriptionStatus::class
+        'status' => SubscriptionStatus::class,
     ];
 
     protected static function newFactory(): SubscriptionFactory

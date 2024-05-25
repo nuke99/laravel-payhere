@@ -11,6 +11,6 @@ trait Billable
 {
     use GenerateHash;
     use HandleCheckout;
-    use ManagesSubscriptions;
     use ManagesPayments;
+    use ManagesSubscriptions;
 }

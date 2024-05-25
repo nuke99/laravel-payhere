@@ -38,7 +38,7 @@ trait CheckoutFormData
             'platform' => $this->platform,
             'startup_fee' => $this->startupFee,
             'custom_1' => $this->customData['custom_1'] ?? null,
-            'custom_2' => $this->customData['custom_2'] ?? null
+            'custom_2' => $this->customData['custom_2'] ?? null,
         ];
     }
 
@@ -129,7 +129,7 @@ trait CheckoutFormData
             'user_id' => $this->id,
             'order_id' => $this->order->id,
             'ends_at' => now()->add($duration),
-            'trial_ends_at' => $this->trialEndsAt
+            'trial_ends_at' => $this->trialEndsAt,
         ]);
 
         $this->customData($subscription->id);

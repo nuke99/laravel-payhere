@@ -140,6 +140,6 @@ it('can handle webhook for recurring checkout', function () {
     $this->assertDatabaseHas('payments', $data);
     $this->assertDatabaseHas('subscriptions', [
         'id' => $order->payhereSubscription->id,
-        'status' => SubscriptionStatus::ACTIVE->name
+        'status' => SubscriptionStatus::ACTIVE->name,
     ]);
 });
