@@ -28,8 +28,7 @@
         "psr-4": {
             "Dasundev\\PayHere\\Tests\\": "tests",
             "Workbench\\App\\": "workbench/app/",
-            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
-            "Database\\Seeders\\": "workbench/database/seeders/"
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/"
         }
     },
     "config": {
