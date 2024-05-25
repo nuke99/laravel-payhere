@@ -37,8 +37,8 @@ trait CheckoutFormData
             'recurring' => $this->recurring,
             'platform' => $this->platform,
             'startup_fee' => $this->startupFee,
-            'custom_1' => $this->customData['custom_1'],
-            'custom_2' => $this->customData['custom_2']
+            'custom_1' => $this->customData['custom_1'] ?? null,
+            'custom_2' => $this->customData['custom_2'] ?? null
         ];
     }
 
@@ -154,8 +154,8 @@ trait CheckoutFormData
     private function customData(string ...$data): static
     {
         $this->customData = [
-            'custom_1' => isset($data[0]) ?? null,
-            'custom_2' => isset($data[1]) ?? null
+            'custom_1' => $data[0] ?? null,
+            'custom_2' => $data[1] ?? null,
         ];
 
         return $this;
