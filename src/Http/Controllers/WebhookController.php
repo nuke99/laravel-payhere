@@ -2,6 +2,7 @@
 
 namespace Dasundev\PayHere\Http\Controllers;
 
+use Dasundev\PayHere\Enums\SubscriptionStatus;
 use Dasundev\PayHere\Http\Requests\WebhookRequest;
 use Dasundev\PayHere\Models\Payment;
 use Dasundev\PayHere\Models\Subscription;
@@ -48,16 +49,19 @@ class WebhookController extends Controller
         $this->createPayment($user, $request);
 
         if ($request->isRecurring()) {
-            $this->createSubscription($user, $request);
+            $this->activateSubscription($user, $request);
         }
     }
 
-    private function createSubscription(Model $user, Request $request)
+    private function activateSubscription($user, Request $request)
     {
-        Subscription::create([
+        $subscriptionId = $request->custom_id;
+
+        Subscription::find($subscriptionId)->update([
             'billable_id' => $user->id,
             'billable_type' => PayHere::$customerModel,
             'ends_at' => $request->item_duration,
+            'status' => SubscriptionStatus::ACTIVE
         ]);
     }
 

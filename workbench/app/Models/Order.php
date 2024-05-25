@@ -4,6 +4,7 @@ namespace Workbench\App\Models;
 
 use Dasundev\PayHere\Models\Contracts\PayHereOrder;
 use Dasundev\PayHere\Models\Payment;
+use Dasundev\PayHere\Models\Subscription;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,6 +33,11 @@ class Order extends Model implements PayHereOrder
     public function payherePayment(): HasOne
     {
         return $this->hasOne(Payment::class);
+    }
+
+    public function payhereSubscription(): HasOne
+    {
+        return $this->hasOne(Subscription::class);
     }
 
     protected static function newFactory(): OrderFactory

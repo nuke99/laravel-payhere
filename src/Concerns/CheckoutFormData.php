@@ -127,6 +127,8 @@ trait CheckoutFormData
             'duration' => $duration,
         ];
 
+        $this->createSubscription();
+
         return $this;
     }
 
@@ -144,7 +146,7 @@ trait CheckoutFormData
         return $this;
     }
 
-    public function customOne(string $data): static
+    private function customOne(string $data): static
     {
         $this->customOne = $data;
 

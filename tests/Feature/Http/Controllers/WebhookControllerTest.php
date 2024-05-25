@@ -1,11 +1,13 @@
 <?php
 
+use Dasundev\PayHere\Enums\SubscriptionStatus;
+use Dasundev\PayHere\Models\Subscription;
 use Illuminate\Support\Facades\URL;
 use Workbench\App\Models\Order;
 use Workbench\App\Models\OrderLine;
 
 it('can handle webhook for normal checkout', function () {
-    Order::factory()
+    $order = Order::factory()
         ->state(['id' => '9c1ef26d-29ef-463f-a541-2ccf4bfdb7aa'])
         ->has(OrderLine::factory()->count(2), 'lines')
         ->create();
@@ -31,11 +33,13 @@ it('can handle webhook for normal checkout', function () {
 
     $this->post($uri, $data);
 
+    $this->assertDatabaseHas('orders', ['id' => $order->id]);
     $this->assertDatabaseHas('payments', $data);
+    $this->assertDatabaseEmpty('subscriptions');
 });
 
 it('can handle webhook for authorize checkout', function () {
-    Order::factory()
+    $order = Order::factory()
         ->state(['id' => '9c1ef249-6b52-48ea-bf84-1a83039e98e3'])
         ->has(OrderLine::factory()->count(2), 'lines')
         ->create();
@@ -60,11 +64,13 @@ it('can handle webhook for authorize checkout', function () {
 
     $this->post($uri, $data);
 
+    $this->assertDatabaseHas('orders', ['id' => $order->id]);
     $this->assertDatabaseHas('payments', $data);
+    $this->assertDatabaseEmpty('subscriptions');
 });
 
 it('can handle webhook for preapproval checkout', function () {
-    Order::factory()
+    $order = Order::factory()
         ->state(['id' => '9c1ef26d-29ef-463f-a541-2ccf4bfdb7aa'])
         ->has(OrderLine::factory()->count(2), 'lines')
         ->create();
@@ -90,13 +96,16 @@ it('can handle webhook for preapproval checkout', function () {
 
     $this->post($uri, $data);
 
+    $this->assertDatabaseHas('orders', ['id' => $order->id]);
     $this->assertDatabaseHas('payments', $data);
+    $this->assertDatabaseEmpty('subscriptions');
 });
 
 it('can handle webhook for recurring checkout', function () {
-    Order::factory()
+    $order = Order::factory()
         ->state(['id' => '9c1ef26d-29ef-463f-a541-2ccf4bfdb7aa'])
         ->has(OrderLine::factory()->count(2), 'lines')
+        ->has(Subscription::factory(), 'payhereSubscription')
         ->create();
 
     $uri = URL::signedRoute('payhere.webhook');
@@ -122,9 +131,15 @@ it('can handle webhook for recurring checkout', function () {
         'item_rec_date_next' => '2024-05-24',
         'item_rec_install_paid' => '2',
         'subscription_id' => '420075044317',
+        'custom_1' => '1',
     ];
 
     $this->post($uri, $data);
 
+    $this->assertDatabaseHas('orders', ['id' => $order->id]);
     $this->assertDatabaseHas('payments', $data);
+    $this->assertDatabaseHas('subscriptions', [
+        'id' => $order->payhereSubscription->id,
+        'status' => SubscriptionStatus::ACTIVE->name
+    ]);
 });
