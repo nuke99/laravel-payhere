@@ -1,9 +1,12 @@
-<h1 style="text-align: center">Laravel PayHere</h1>
+<h1 align="center">Laravel PayHere</h1>
 
-<div style="display:flex; flex-direction: column; align-items: center">
-    <a href="https://www.payhere.lk" target="_blank"><img src="./art/payhere_long_banner_dark.png" alt="PayHere" width="700" /></a>
-    <img src="https://github.com/dasundev/laravel-payhere/actions/workflows/tests.yml/badge.svg" alt="Run Tests">
-</div>
+<p align="center">
+    <a href="https://www.payhere.lk" target="_blank"><img src="./art/payhere_short_banner_dark.png" alt="PayHere" /></a>
+</p>
+
+<p align="center">
+    <a href="https://github.com/dasundev/laravel-payhere/actions"><img src="https://github.com/dasundev/laravel-payhere/workflows/tests/badge.svg" alt="Run Tests"></a>
+</p>
 
 ## Introduction
 
