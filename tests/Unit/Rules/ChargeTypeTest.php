@@ -12,7 +12,7 @@ test('valid charge type', function ($chargeType) {
     expect(true)->toBeTrue();
 })->with([
     'PAYMENT',
-    'AUTHORIZE'
+    'AUTHORIZE',
 ]);
 
 test('invalid charge type', function ($chargeType) {
@@ -24,5 +24,5 @@ test('invalid charge type', function ($chargeType) {
 
     expect(true)->toBeTrue();
 })->with([
-    'NOT EXISTS'
+    'NOT EXISTS',
 ])->fails();

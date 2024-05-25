@@ -13,5 +13,6 @@ class PaymentCreated
 
     public function __construct(
         private readonly Payment $payment
-    ) {}
+    ) {
+    }
 }
