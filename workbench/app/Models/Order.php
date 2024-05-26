@@ -3,6 +3,7 @@
 namespace Workbench\App\Models;
 
 use Dasundev\PayHere\Models\Contracts\PayHereOrder;
+use Dasundev\PayHere\Models\Contracts\PayHereSubscription;
 use Dasundev\PayHere\Models\Payment;
 use Dasundev\PayHere\Models\Subscription;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Workbench\Database\Factories\OrderFactory;
 
-class Order extends Model implements PayHereOrder
+class Order extends Model implements PayHereOrder, PayHereSubscription
 {
     use HasFactory;
     use HasUuids;
