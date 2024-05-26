@@ -28,3 +28,13 @@ With Laravel PayHere, you can easily manage everything from one-time payments to
 
 You can find the documentation for Laravel PayHere on the [official Laravel PayHere website](https://laravel-payhere.com/docs).
 
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## Security Vulnerabilities
+
+Please review [our security policy](SECURITY.md) on how to report security vulnerabilities.
+
+## License
+
