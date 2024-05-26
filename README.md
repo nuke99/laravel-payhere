@@ -38,3 +38,4 @@ Please review [our security policy](SECURITY.md) on how to report security vulne
 
 ## License
 
+Laravel PayHere is a premium plugin licensed under the terms specified in the [License Agreement](LICENSE.md).
