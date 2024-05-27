@@ -12,7 +12,7 @@ class PaymentVerified
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public function __construct(
-        private readonly Payment $payment
+        public readonly Payment $payment
     ) {
     }
 }
