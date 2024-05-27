@@ -10,6 +10,7 @@ use Dasundev\PayHere\PayHere;
 use Dasundev\PayHere\Repositories\PaymentRepository;
 use Dasundev\PayHere\Repositories\SubscriptionRepository;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Log;
 
 class WebhookController extends Controller
 {
@@ -40,11 +41,18 @@ class WebhookController extends Controller
 
         // Verify that both the payment and the merchant are validated before proceeding.
         if (! $verifiedPayment && $verifiedMerchant) {
+            Log::error('[PayHere] Verification failed', [
+                'verifiedPayment' => $verifiedPayment,
+                'verifiedMerchant' => $verifiedMerchant
+            ]);
+
             return;
         }
 
         // Abort if order not found.
         if (! $order = PayHere::$orderModel::find($orderId)) {
+            Log::warning('[PayHere] Order not found', ['orderId' => $orderId]);
+
             return;
         }
 
