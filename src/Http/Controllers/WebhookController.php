@@ -2,7 +2,7 @@
 
 namespace Dasundev\PayHere\Http\Controllers;
 
-use Dasundev\PayHere\Events\PaymentCreated;
+use Dasundev\PayHere\Events\PaymentVerified;
 use Dasundev\PayHere\Events\SubscriptionActivated;
 use Dasundev\PayHere\Http\Requests\WebhookRequest;
 use Dasundev\PayHere\Models\Payment;
@@ -54,7 +54,7 @@ class WebhookController extends Controller
 
         $payment = $this->paymentRepository->createPayment($user, $request);
 
-        event(new PaymentCreated($payment));
+        event(new PaymentVerified($payment));
 
         if ($request->isRecurring()) {
             $subscription = $this->subscriptionRepository->activateSubscription($user, $request);
