@@ -29,17 +29,17 @@ class PayHere
     /**
      * Set the customer model class name.
      */
-    public static function useCustomerModel($model): void
+    public static function useCustomerModel($customerModel): void
     {
-        static::$customerModel = $model;
+        static::$customerModel = $customerModel;
     }
 
     /**
      * Set the order model class name.
      */
-    public static function useOrderModel($model): void
+    public static function useOrderModel($orderModel): void
     {
-        static::$orderModel = $model;
+        static::$orderModel = $orderModel;
     }
 
     /**
