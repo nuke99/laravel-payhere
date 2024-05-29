@@ -2,6 +2,7 @@
 
 namespace Dasundev\PayHere\Http\Controllers;
 
+use Dasundev\PayHere\PayHere;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -19,6 +20,10 @@ class PayHereController extends Controller
             abort(401);
         }
 
-        return view('payhere::return');
+        $order = PayHere::$orderModel::find($request->order_id);
+
+        return view('payhere::return', [
+            'total' => $order->total
+        ]);
     }
 }

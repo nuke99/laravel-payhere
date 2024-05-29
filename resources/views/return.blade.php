@@ -102,15 +102,15 @@
 </head>
 <body>
 <div class="container">
-    <h1>LKR 1000.00</h1>
+    <h1>{{ Number::currency($total, config('payhere.currency')) }}</h1>
     <svg class="check-circle" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="none" viewBox="0 0 24 24">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M8.5 11.5L11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
     </svg>
-    <h2>Payment successful</h2>
-    <em>We've received your payment, and it is being verified.</em>
+    <h2>{{ __('Payment successful') }}</h2>
+    <em>{{ __("We've received your payment, and it is being verified.") }}</em>
     <div style="margin-top: 3rem">
         <a href="/" aria-label="Take me to home">
-            Take me to home
+            {{ __('Take me to home') }}
             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 12H5m14 0-4 4m4-4-4-4"/>
             </svg>
