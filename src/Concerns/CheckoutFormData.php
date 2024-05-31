@@ -47,6 +47,11 @@ trait CheckoutFormData
     private ?array $customData = null;
 
     /**
+     * Item name.
+     */
+    private ?string $item = null;
+
+    /**
      * Get the form data for the checkout.
      */
     public function getFormData(): array
@@ -109,7 +114,7 @@ trait CheckoutFormData
             'return_url' => config('payhere.return_url') ?? URL::signedRoute('payhere.return'),
             'cancel_url' => config('payhere.cancel_url') ?? url('/'),
             'order_id' => $this->order->id,
-            'items' => "Order #{$this->order->id}",
+            'items' => $this->item ?? "Order #{$this->order->id}",
             'currency' => config('payhere.currency'),
             'amount' => $this->order->total,
             'hash' => $this->generateHash(),
@@ -215,6 +220,13 @@ trait CheckoutFormData
             'custom_1' => $data[0] ?? null,
             'custom_2' => $data[1] ?? null,
         ];
+
+        return $this;
+    }
+
+    public function item(string $item): static
+    {
+        $this->item = $item;
 
         return $this;
     }
