@@ -13,6 +13,17 @@ use Saloon\Exceptions\Request\RequestException;
 
 class SubscriptionController
 {
+    private PayHereConnector $connector;
+
+    public function __construct()
+    {
+        $this->connector = new PayHereConnector;
+
+        $authenticator = $this->connector->getAccessToken();
+
+        $this->connector->authenticate($authenticator);
+    }
+
     /**
      * Retrieves all subscriptions from PayHere.
      *
@@ -22,13 +33,7 @@ class SubscriptionController
      */
     public function index()
     {
-        $connector = new PayHereConnector;
-
-        $authenticator = $connector->getAccessToken();
-
-        $connector->authenticate($authenticator);
-
-        $response = $connector->send(new ListSubscriptionsRequest);
+        $response = $this->connector->send(new ListSubscriptionsRequest);
 
         return $response->json();
     }
@@ -42,13 +47,7 @@ class SubscriptionController
      */
     public function show(string $subscription)
     {
-        $connector = new PayHereConnector;
-
-        $authenticator = $connector->getAccessToken();
-
-        $connector->authenticate($authenticator);
-
-        $response = $connector->send(new GetSubscriptionRequest($subscription));
+        $response = $this->connector->send(new GetSubscriptionRequest($subscription));
 
         return $response->json();
     }
@@ -62,13 +61,7 @@ class SubscriptionController
      */
     public function retry(string $subscription)
     {
-        $connector = new PayHereConnector;
-
-        $authenticator = $connector->getAccessToken();
-
-        $connector->authenticate($authenticator);
-
-        $response = $connector->send(new RetrySubscriptionRequest($subscription));
+        $response = $this->connector->send(new RetrySubscriptionRequest($subscription));
 
         return $response->json();
     }
@@ -82,13 +75,7 @@ class SubscriptionController
      */
     public function cancel(string $subscription)
     {
-        $connector = new PayHereConnector;
-
-        $authenticator = $connector->getAccessToken();
-
-        $connector->authenticate($authenticator);
-
-        $response = $connector->send(new CancelSubscriptionRequest($subscription));
+        $response = $this->connector->send(new CancelSubscriptionRequest($subscription));
 
         return $response->json();
     }

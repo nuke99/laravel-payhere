@@ -10,11 +10,25 @@ use Dasundev\PayHere\Http\Integrations\PayHere\Requests\RefundPaymentRequest;
 use Dasundev\PayHere\Rules\ChargeType;
 use Illuminate\Http\Request;
 use JsonException;
+use Saloon\Contracts\Authenticator;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
+use Saloon\Http\Auth\BasicAuthenticator;
+use Saloon\Http\Connector;
 
 class PaymentController
 {
+    private PayHereConnector $connector;
+
+    public function __construct()
+    {
+        $this->connector = new PayHereConnector;
+
+        $authenticator = $this->connector->getAccessToken();
+
+        $this->connector->authenticate($authenticator);
+    }
+
     /**
      * Search for payments by order ID.
      *
@@ -26,13 +40,7 @@ class PaymentController
     {
         $orderId = $request->input('order_id');
 
-        $connector = new PayHereConnector;
-
-        $authenticator = $connector->getAccessToken();
-
-        $connector->authenticate($authenticator);
-
-        $response = $connector->send(new ListPaymentsRequest($orderId));
+        $response = $this->connector->send(new ListPaymentsRequest($orderId));
 
         return $response->json();
     }
@@ -53,13 +61,7 @@ class PaymentController
             'custom_2' => ['sometimes', 'string'],
         ]);
 
-        $connector = new PayHereConnector;
-
-        $authenticator = $connector->getAccessToken();
-
-        $connector->authenticate($authenticator);
-
-        $response = $connector->send(new PaymentChargeRequest(
+        $response = $this->connector->send(new PaymentChargeRequest(
             orderId: $request->order_id,
             type: $request->type,
             customOne: $request->custom_1,
@@ -84,13 +86,7 @@ class PaymentController
             'amount' => ['required', 'numeric'],
         ]);
 
-        $connector = new PayHereConnector;
-
-        $authenticator = $connector->getAccessToken();
-
-        $connector->authenticate($authenticator);
-
-        $response = $connector->send(new CapturePaymentRequest(
+        $response = $this->connector->send(new CapturePaymentRequest(
             description: $request->description,
             authorizationToken: $request->authorization_token,
             amount: $request->amount
@@ -114,13 +110,7 @@ class PaymentController
             'authorization_token' => ['sometimes', 'string'],
         ]);
 
-        $connector = new PayHereConnector;
-
-        $authenticator = $connector->getAccessToken();
-
-        $connector->authenticate($authenticator);
-
-        $response = $connector->send(new RefundPaymentRequest(
+        $response = $this->connector->send(new RefundPaymentRequest(
             description: $request->description,
             paymentId: $request->payment_id,
             authorizationToken: $request->authorization_token
