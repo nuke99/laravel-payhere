@@ -11,10 +11,10 @@ class PaymentRepository
     /**
      * Create a payment record for the given user.
      */
-    public function createPayment(Model $user, Request $request): Payment
+    public function createPayment(?Model $user, Request $request): Payment
     {
         return Payment::create([
-            'user_id' => $user->id,
+            'user_id' => $user?->id,
             'merchant_id' => $request->merchant_id,
             'order_id' => $request->order_id,
             'payment_id' => $request->payment_id,
