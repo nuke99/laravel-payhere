@@ -2,6 +2,7 @@
 
 namespace Dasundev\PayHere\Concerns;
 
+use Dasundev\PayHere\Models\Contracts\PayHereCustomer;
 use Dasundev\PayHere\PayHere;
 use Illuminate\Support\Facades\URL;
 
@@ -73,6 +74,20 @@ trait CheckoutFormData
      */
     private function customer(): array
     {
+        $customer = [
+            'first_name' => '',
+            'last_name' => '',
+            'email' => '',
+            'phone' => '',
+            'address' => '',
+            'city' => '',
+            'country' => '',
+        ];
+
+        if (! $this instanceof PayHereCustomer) {
+            return $customer;
+        }
+
         return [
             'first_name' => $this->payhereFirstName(),
             'last_name' => $this->payhereLastName(),
@@ -90,9 +105,10 @@ trait CheckoutFormData
     private function items(): array
     {
         $relationship = PayHere::$orderLinesRelationship;
+        $orderLines = $this->order->{$relationship} ?? [];
         $items = [];
 
-        foreach ($this->order->{$relationship} as $number => $line) {
+        foreach ($orderLines as $number => $line) {
             $items["item_number_$number"] = $line->payHereOrderLineId();
             $items["item_name_$number"] = $line->payHereOrderLineTitle();
             $items["quantity_$number"] = $line->payHereOrderLineQty();
