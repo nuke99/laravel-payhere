@@ -107,6 +107,10 @@ trait CheckoutFormData
         $relationship = PayHere::$orderLinesRelationship;
         $items = [];
 
+        if (is_null($this->order->{$relationship})) {
+            return $items;
+        }
+
         foreach ($this->order->{$relationship} as $number => $line) {
             $items["item_number_$number"] = $line->payHereOrderLineId();
             $items["item_name_$number"] = $line->payHereOrderLineTitle();
