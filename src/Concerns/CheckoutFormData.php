@@ -105,13 +105,10 @@ trait CheckoutFormData
     private function items(): array
     {
         $relationship = PayHere::$orderLinesRelationship;
+        $orderLines = $this->order->{$relationship} ?? [];
         $items = [];
 
-        if (is_null($this->order->{$relationship})) {
-            return $items;
-        }
-
-        foreach ($this->order->{$relationship} as $number => $line) {
+        foreach ($orderLines as $number => $line) {
             $items["item_number_$number"] = $line->payHereOrderLineId();
             $items["item_name_$number"] = $line->payHereOrderLineTitle();
             $items["quantity_$number"] = $line->payHereOrderLineQty();
