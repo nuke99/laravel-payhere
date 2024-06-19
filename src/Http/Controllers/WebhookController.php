@@ -43,7 +43,7 @@ class WebhookController extends Controller
         if (! $verifiedPayment || ! $verifiedMerchant) {
             Log::error('[PayHere] Verification failed', [
                 'verifiedPayment' => $verifiedPayment,
-                'verifiedMerchant' => $verifiedMerchant
+                'verifiedMerchant' => $verifiedMerchant,
             ]);
 
             return;

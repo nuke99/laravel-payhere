@@ -10,11 +10,8 @@ use Dasundev\PayHere\Http\Integrations\PayHere\Requests\RefundPaymentRequest;
 use Dasundev\PayHere\Rules\ChargeType;
 use Illuminate\Http\Request;
 use JsonException;
-use Saloon\Contracts\Authenticator;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
-use Saloon\Http\Auth\BasicAuthenticator;
-use Saloon\Http\Connector;
 
 class PaymentController
 {

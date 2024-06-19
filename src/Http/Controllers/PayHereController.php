@@ -23,7 +23,7 @@ class PayHereController extends Controller
         $order = PayHere::$orderModel::find($request->order_id);
 
         return view('payhere::return', [
-            'total' => $order->total
+            'total' => $order->total,
         ]);
     }
 }

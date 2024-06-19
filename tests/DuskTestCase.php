@@ -2,11 +2,9 @@
 
 namespace Dasundev\PayHere\Tests;
 
-use Dasundev\PayHere\PayHere;
 use Dasundev\PayHere\PayHereServiceProvider;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase;
-use Workbench\App\Models\Order;
 use Workbench\App\Models\User;
 use Workbench\App\Providers\WorkbenchServiceProvider;
 
@@ -25,7 +23,7 @@ abstract class DuskTestCase extends TestCase
     {
         return [
             PayHereServiceProvider::class,
-            WorkbenchServiceProvider::class
+            WorkbenchServiceProvider::class,
         ];
     }
 }
