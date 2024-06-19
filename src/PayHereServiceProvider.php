@@ -35,4 +35,9 @@ class PayHereServiceProvider extends PackageServiceProvider
                     });
             });
     }
+
+    public function registeringPackage(): void
+    {
+        $this->app->singleton('payhere', fn () => new PayHere);
+    }
 }
