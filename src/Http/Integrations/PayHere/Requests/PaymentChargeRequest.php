@@ -2,7 +2,6 @@
 
 namespace Dasundev\PayHere\Http\Integrations\PayHere\Requests;
 
-use Dasundev\PayHere\Models\Contracts\PayHereOrder;
 use Dasundev\PayHere\PayHere;
 use Exception;
 use Illuminate\Support\Facades\URL;
@@ -36,20 +35,14 @@ class PaymentChargeRequest extends Request implements HasBody
      */
     protected function defaultBody(): array
     {
-        $model = PayHere::$orderModel;
-
-        $order = $model::find($this->orderId);
-
-        if (! $order instanceof PayHereOrder) {
-            throw new Exception("The '$model' does not implement the 'Dasundev\\PayHere\\Models\\Contracts\\PayHereOrder' interface.");
-        }
+        $order = PayHere::$orderModel::find($this->orderId);
 
         return [
             'type' => $this->type,
             'order_id' => $order->id,
             'custom_1' => $this->customOne,
             'custom_2' => $this->customTwo,
-            'customer_token' => $order->payherePayment->customer_token,
+            'customer_token' => $order->payment->customer_token,
             'items' => "Order #{$order->id}",
             'amount' => $order->total,
             'currency' => config('payhere.currency'),
