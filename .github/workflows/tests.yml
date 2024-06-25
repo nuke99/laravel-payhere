@@ -49,9 +49,7 @@ jobs:
           
           tar -xvf ${FILE_NAME} || { echo "Failed to extract ${FILE_NAME}"; exit 1; }
           
-          echo $PATH
-          
-          export PATH=$PWD/hookdeck:$PATH
+          sudo mv hookdeck /usr/local/bin/
           
           rm ${FILE_NAME}
 
