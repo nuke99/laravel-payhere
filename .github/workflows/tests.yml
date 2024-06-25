@@ -49,6 +49,8 @@ jobs:
           
           tar -xvf ${FILE_NAME} || { echo "Failed to extract ${FILE_NAME}"; exit 1; }
           
+          echo $PWD
+          
           export PATH=$PWD/hookdeck:$PATH
           
           rm ${FILE_NAME}
