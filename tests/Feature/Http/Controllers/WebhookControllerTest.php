@@ -8,7 +8,6 @@ use Workbench\App\Models\OrderLine;
 
 it('can handle webhook for normal checkout', function () {
     $order = Order::factory()
-        ->state(['id' => '9c1ef26d-29ef-463f-a541-2ccf4bfdb7aa'])
         ->has(OrderLine::factory()->count(2), 'lines')
         ->create();
 
@@ -16,13 +15,13 @@ it('can handle webhook for normal checkout', function () {
 
     $data = [
         'merchant_id' => config('payhere.merchant_id'),
-        'order_id' => '9c1ef26d-29ef-463f-a541-2ccf4bfdb7aa',
+        'order_id' => 1,
         'payment_id' => 320032387268,
         'captured_amount' => 1000.00,
         'payhere_amount' => 1000.00,
         'payhere_currency' => 'LKR',
         'status_code' => 2,
-        'md5sig' => '6FE468ECB69B54E58911E007F424379F',
+        'md5sig' => 'C7A4E240E6927F2F580BFEE05E5BC8B0',
         'status_message' => 'Successfully received the VISA payment',
         'method' => 'VISA',
         'card_holder_name' => 'Dasun Tharanga',
@@ -40,7 +39,6 @@ it('can handle webhook for normal checkout', function () {
 
 it('can handle webhook for authorize checkout', function () {
     $order = Order::factory()
-        ->state(['id' => '9c1ef249-6b52-48ea-bf84-1a83039e98e3'])
         ->has(OrderLine::factory()->count(2), 'lines')
         ->create();
 
@@ -48,12 +46,12 @@ it('can handle webhook for authorize checkout', function () {
 
     $data = [
         'merchant_id' => config('payhere.merchant_id'),
-        'order_id' => '9c1ef249-6b52-48ea-bf84-1a83039e98e3',
-        'authorization_token' => 'ad7c02f1-bd40-4ed1-816d-a5bcd8ddaa73',
+        'order_id' => 1,
+        'authorization_token' => '8cb9984c-10b5-4612-8047-5394ca584aa9',
         'payhere_amount' => 1000.00,
         'payhere_currency' => 'LKR',
         'status_code' => 3,
-        'md5sig' => 'CB3E745D4A6967CD1541399BE2E60A21',
+        'md5sig' => 'BD72AC93E8685273093DE0737C9E668C',
         'status_message' => 'Successfully received the VISA payment',
         'method' => 'VISA',
         'card_holder_name' => 'Dasun Tharanga',
@@ -71,7 +69,6 @@ it('can handle webhook for authorize checkout', function () {
 
 it('can handle webhook for preapproval checkout', function () {
     $order = Order::factory()
-        ->state(['id' => '9c1ef26d-29ef-463f-a541-2ccf4bfdb7aa'])
         ->has(OrderLine::factory()->count(2), 'lines')
         ->create();
 
@@ -79,12 +76,12 @@ it('can handle webhook for preapproval checkout', function () {
 
     $data = [
         'merchant_id' => config('payhere.merchant_id'),
-        'order_id' => '9c1ef26d-29ef-463f-a541-2ccf4bfdb7aa',
+        'order_id' => 1,
         'payment_id' => '320032387270',
         'payhere_amount' => 1000.00,
         'payhere_currency' => 'LKR',
         'status_code' => 2,
-        'md5sig' => '6FE468ECB69B54E58911E007F424379F',
+        'md5sig' => 'C7A4E240E6927F2F580BFEE05E5BC8B0',
         'status_message' => 'Successfully received the VISA payment',
         'method' => 'VISA',
         'card_holder_name' => 'Dasun Tharanga',
@@ -103,7 +100,6 @@ it('can handle webhook for preapproval checkout', function () {
 
 it('can handle webhook for recurring checkout', function () {
     $order = Order::factory()
-        ->state(['id' => '9c1ef26d-29ef-463f-a541-2ccf4bfdb7aa'])
         ->has(OrderLine::factory()->count(2), 'lines')
         ->has(Subscription::factory(), 'subscription')
         ->create();
@@ -112,12 +108,12 @@ it('can handle webhook for recurring checkout', function () {
 
     $data = [
         'merchant_id' => config('payhere.merchant_id'),
-        'order_id' => '9c1ef26d-29ef-463f-a541-2ccf4bfdb7aa',
+        'order_id' => 1,
         'payment_id' => '320032387276',
         'payhere_amount' => 1000.00,
         'payhere_currency' => 'LKR',
         'status_code' => 2,
-        'md5sig' => '6FE468ECB69B54E58911E007F424379F',
+        'md5sig' => 'C7A4E240E6927F2F580BFEE05E5BC8B0',
         'status_message' => 'Successfully received the VISA payment',
         'method' => 'VISA',
         'card_holder_name' => 'Dasun Tharanga',
@@ -146,7 +142,6 @@ it('can handle webhook for recurring checkout', function () {
 
 it('can handle webhook for a payment charge', function () {
     $order = Order::factory()
-        ->state(['id' => '9c1ef26d-29ef-463f-a541-2ccf4bfdb7aa'])
         ->has(OrderLine::factory()->count(2), 'lines')
         ->has(Subscription::factory(), 'subscription')
         ->create();
@@ -155,13 +150,13 @@ it('can handle webhook for a payment charge', function () {
 
     $data = [
         'merchant_id' => config('payhere.merchant_id'),
-        'order_id' => '9c1ef26d-29ef-463f-a541-2ccf4bfdb7aa',
+        'order_id' => 1,
         'payment_id' => '320032387276',
         'payhere_amount' => 1000.00,
         'captured_amount' => 1000.00,
         'payhere_currency' => 'LKR',
         'status_code' => 2,
-        'md5sig' => '6FE468ECB69B54E58911E007F424379F',
+        'md5sig' => 'C7A4E240E6927F2F580BFEE05E5BC8B0',
         'status_message' => 'Successfully received the VISA payment',
         'method' => 'VISA',
         'card_holder_name' => 'Dasun Tharanga',
