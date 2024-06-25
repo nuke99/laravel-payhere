@@ -49,7 +49,7 @@ jobs:
           
           tar -xvf ${FILE_NAME} || { echo "Failed to extract ${FILE_NAME}"; exit 1; }
           
-          echo $PWD
+          echo $PATH
           
           export PATH=$PWD/hookdeck:$PATH
           
