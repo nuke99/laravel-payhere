@@ -23,6 +23,12 @@ class Payment extends Model
         'message_type' => MessageType::class,
     ];
 
+    protected $hidden = [
+        'md5sig',
+        'authorization_token',
+        'customer_token'
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(PayHere::$customerModel);
