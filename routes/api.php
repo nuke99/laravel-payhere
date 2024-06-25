@@ -3,7 +3,7 @@
 use Dasundev\PayHere\Http\Controllers\Api\PaymentController;
 use Dasundev\PayHere\Http\Controllers\Api\SubscriptionController;
 
-Route::prefix('payhere/api')->as('payhere.api.')->group(function () {
+Route::group(['prefix' => 'payhere/api', 'as' => 'payhere.api.'], function () {
     Route::prefix('payments')->as('payment.')->group(function () {
         Route::get('search', [PaymentController::class, 'search'])->name('search');
         Route::post('charge', [PaymentController::class, 'charge'])->name('charge');
