@@ -53,7 +53,7 @@ class PaymentController
     {
         $request->validate([
             'type' => ['sometimes', 'string', new ChargeType],
-            'order_id' => ['required', 'string'],
+            'order_id' => ['required'],
             'custom_1' => ['sometimes', 'string'],
             'custom_2' => ['sometimes', 'string'],
         ]);
@@ -69,7 +69,7 @@ class PaymentController
     }
 
     /**
-     * Charge a payment.
+     * Capture a payment.
      *
      * @throws FatalRequestException
      * @throws RequestException
