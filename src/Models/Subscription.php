@@ -2,7 +2,6 @@
 
 namespace Dasundev\PayHere\Models;
 
-use Carbon\Carbon;
 use Dasundev\PayHere\Enums\SubscriptionStatus;
 use Dasundev\PayHere\PayHere;
 use Illuminate\Database\Eloquent\Builder;

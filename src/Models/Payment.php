@@ -26,7 +26,7 @@ class Payment extends Model
     protected $hidden = [
         'md5sig',
         'authorization_token',
-        'customer_token'
+        'customer_token',
     ];
 
     public function user(): BelongsTo
