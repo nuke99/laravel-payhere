@@ -11,7 +11,9 @@
         "php": "^8.2",
         "laravel/framework": "^10.0",
         "spatie/laravel-package-tools": "^1.16",
-        "saloonphp/saloon": "^3.0"
+        "saloonphp/saloon": "^3.0",
+        "filament/filament": "^3.2",
+        "flowframe/laravel-trend": "^0.2.0"
     },
     "require-dev": {
         "larastan/larastan": "^2.9",
@@ -28,7 +30,8 @@
         "psr-4": {
             "Dasundev\\PayHere\\Tests\\": "tests",
             "Workbench\\App\\": "workbench/app/",
-            "Workbench\\Database\\Factories\\": "workbench/database/factories/"
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "config": {
@@ -39,7 +42,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Dasundev\\PayHere\\PayHereServiceProvider"
+                "Dasundev\\PayHere\\PayHereServiceProvider",
+                "Dasundev\\PayHere\\Filament\\PayHerePanelProvider"
             ]
         }
     },
