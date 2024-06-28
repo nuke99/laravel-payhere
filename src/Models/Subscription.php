@@ -17,6 +17,7 @@ class Subscription extends Model
     protected $guarded = [];
 
     protected $casts = [
+        'payhere_subscription_id' => 'encrypted',
         'status' => SubscriptionStatus::class,
     ];
 
