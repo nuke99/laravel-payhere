@@ -43,12 +43,12 @@ class PaymentResource extends Resource
                 TextColumn::make('payhere_amount')
                     ->label(__('Amount'))
                     ->searchable()
-                    ->money(),
+                    ->money(fn (Payment $payment) => $payment->payhere_currency),
 
                 TextColumn::make('captured_amount')
                     ->label(__('Captured amount'))
                     ->searchable()
-                    ->money(),
+                    ->money(fn (Payment $payment) => $payment->payhere_currency),
 
                 TextColumn::make('status_code')
                     ->label(__('Status'))
