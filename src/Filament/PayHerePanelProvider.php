@@ -29,6 +29,7 @@ class PayHerePanelProvider extends PanelProvider
             ->darkMode()
             ->login()
             ->topNavigation()
+            ->favicon(asset('vendor/payhere/images/favicon.png'))
             ->navigationItems([
                 NavigationItem::make(__('Knowledge Base'))
                     ->icon('heroicon-o-information-circle')
