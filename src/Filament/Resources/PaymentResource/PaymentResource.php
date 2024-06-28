@@ -4,7 +4,6 @@ namespace Dasundev\PayHere\Filament\Resources\PaymentResource;
 
 use Dasundev\PayHere\Enums\PaymentStatus;
 use Dasundev\PayHere\Enums\RefundStatus;
-use Dasundev\PayHere\Enums\SubscriptionStatus;
 use Dasundev\PayHere\Models\Payment;
 use Dasundev\PayHere\Services\Contracts\PayHereService;
 use Filament\Forms\Components\DatePicker;
@@ -128,7 +127,7 @@ class PaymentResource extends Resource
                                 ->label('Created from'),
                             DatePicker::make('to')
                                 ->label('Created until'),
-                        ])
+                        ]),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
@@ -145,7 +144,7 @@ class PaymentResource extends Resource
 
                 SelectFilter::make('status_code')
                     ->label('Status')
-                    ->options(PaymentStatus::class)
+                    ->options(PaymentStatus::class),
 
             ], layout: FiltersLayout::AboveContentCollapsible)
             ->actions([

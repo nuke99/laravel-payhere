@@ -2,7 +2,6 @@
 
 namespace Dasundev\PayHere\Services;
 
-use Dasundev\PayHere\Enums\RefundStatus;
 use Dasundev\PayHere\Http\Integrations\PayHere\PayHereConnector;
 use Dasundev\PayHere\Http\Integrations\PayHere\Requests\CancelSubscriptionRequest;
 use Dasundev\PayHere\Http\Integrations\PayHere\Requests\RefundPaymentRequest;

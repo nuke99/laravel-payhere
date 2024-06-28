@@ -2,9 +2,7 @@
 
 namespace Dasundev\PayHere\Filament\Resources\SubscriptionResource;
 
-use Dasundev\PayHere\Enums\RefundStatus;
 use Dasundev\PayHere\Enums\SubscriptionStatus;
-use Dasundev\PayHere\Models\Payment;
 use Dasundev\PayHere\Models\Subscription;
 use Dasundev\PayHere\Services\Contracts\PayHereService;
 use Filament\Forms\Components\DatePicker;
@@ -90,12 +88,12 @@ class SubscriptionResource extends Resource
                     ->visible(fn (Subscription $record) => $record->isCancellable())
                     ->requiresConfirmation()
                     ->modalDescription('Are you sure you want to cancel this subscription?')
-                    ->action(fn (Subscription $record) => static::cancelSubscription($record))
+                    ->action(fn (Subscription $record) => static::cancelSubscription($record)),
             ])
             ->filters([
                 SelectFilter::make('status')
                     ->options(SubscriptionStatus::class)
-                    ->default(SubscriptionStatus::Active->value)
+                    ->default(SubscriptionStatus::Active->value),
             ])
             ->defaultSort('created_at', 'desc');
     }

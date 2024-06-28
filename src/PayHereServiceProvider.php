@@ -4,7 +4,6 @@ namespace Dasundev\PayHere;
 
 use Dasundev\PayHere\Services\Contracts\PayHereService;
 use Dasundev\PayHere\Services\PayHereApiService;
-use Filament\Tables\Table;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;

@@ -65,7 +65,7 @@ class WebhookController extends Controller
 
         if ($request->isRecurring()) {
             $subscription = $this->subscriptionRepository->activateSubscription($user, $request);
-            
+
             event(new SubscriptionActivated($subscription));
         }
     }
