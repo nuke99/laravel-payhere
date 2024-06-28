@@ -2,7 +2,9 @@
 
 namespace Dasundev\PayHere\Filament\Resources\PaymentResource;
 
+use Dasundev\PayHere\Enums\PaymentStatus;
 use Dasundev\PayHere\Enums\RefundStatus;
+use Dasundev\PayHere\Enums\SubscriptionStatus;
 use Dasundev\PayHere\Models\Payment;
 use Dasundev\PayHere\Services\Contracts\PayHereService;
 use Filament\Forms\Components\DatePicker;
@@ -10,12 +12,12 @@ use Filament\Forms\Components\Split;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
-use Filament\Support\Colors\Color;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
@@ -50,14 +52,14 @@ class PaymentResource extends Resource
                     ->searchable()
                     ->money(fn (Payment $payment) => $payment->payhere_currency),
 
+                IconColumn::make('recurring')
+                    ->label(__('Recurring'))
+                    ->boolean()
+                    ->searchable(),
+
                 TextColumn::make('status_code')
                     ->label(__('Status'))
                     ->badge()
-                    ->searchable(),
-
-                IconColumn::make('recurring')
-                    ->label(__('Recurring payment'))
-                    ->boolean()
                     ->searchable(),
 
                 TextColumn::make('method')
@@ -132,7 +134,7 @@ class PaymentResource extends Resource
                                 ->label(__('Created from')),
                             DatePicker::make('to')
                                 ->label(__('Created until')),
-                        ]),
+                        ])
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
@@ -146,6 +148,11 @@ class PaymentResource extends Resource
                             );
                     })
                     ->columnSpan(2),
+
+                SelectFilter::make('status_code')
+                    ->label('Status')
+                    ->options(PaymentStatus::class)
+
             ], layout: FiltersLayout::AboveContentCollapsible)
             ->actions([
                 Action::make('refund')
@@ -154,7 +161,7 @@ class PaymentResource extends Resource
                     ->requiresConfirmation()
                     ->modalDescription(__('Are you sure you want to refund this payment?'))
                     ->form([
-                        Textarea::make('reason')
+                        Textarea::make('reason'),
                     ])
                     ->action(fn (Payment $record, array $data) => static::refund($record, $data['reason'])),
             ])
