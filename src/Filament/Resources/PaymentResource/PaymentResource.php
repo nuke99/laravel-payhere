@@ -55,10 +55,6 @@ class PaymentResource extends Resource
                     ->badge()
                     ->searchable(),
 
-                IconColumn::make('refunded')
-                    ->label(__('Refunded'))
-                    ->boolean(),
-
                 IconColumn::make('recurring')
                     ->label(__('Recurring payment'))
                     ->boolean()
@@ -110,6 +106,10 @@ class PaymentResource extends Resource
                 TextColumn::make('item_rec_install_paid')
                     ->label(__('Successful recurring installments'))
                     ->searchable(),
+
+                IconColumn::make('refunded')
+                    ->label(__('Refunded'))
+                    ->boolean(),
 
                 TextColumn::make('refund_reason')
                     ->label(__('Refund reason'))
