@@ -10,4 +10,6 @@ interface PayHereService
     public function refund(Payment $payment, ?string $reason = null): array;
 
     public function cancelSubscription(Subscription $subscription): array;
+
+    public function retrySubscription(Subscription $subscription): array;
 }

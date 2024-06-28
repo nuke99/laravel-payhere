@@ -6,6 +6,7 @@ use Dasundev\PayHere\Enums\RefundStatus;
 use Dasundev\PayHere\Http\Integrations\PayHere\PayHereConnector;
 use Dasundev\PayHere\Http\Integrations\PayHere\Requests\CancelSubscriptionRequest;
 use Dasundev\PayHere\Http\Integrations\PayHere\Requests\RefundPaymentRequest;
+use Dasundev\PayHere\Http\Integrations\PayHere\Requests\RetrySubscriptionRequest;
 use Dasundev\PayHere\Models\Payment;
 use Dasundev\PayHere\Models\Subscription;
 use Dasundev\PayHere\Services\Contracts\PayHereService;
@@ -29,7 +30,7 @@ class PayHereApiService implements PayHereService
 
         $status = $payload['status'];
 
-        if ((int) $status === RefundStatus::REFUND_SUCCESS->value) {
+        if ((int) $status === 1) {
             $payment->markAsRefunded($reason);
         }
 
@@ -52,6 +53,27 @@ class PayHereApiService implements PayHereService
 
         if ((int) $status === 1) {
             $subscription->markAsCancelled();
+        }
+
+        return $payload;
+    }
+
+    public function retrySubscription(Subscription $subscription): array
+    {
+        $connector = new PayHereConnector;
+
+        $authenticator = $connector->getAccessToken();
+
+        $connector->authenticate($authenticator);
+
+        $response = $connector->send(new RetrySubscriptionRequest($subscription->payhere_subscription_id));
+
+        $payload = $response->json();
+
+        $status = $payload['status'];
+
+        if ((int) $status === 1) {
+            $subscription->markAsActive();
         }
 
         return $payload;

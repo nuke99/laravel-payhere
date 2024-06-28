@@ -78,8 +78,15 @@ class SubscriptionResource extends Resource
                     ->columnSpan(2),
             ], layout: FiltersLayout::AboveContentCollapsible)
             ->actions([
+                Action::make('Retry')
+                    ->button()
+                    ->visible(fn (Subscription $record) => $record->isFailed())
+                    ->requiresConfirmation()
+                    ->modalDescription('Are you sure you want to retry this subscription?')
+                    ->action(fn (Subscription $record) => static::retrySubscription($record)),
                 Action::make('Cancel')
                     ->button()
+                    ->color('danger')
                     ->visible(fn (Subscription $record) => $record->isCancellable())
                     ->requiresConfirmation()
                     ->modalDescription('Are you sure you want to cancel this subscription?')
@@ -104,6 +111,25 @@ class SubscriptionResource extends Resource
     {
         $service = app(PayHereService::class);
         $payload = $service->cancelSubscription($subscription);
+
+        $status = $payload['status'];
+        $message = $payload['msg'];
+
+        $notification = Notification::make()->title($message);
+
+        if ($status === 1) {
+            $notification->success()->send();
+
+            return;
+        }
+
+        $notification->danger()->send();
+    }
+
+    private static function retrySubscription(Subscription $subscription): void
+    {
+        $service = app(PayHereService::class);
+        $payload = $service->retrySubscription($subscription);
 
         $status = $payload['status'];
         $message = $payload['msg'];

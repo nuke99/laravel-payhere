@@ -64,9 +64,14 @@ class Subscription extends Model
         $this->update(['status' => SubscriptionStatus::Cancelled]);
     }
 
-    public function isCancelled(): bool
+    public function markAsActive(): void
     {
-        return $this->status === SubscriptionStatus::Cancelled;
+        $this->update(['status' => SubscriptionStatus::Active]);
+    }
+
+    public function isFailed(): bool
+    {
+        return $this->status === SubscriptionStatus::Failed;
     }
 
     public function isCancellable(): bool
