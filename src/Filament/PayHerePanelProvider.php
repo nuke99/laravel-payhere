@@ -31,6 +31,12 @@ class PayHerePanelProvider extends PanelProvider
             ->topNavigation()
             ->favicon(asset('vendor/payhere/images/favicon.png'))
             ->navigationItems([
+                NavigationItem::make(__('Documentation'))
+                    ->icon('heroicon-o-book-open')
+                    ->url('https://www.dasun.dev/docs/laravel-payhere')
+                    ->hidden(config('app.env') !== 'local')
+                    ->openUrlInNewTab()
+                    ->sort(1),
                 NavigationItem::make(__('Knowledge Base'))
                     ->icon('heroicon-o-information-circle')
                     ->url('https://support.payhere.lk')
