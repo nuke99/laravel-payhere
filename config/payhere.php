@@ -110,18 +110,4 @@ return [
     */
 
     'app_secret' => env('PAYHERE_APP_SECRET'),
-
-    'panel' => [
-
-        /*
-        |--------------------------------------------------------------------------
-        | PayHere Panel Login
-        |--------------------------------------------------------------------------
-        |
-        | This setting enables the login for accessing the PayHere Panel.
-        |
-        */
-
-        'login' => env('PAYHERE_PANEL_LOGIN', true),
-    ],
 ];
