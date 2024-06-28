@@ -158,6 +158,7 @@ class PaymentResource extends Resource
                     ])
                     ->action(fn (Payment $record, array $data) => static::refund($record, $data['reason'])),
             ])
+            ->defaultGroup('subscription_id')
             ->defaultSort('created_at', 'desc');
     }
 
