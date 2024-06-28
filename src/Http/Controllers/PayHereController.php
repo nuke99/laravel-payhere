@@ -20,7 +20,7 @@ class PayHereController extends Controller
             abort(401);
         }
 
-        $order = PayHere::$orderModel::find($request->order_id);
+        $order = PayHere::$orderModel::findOrFail($request->order_id);
 
         return view('payhere::return', [
             'total' => $order->total,
