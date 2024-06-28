@@ -29,7 +29,6 @@ class PayHerePanelProvider extends PanelProvider
             ->darkMode()
             ->login()
             ->topNavigation()
-            ->favicon(asset('vendor/payhere/images/favicon.png'))
             ->navigationItems([
                 NavigationItem::make(__('Documentation'))
                     ->icon('heroicon-o-book-open')
