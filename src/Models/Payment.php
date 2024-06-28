@@ -22,6 +22,7 @@ class Payment extends Model
         'method' => PaymentMethod::class,
         'status_code' => PaymentStatus::class,
         'message_type' => MessageType::class,
+        'refunded' => 'boolean'
     ];
 
     protected $hidden = [
@@ -45,14 +46,19 @@ class Payment extends Model
         return $this->update(['refunded' => true]);
     }
 
+    public function isRefundable(): bool
+    {
+        return ! is_null($this->payment_id) && $this->refunded === false;
+    }
+
     public function scopeRefunded(Builder $query): void
     {
-        $query->where('refunded');
+        $query->where('refunded', true);
     }
 
     public function scopeNotRefunded(Builder $query): void
     {
-        $query->whereNot('refunded');
+        $query->where('refunded', false);
     }
 
     protected static function newFactory(): PaymentFactory
