@@ -55,13 +55,13 @@ class PaymentResource extends Resource
                     ->badge()
                     ->searchable(),
 
-                TextColumn::make('payhere_currency')
-                    ->label(__('Currency'))
-                    ->searchable()
-                    ->badge(),
+                IconColumn::make('refunded')
+                    ->label(__('Refunded'))
+                    ->boolean(),
 
-                TextColumn::make('status_message')
-                    ->label(__('Payment gateway message'))
+                IconColumn::make('recurring')
+                    ->label(__('Recurring payment'))
+                    ->boolean()
                     ->searchable(),
 
                 TextColumn::make('method')
@@ -77,9 +77,8 @@ class PaymentResource extends Resource
                 TextColumn::make('card_expiry')
                     ->searchable(),
 
-                IconColumn::make('recurring')
-                    ->label(__('Recurring payment'))
-                    ->boolean()
+                TextColumn::make('status_message')
+                    ->label(__('Payment gateway message'))
                     ->searchable(),
 
                 TextColumn::make('message_type')
@@ -111,6 +110,15 @@ class PaymentResource extends Resource
                 TextColumn::make('item_rec_install_paid')
                     ->label(__('Successful recurring installments'))
                     ->searchable(),
+
+                TextColumn::make('refund_reason')
+                    ->label(__('Refund reason'))
+                    ->searchable(),
+
+                TextColumn::make('payhere_currency')
+                    ->label(__('Currency'))
+                    ->searchable()
+                    ->badge(),
 
                 TextColumn::make('created_at')
                     ->date()
