@@ -183,9 +183,6 @@ trait CheckoutFormData
 
     /**
      * Set recurring payment details.
-     *
-     * @param  string  $recurrence  The recurrence interval.
-     * @param  string  $duration  The duration of the subscription.
      */
     public function recurring(string $recurrence, string $duration): static
     {
@@ -208,8 +205,6 @@ trait CheckoutFormData
 
     /**
      * Set the platform for the form.
-     *
-     * @param  string  $platform  The platform name.
      */
     public function platform(string $platform): static
     {
@@ -220,8 +215,6 @@ trait CheckoutFormData
 
     /**
      * Set the startup fee for the form.
-     *
-     * @param  string  $fee  The startup fee amount.
      */
     public function startupFee(string $fee): static
     {
@@ -232,8 +225,6 @@ trait CheckoutFormData
 
     /**
      * Set custom data for the form.
-     *
-     * @param  string  ...$data  The custom data values.
      */
     private function customData(string ...$data): static
     {
@@ -245,6 +236,9 @@ trait CheckoutFormData
         return $this;
     }
 
+    /**
+     * Set the name of item.
+     */
     public function item(string $item): static
     {
         $this->item = $item;
@@ -252,6 +246,9 @@ trait CheckoutFormData
         return $this;
     }
 
+    /**
+     * Set the name of currency for the transaction.
+     */
     public function currency(string $currency): static
     {
         $this->currency = $currency;
