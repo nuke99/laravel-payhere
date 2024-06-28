@@ -35,35 +35,31 @@ class PaymentResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('payment_id')
-                    ->label(__('Payment id'))
                     ->searchable(),
 
                 TextColumn::make('user.name')
-                    ->label(__('User'))
                     ->searchable(),
 
                 TextColumn::make('payhere_amount')
-                    ->label(__('Amount'))
+                    ->label('Amount')
                     ->searchable()
                     ->money(fn (Payment $payment) => $payment->payhere_currency),
 
                 TextColumn::make('captured_amount')
-                    ->label(__('Captured amount'))
                     ->searchable()
                     ->money(fn (Payment $payment) => $payment->payhere_currency),
 
                 IconColumn::make('recurring')
-                    ->label(__('Recurring'))
                     ->boolean()
                     ->searchable(),
 
                 TextColumn::make('status_code')
-                    ->label(__('Status'))
+                    ->label('Status')
                     ->badge()
                     ->searchable(),
 
                 TextColumn::make('method')
-                    ->label(__('Payment method'))
+                    ->label('Payment method')
                     ->searchable(),
 
                 TextColumn::make('card_holder_name')
@@ -76,49 +72,47 @@ class PaymentResource extends Resource
                     ->searchable(),
 
                 TextColumn::make('status_message')
-                    ->label(__('Payment gateway message'))
+                    ->label('Payment gateway message')
                     ->searchable(),
 
                 TextColumn::make('message_type')
-                    ->label(__('Status message'))
+                    ->label('Status message')
                     ->searchable(),
 
                 TextColumn::make('subscription_id')
                     ->searchable(),
 
                 TextColumn::make('item_recurrence')
-                    ->label(__('How often it charges'))
+                    ->label('How often it charges')
                     ->formatStateUsing(fn ($record) => Str::ucwords(strtolower($record->item_recurrence)))
                     ->searchable(),
 
                 TextColumn::make('item_duration')
-                    ->label(__('How long it charges'))
+                    ->label('How long it charges')
                     ->formatStateUsing(fn ($record) => Str::ucwords(strtolower($record->item_duration)))
                     ->searchable(),
 
                 TextColumn::make('item_rec_status')
-                    ->label(__('Recurring subscription status'))
+                    ->label('Recurring subscription status')
                     ->searchable(),
 
                 TextColumn::make('item_rec_date_next')
-                    ->label(__('Next recurring installment'))
+                    ->label('Next recurring installment')
                     ->date()
                     ->searchable(),
 
                 TextColumn::make('item_rec_install_paid')
-                    ->label(__('Successful recurring installments'))
+                    ->label('Successful recurring installments')
                     ->searchable(),
 
                 IconColumn::make('refunded')
-                    ->label(__('Refunded'))
                     ->boolean(),
 
                 TextColumn::make('refund_reason')
-                    ->label(__('Refund reason'))
                     ->searchable(),
 
                 TextColumn::make('payhere_currency')
-                    ->label(__('Currency'))
+                    ->label('Currency')
                     ->searchable()
                     ->badge(),
 
@@ -131,9 +125,9 @@ class PaymentResource extends Resource
                     ->form([
                         Split::make([
                             DatePicker::make('from')
-                                ->label(__('Created from')),
+                                ->label('Created from'),
                             DatePicker::make('to')
-                                ->label(__('Created until')),
+                                ->label('Created until'),
                         ])
                     ])
                     ->query(function (Builder $query, array $data): Builder {
@@ -160,7 +154,7 @@ class PaymentResource extends Resource
                     ->color('danger')
                     ->hidden(fn (Payment $record) => ! $record->isRefundable())
                     ->requiresConfirmation()
-                    ->modalDescription(__('Are you sure you want to refund this payment?'))
+                    ->modalDescription('Are you sure you want to refund this payment?')
                     ->form([
                         Textarea::make('reason'),
                     ])
