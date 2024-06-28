@@ -30,11 +30,16 @@ class PayHerePanelProvider extends PanelProvider
             ->login()
             ->topNavigation()
             ->navigationItems([
+                NavigationItem::make(__('Knowledge Base'))
+                    ->icon('heroicon-o-information-circle')
+                    ->url('https://support.payhere.lk')
+                    ->openUrlInNewTab()
+                    ->sort(1),
                 NavigationItem::make('Home')
                     ->icon('heroicon-o-home')
                     ->url(config('app.url'))
                     ->openUrlInNewTab()
-                    ->sort(1),
+                    ->sort(2),
             ])
             ->middleware([
                 EncryptCookies::class,
