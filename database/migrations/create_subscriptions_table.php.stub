@@ -18,9 +18,11 @@ return new class extends Migration
             $table->timestamp('ends_at')->nullable();
             $table->enum('status', [
                 SubscriptionStatus::PENDING->name,
+                SubscriptionStatus::TRIALING->name,
                 SubscriptionStatus::ACTIVE->name,
                 SubscriptionStatus::FAILED->name,
                 SubscriptionStatus::COMPLETED->name,
+                SubscriptionStatus::CANCELLED->name,
             ])->default(SubscriptionStatus::PENDING->name)->nullable();
             $table->timestamps();
         });
