@@ -44,19 +44,9 @@ class PayHereServiceProvider extends PackageServiceProvider
         $this->registerServices();
     }
 
-    public function packageRegistered(): void
-    {
-        $this->registerFilamentCurrency();
-    }
-
     private function registerPayHereFacade(): void
     {
         $this->app->singleton('payhere', fn () => new PayHere);
-    }
-
-    private function registerFilamentCurrency(): void
-    {
-        Table::$defaultCurrency = config('payhere.currency');
     }
 
     private function registerServices(): void

@@ -8,6 +8,7 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationItem;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\Tables\Table;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -72,6 +73,10 @@ class PayHerePanelProvider extends PanelProvider
             ->discoverResources(
                 in: __DIR__.'/../../src/Filament/Resources',
                 for: 'Dasundev\\PayHere\\Filament\\Resources'
-            );
+            )
+            ->bootUsing(function () {
+                Table::$defaultCurrency = config('payhere.currency');
+                Table::$defaultDateTimeDisplayFormat = 'M 5, Y H:i:s A';
+            });
     }
 }
