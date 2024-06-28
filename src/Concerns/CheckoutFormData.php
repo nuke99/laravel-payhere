@@ -53,6 +53,11 @@ trait CheckoutFormData
     private ?string $item = null;
 
     /**
+     * The currency code for the transaction.
+     */
+    private ?string $currency = null;
+
+    /**
      * Get the form data for the checkout.
      */
     public function getFormData(): array
@@ -131,7 +136,7 @@ trait CheckoutFormData
             'cancel_url' => config('payhere.cancel_url') ?? url('/'),
             'order_id' => $this->order->id,
             'items' => $this->item ?? "Order #{$this->order->id}",
-            'currency' => config('payhere.currency'),
+            'currency' => $this->currency ?? config('payhere.currency'),
             'amount' => $this->order->total,
             'hash' => $this->generateHash(),
         ];
@@ -243,6 +248,13 @@ trait CheckoutFormData
     public function item(string $item): static
     {
         $this->item = $item;
+
+        return $this;
+    }
+
+    public function currency(string $currency): static
+    {
+        $this->currency = $currency;
 
         return $this;
     }
