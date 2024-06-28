@@ -3,6 +3,7 @@
 namespace Dasundev\PayHere\Filament\Resources\SubscriptionResource;
 
 use Dasundev\PayHere\Enums\RefundStatus;
+use Dasundev\PayHere\Enums\SubscriptionStatus;
 use Dasundev\PayHere\Models\Payment;
 use Dasundev\PayHere\Models\Subscription;
 use Dasundev\PayHere\Services\Contracts\PayHereService;
@@ -14,6 +15,7 @@ use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -42,7 +44,7 @@ class SubscriptionResource extends Resource
 
                 TextColumn::make('trial_ends_at')
                     ->searchable()
-                    ->date(),
+                    ->dateTime(),
 
                 TextColumn::make('created_at')
                     ->searchable()
@@ -82,6 +84,11 @@ class SubscriptionResource extends Resource
                     ->requiresConfirmation()
                     ->modalDescription('Are you sure you want to cancel this subscription?')
                     ->action(fn (Subscription $record) => static::cancelSubscription($record))
+            ])
+            ->filters([
+                SelectFilter::make('status')
+                    ->options(SubscriptionStatus::class)
+                    ->default(SubscriptionStatus::ACTIVE->value)
             ])
             ->defaultSort('created_at', 'desc');
     }
