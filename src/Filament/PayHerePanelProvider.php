@@ -29,7 +29,7 @@ class PayHerePanelProvider extends PanelProvider
             ->brandLogo(asset('vendor/payhere/images/logo.png'))
             ->brandLogoHeight('3rem')
             ->darkMode()
-            ->login(config('payhere.panel.login') ? Login::class : null)
+            ->login(config('payhere.panel_login') ? Login::class : null)
             ->topNavigation()
             ->navigationItems([
                 NavigationItem::make('Documentation')
@@ -78,6 +78,20 @@ class PayHerePanelProvider extends PanelProvider
             ->bootUsing(function () {
                 Table::$defaultCurrency = config('payhere.currency');
                 Table::$defaultDateTimeDisplayFormat = 'M 5, Y H:i:s A';
+
+                static::ensurePayHerePanelAccessEnabled();
             });
     }
+
+    /**
+     * Ensure that access to the PayHere panel is enabled.
+     * If not enabled, abort with a 404 error.
+     */
+    private static function ensurePayHerePanelAccessEnabled(): void
+    {
+        if (! config('payhere.panel_access_enabled')) {
+            abort(404);
+        }
+    }
+
 }

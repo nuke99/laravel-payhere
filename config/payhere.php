@@ -111,17 +111,25 @@ return [
 
     'app_secret' => env('PAYHERE_APP_SECRET'),
 
-    'panel' => [
+    /*
+    |--------------------------------------------------------------------------
+    | PayHere Panel Access Enabled
+    |--------------------------------------------------------------------------
+    |
+    | This setting enables the access for the PayHere Panel.
+    |
+    */
 
-        /*
-        |--------------------------------------------------------------------------
-        | PayHere Panel Login
-        |--------------------------------------------------------------------------
-        |
-        | This setting enables the login for accessing the PayHere Panel.
-        |
-        */
+    'panel_access_enabled' => env('PAYHERE_PANEL_ACCESS_ENABLED', true),
 
-        'login' => env('PAYHERE_PANEL_LOGIN', true),
-    ]
+    /*
+    |--------------------------------------------------------------------------
+    | PayHere Panel Login
+    |--------------------------------------------------------------------------
+    |
+    | This setting enables the login for accessing the PayHere Panel.
+    |
+    */
+
+    'panel_login' => env('PAYHERE_PANEL_LOGIN', true),
 ];
