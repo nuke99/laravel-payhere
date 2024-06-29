@@ -16,6 +16,8 @@ class Payment extends Model
 {
     use HasFactory;
 
+    protected $table = 'payhere_payments';
+
     protected $guarded = [];
 
     protected $casts = [
