@@ -201,7 +201,7 @@ class PaymentResource extends Resource
     public static function refund(Payment $payment, ?string $reason = null): void
     {
         $service = app(PayHereService::class);
-        $payload = $service->refund($payment, $reason);
+        $payload = $service->refundPayment($payment, $reason);
 
         $status = $payload['status'];
         $message = $payload['msg'];

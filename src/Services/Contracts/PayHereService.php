@@ -7,7 +7,7 @@ use Dasundev\PayHere\Models\Subscription;
 
 interface PayHereService
 {
-    public function refund(Payment $payment, ?string $reason = null): array;
+    public function refundPayment(Payment $payment, ?string $reason = null): array;
 
     public function cancelSubscription(Subscription $subscription): array;
 

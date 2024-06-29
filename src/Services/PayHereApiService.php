@@ -12,7 +12,7 @@ use Dasundev\PayHere\Services\Contracts\PayHereService;
 
 class PayHereApiService implements PayHereService
 {
-    public function refund(Payment $payment, ?string $reason = null): array
+    public function refundPayment(Payment $payment, ?string $reason = null): array
     {
         $connector = new PayHereConnector;
 

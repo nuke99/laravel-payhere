@@ -14,6 +14,6 @@ class HasRefund
      */
     public function refund(?string $reason = null): bool
     {
-        return app(PayHereService::class)->refund($this->payment->id, $reason);
+        return app(PayHereService::class)->refundPayment($this->payment->id, $reason);
     }
 }
