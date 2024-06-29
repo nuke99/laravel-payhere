@@ -30,7 +30,7 @@ class Payment extends Model
         'customer_token' => 'encrypted',
         'card_holder_name' => 'encrypted',
         'card_expiry' => 'encrypted',
-        'card_no' => 'encrypted'
+        'card_no' => 'encrypted',
     ];
 
     protected $hidden = [
