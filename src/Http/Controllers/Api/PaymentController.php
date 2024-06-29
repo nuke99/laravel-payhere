@@ -108,8 +108,8 @@ class PaymentController
         ]);
 
         $response = $this->connector->send(new RefundPaymentRequest(
-            description: $request->description,
             paymentId: $request->payment_id,
+            description: $request->description,
             authorizationToken: $request->authorization_token
         ));
 
