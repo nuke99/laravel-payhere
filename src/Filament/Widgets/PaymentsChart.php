@@ -15,6 +15,10 @@ class PaymentsChart extends ChartWidget
 
     public ?string $filter = 'month';
 
+    protected static ?string $pollingInterval = null;
+
+    protected static bool $isLazy = false;
+
     protected function getData(): array
     {
         $data = Trend::model(Payment::class)
