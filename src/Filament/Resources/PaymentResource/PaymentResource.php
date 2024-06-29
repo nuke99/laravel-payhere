@@ -144,7 +144,7 @@ class PaymentResource extends Resource
                     ->sortable(),
 
                 TextColumn::make('created_at')
-                    ->date()
+                    ->dateTime()
                     ->searchable()
                     ->sortable(),
             ])

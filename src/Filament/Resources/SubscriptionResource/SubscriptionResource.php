@@ -51,12 +51,12 @@ class SubscriptionResource extends Resource
                 TextColumn::make('created_at')
                     ->sortable()
                     ->searchable()
-                    ->date(),
+                    ->dateTime(),
 
                 TextColumn::make('ends_at')
                     ->sortable()
                     ->searchable()
-                    ->date(),
+                    ->dateTime(),
             ])
             ->filters([
                 Filter::make('created_at')
