@@ -6,6 +6,7 @@ use Dasundev\PayHere\Filament\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationItem;
+use Filament\Pages\Auth\Login;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Tables\Table;
@@ -28,7 +29,7 @@ class PayHerePanelProvider extends PanelProvider
             ->brandLogo(asset('vendor/payhere/images/logo.png'))
             ->brandLogoHeight('3rem')
             ->darkMode()
-            ->login()
+            ->login(config('payhere.panel.login') ? Login::class : null)
             ->topNavigation()
             ->navigationItems([
                 NavigationItem::make('Documentation')
