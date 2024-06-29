@@ -68,7 +68,6 @@ class PaymentResource extends Resource
                     ->label('Payment method')
                     ->sortable()
                     ->searchable()
-                    ->alignCenter()
                     ->formatStateUsing(fn (Payment $record) => match ($record->method) {
                         PaymentMethod::VISA => view('payhere::icons.visa'),
                         PaymentMethod::MASTER => view('payhere::icons.master'),
