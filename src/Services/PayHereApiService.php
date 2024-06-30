@@ -2,6 +2,7 @@
 
 namespace Dasundev\PayHere\Services;
 
+use Dasundev\PayHere\Events\PaymentRefunded;
 use Dasundev\PayHere\Events\SubscriptionActivated;
 use Dasundev\PayHere\Events\SubscriptionCancelled;
 use Dasundev\PayHere\Events\SubscriptionRetrySucceeded;
@@ -34,6 +35,8 @@ class PayHereApiService implements PayHereService
 
         if ((int) $status === 1) {
             $payment->markAsRefunded($reason);
+            
+            PaymentRefunded::dispatch($payment);
         }
 
         return $payload;
