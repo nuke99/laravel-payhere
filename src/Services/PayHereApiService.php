@@ -3,7 +3,6 @@
 namespace Dasundev\PayHere\Services;
 
 use Dasundev\PayHere\Events\PaymentRefunded;
-use Dasundev\PayHere\Events\SubscriptionActivated;
 use Dasundev\PayHere\Events\SubscriptionCancelled;
 use Dasundev\PayHere\Events\SubscriptionRetrySucceeded;
 use Dasundev\PayHere\Http\Integrations\PayHere\PayHereConnector;
