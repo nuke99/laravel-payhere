@@ -4,7 +4,7 @@ namespace Dasundev\PayHere\Models\Concerns;
 
 use Dasundev\PayHere\Services\Contracts\PayHereService;
 
-trait ManagesSubscriptionActions
+trait ManagesSubscriptions
 {
     public function cancel()
     {
