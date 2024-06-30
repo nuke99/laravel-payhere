@@ -33,11 +33,6 @@ class Subscription extends Model
         return $this->belongsTo(PayHere::$orderModel);
     }
 
-    protected static function newFactory(): SubscriptionFactory
-    {
-        return new SubscriptionFactory;
-    }
-
     /**
      * Determine if the subscription is within its trial period.
      */
@@ -62,6 +57,16 @@ class Subscription extends Model
         $query->where('status', SubscriptionStatus::Active);
     }
 
+    public function isFailed(): bool
+    {
+        return $this->status === SubscriptionStatus::Failed;
+    }
+
+    public function isCancellable(): bool
+    {
+        return ! is_null($this->payhere_subscription_id) && $this->status === SubscriptionStatus::Active;
+    }
+
     public function markAsCancelled(): void
     {
         $this->update(['status' => SubscriptionStatus::Cancelled]);
@@ -77,13 +82,8 @@ class Subscription extends Model
         $this->update(['status' => SubscriptionStatus::Completed]);
     }
 
-    public function isFailed(): bool
+    protected static function newFactory(): SubscriptionFactory
     {
-        return $this->status === SubscriptionStatus::Failed;
-    }
-
-    public function isCancellable(): bool
-    {
-        return ! is_null($this->payhere_subscription_id) && $this->status === SubscriptionStatus::Active;
+        return new SubscriptionFactory;
     }
 }
