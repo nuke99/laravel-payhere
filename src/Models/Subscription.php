@@ -3,6 +3,7 @@
 namespace Dasundev\PayHere\Models;
 
 use Dasundev\PayHere\Enums\SubscriptionStatus;
+use Dasundev\PayHere\Models\Concerns\ManagesSubscriptionActions;
 use Dasundev\PayHere\PayHere;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,6 +14,7 @@ use Workbench\Database\Factories\SubscriptionFactory;
 class Subscription extends Model
 {
     use HasFactory;
+    use ManagesSubscriptionActions;
 
     protected $guarded = [];
 
