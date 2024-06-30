@@ -7,7 +7,7 @@ use Dasundev\PayHere\Services\Contracts\PayHereService;
 /**
  * @property $payment
  */
-class HasRefund
+trait HasRefund
 {
     /**
      * Initiate a refund for the order.
