@@ -2,9 +2,11 @@
 
 namespace Dasundev\PayHere\Concerns;
 
+use Dasundev\PayHere\Exceptions\UnsupportedCurrencyException;
 use Dasundev\PayHere\Models\Contracts\PayHereCustomer;
 use Dasundev\PayHere\PayHere;
 use Illuminate\Support\Facades\URL;
+use Ramsey\Uuid\Exception\UnsupportedOperationException;
 
 /**
  * @method string payhereFirstName()
@@ -276,6 +278,12 @@ trait CheckoutFormData
 
     private function getCurrency()
     {
+        $currency = $this->currency ?? config('payhere.currency');
+
+        if (! in_array($currency, ['LKR', 'USD', 'EUR', 'GBP', 'AUD'])) {
+            throw new UnsupportedCurrencyException;
+        }
+
         return $this->currency ?? config('payhere.currency');
     }
 }
