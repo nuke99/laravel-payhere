@@ -6,7 +6,6 @@ use Dasundev\PayHere\Exceptions\UnsupportedCurrencyException;
 use Dasundev\PayHere\Models\Contracts\PayHereCustomer;
 use Dasundev\PayHere\PayHere;
 use Illuminate\Support\Facades\URL;
-use Ramsey\Uuid\Exception\UnsupportedOperationException;
 
 /**
  * @method string payhereFirstName()
