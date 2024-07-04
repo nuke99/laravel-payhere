@@ -286,6 +286,6 @@ trait CheckoutFormData
             throw new UnsupportedCurrencyException;
         }
 
-        return $this->currency ?? config('payhere.currency');
+        return $currency;
     }
 }
