@@ -113,7 +113,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | PayHere Panel Access Enabled
+    | PayHere Panel Access
     |--------------------------------------------------------------------------
     |
     | This setting enables the access for the PayHere Panel.
