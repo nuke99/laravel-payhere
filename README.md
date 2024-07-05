@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://www.dasun.dev/docs/laravel-payhere" target="_blank"><img src="./art/banner.png" alt="PayHere" /></a>
+    <a href="https://www.dasun.dev/docs/laravel-payhere" target="_blank"><img src="./art/logo.svg" alt="PayHere" width="400"/></a>
 </p>
 
 <p align="center">
