@@ -8,7 +8,7 @@
 
 ## Introduction
 
-Laravel PayHere is a developer-friendly payment gateway plugin that makes it easy to integrate [PayHere](https://payhere.lk) into your Laravel application.
+Easily and securely integrate [PayHere](https://payhere.lk) into your Laravel application with our trusted third-party plugin.
 
 ## Official Documentation
 
