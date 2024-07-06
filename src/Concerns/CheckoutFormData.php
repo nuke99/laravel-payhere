@@ -123,7 +123,7 @@ trait CheckoutFormData
         }
 
         if (empty($items)) {
-            return ['items' => $this->item ?? "Order #{$this->order->getOrderId()}"];
+            return ['items' => $this->item ?? "Order #{$this->getOrderId()}"];
         }
 
         return $items;
@@ -198,7 +198,7 @@ trait CheckoutFormData
 
         $subscription = $this->subscriptions()->create([
             'user_id' => $this->id,
-            'order_id' => $this->order->getOrderId(),
+            'order_id' => $this->getOrderId(),
             'ends_at' => now()->add($duration),
             'trial_ends_at' => $this->trialEndsAt,
         ]);
