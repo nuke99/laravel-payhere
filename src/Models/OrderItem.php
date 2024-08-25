@@ -1,18 +1,18 @@
 <?php
 
-namespace Workbench\App\Models;
+namespace LaravelPayHere\Models;
 
-use LaravelPayHere\Models\Contracts\PayHereOrderLine;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Workbench\Database\Factories\OrderLineFactory;
+use LaravelPayHere\Database\Factories\OrderFactory;
+use LaravelPayHere\Database\Factories\OrderItemFactory;
+use LaravelPayHere\Models\Contracts\PayHereOrderLine;
 
-class OrderLine extends Model implements PayHereOrderLine
+class OrderItem extends Model implements PayHereOrderLine
 {
-    use HasFactory;
-
     protected $guarded = [];
+
+    protected $table = 'order_items';
 
     public function purchasable(): MorphTo
     {
@@ -44,8 +44,8 @@ class OrderLine extends Model implements PayHereOrderLine
         return $this->unit_price;
     }
 
-    protected static function newFactory(): OrderLineFactory
+    public static function factory(): OrderItemFactory
     {
-        return new OrderLineFactory;
+        return new OrderItemFactory;
     }
 }

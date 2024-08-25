@@ -1,11 +1,11 @@
 <?php
 
-namespace Workbench\Database\Factories;
+namespace LaravelPayHere\Database\Factories;
 
-use LaravelPayHere\Enums\SubscriptionStatus;
-use LaravelPayHere\Models\Subscription;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Workbench\App\Models\Order;
+use LaravelPayHere\Enums\SubscriptionStatus;
+use LaravelPayHere\Models\Order;
+use LaravelPayHere\Models\Subscription;
 use Workbench\App\Models\User;
 
 class SubscriptionFactory extends Factory
@@ -21,5 +21,10 @@ class SubscriptionFactory extends Factory
             'ends_at' => now()->addYear(),
             'status' => SubscriptionStatus::Active,
         ];
+    }
+
+    protected static function newFactory(): SubscriptionFactory
+    {
+        return new SubscriptionFactory;
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace Workbench\Database\Factories;
+namespace LaravelPayHere\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Workbench\App\Models\Product;
+use LaravelPayHere\Models\Item;
 
-class ProductFactory extends Factory
+class ItemFactory extends Factory
 {
-    protected $model = Product::class;
+    protected $model = Item::class;
 
     public function definition(): array
     {

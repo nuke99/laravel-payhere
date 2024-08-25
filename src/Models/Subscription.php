@@ -2,19 +2,21 @@
 
 namespace LaravelPayHere\Models;
 
-use LaravelPayHere\Enums\SubscriptionStatus;
-use LaravelPayHere\Models\Concerns\ManagesSubscriptions;
-use LaravelPayHere\PayHere;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Workbench\Database\Factories\SubscriptionFactory;
+use LaravelPayHere\Enums\SubscriptionStatus;
+use LaravelPayHere\Models\Concerns\ManagesSubscriptions;
+use LaravelPayHere\PayHere;
+use LaravelPayHere\Database\Factories\SubscriptionFactory;
 
 class Subscription extends Model
 {
     use HasFactory;
     use ManagesSubscriptions;
+
+    protected $table = 'subscriptions';
 
     protected $guarded = [];
 
@@ -82,7 +84,7 @@ class Subscription extends Model
         $this->update(['status' => SubscriptionStatus::Completed]);
     }
 
-    protected static function newFactory(): SubscriptionFactory
+    protected static function factory(): SubscriptionFactory
     {
         return new SubscriptionFactory;
     }

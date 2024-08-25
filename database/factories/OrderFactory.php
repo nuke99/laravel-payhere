@@ -1,9 +1,9 @@
 <?php
 
-namespace Workbench\Database\Factories;
+namespace LaravelPayHere\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Workbench\App\Models\Order;
+use LaravelPayHere\Models\Order;
 use Workbench\App\Models\User;
 
 class OrderFactory extends Factory
@@ -16,5 +16,10 @@ class OrderFactory extends Factory
             'user_id' => User::factory(),
             'total' => 1000,
         ];
+    }
+
+    protected static function newFactory(): OrderFactory
+    {
+        return new OrderFactory;
     }
 }
