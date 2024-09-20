@@ -1,9 +1,11 @@
 <?php
 
-namespace LaravelPayHere\Filament\Resources\PaymentResource\Pages;
+declare(strict_types=1);
 
-use LaravelPayHere\Filament\Resources\PaymentResource\PaymentResource;
+namespace PayHere\Filament\Resources\PaymentResource\Pages;
+
 use Filament\Resources\Pages\ListRecords;
+use PayHere\Filament\Resources\PaymentResource\PaymentResource;
 
 class ListPayments extends ListRecords
 {

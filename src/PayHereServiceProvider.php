@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelPayHere;
+declare(strict_types=1);
 
-use LaravelPayHere\Services\Contracts\PayHereService;
-use LaravelPayHere\Services\PayHereApiService;
+namespace PayHere;
+
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -39,17 +39,12 @@ class PayHereServiceProvider extends PackageServiceProvider
 
     public function registeringPackage(): void
     {
-        $this->registerPayHereFacade();
-        $this->registerServices();
-    }
-
-    private function registerPayHereFacade(): void
-    {
+        // Registering the PayHere facade.
         $this->app->singleton('payhere', fn () => new PayHere);
     }
 
-    private function registerServices(): void
+    public function packageRegistered(): void
     {
-        $this->app->bind(PayHereService::class, PayHereApiService::class);
+        $this->app['config']->set('payhere.base_url', config('payhere.sandbox') ? 'https://sandbox.payhere.lk' : 'https://www.payhere.lk');
     }
 }

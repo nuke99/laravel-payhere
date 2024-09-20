@@ -1,11 +1,13 @@
 <?php
 
-namespace LaravelPayHere\Http\Controllers;
+declare(strict_types=1);
 
-use LaravelPayHere\PayHere;
+namespace PayHere\Http\Controllers;
+
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use PayHere\PayHere;
 
 class PayHereController extends Controller
 {
@@ -20,10 +22,6 @@ class PayHereController extends Controller
             abort(401);
         }
 
-        $order = PayHere::$orderModel::findOrFail($request->order_id);
-
-        return view('payhere::return', [
-            'total' => $order->total,
-        ]);
+        return view('payhere::return');
     }
 }

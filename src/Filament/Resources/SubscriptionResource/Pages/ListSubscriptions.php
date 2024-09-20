@@ -1,9 +1,11 @@
 <?php
 
-namespace LaravelPayHere\Filament\Resources\SubscriptionResource\Pages;
+declare(strict_types=1);
 
-use LaravelPayHere\Filament\Resources\SubscriptionResource\SubscriptionResource;
+namespace PayHere\Filament\Resources\SubscriptionResource\Pages;
+
 use Filament\Resources\Pages\ListRecords;
+use PayHere\Filament\Resources\SubscriptionResource\SubscriptionResource;
 
 class ListSubscriptions extends ListRecords
 {

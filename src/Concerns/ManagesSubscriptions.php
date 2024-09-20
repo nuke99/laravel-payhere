@@ -1,32 +1,19 @@
 <?php
 
-namespace LaravelPayHere\Concerns;
+declare(strict_types=1);
 
-use LaravelPayHere\Models\Subscription;
+namespace PayHere\Concerns;
+
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use PayHere\PayHere;
 
 trait ManagesSubscriptions
 {
-    /**
-     * The date when the trial period ends.
-     */
-    private ?string $trialEndsAt = null;
-
-    /**
-     * Set the trial period in days.
-     */
-    public function trialDays(int $trialDays): static
-    {
-        $this->trialEndsAt = now()->addDays($trialDays);
-
-        return $this;
-    }
-
     /**
      * Sets up a one-to-many relationship with the Subscription model.
      */
     public function subscriptions(): HasMany
     {
-        return $this->hasMany(Subscription::class);
+        return $this->hasMany(PayHere::$subscriptionModel)->orderByDesc('created_at');
     }
 }

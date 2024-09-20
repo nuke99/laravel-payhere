@@ -1,9 +1,11 @@
 <?php
 
-namespace LaravelPayHere\Concerns;
+declare(strict_types=1);
 
-use LaravelPayHere\Models\Payment;
+namespace PayHere\Concerns;
+
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use PayHere\Models\Payment;
 
 trait ManagesPayments
 {
@@ -12,6 +14,6 @@ trait ManagesPayments
      */
     public function payments(): HasOne
     {
-        return $this->hasOne(Payment::class);
+        return $this->hasOne(Payment::class)->orderByDesc('created_at');
     }
 }

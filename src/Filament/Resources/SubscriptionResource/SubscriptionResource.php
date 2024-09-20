@@ -1,10 +1,9 @@
 <?php
 
-namespace LaravelPayHere\Filament\Resources\SubscriptionResource;
+declare(strict_types=1);
 
-use LaravelPayHere\Enums\SubscriptionStatus;
-use LaravelPayHere\Models\Subscription;
-use LaravelPayHere\Services\Contracts\PayHereService;
+namespace PayHere\Filament\Resources\SubscriptionResource;
+
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Split;
 use Filament\Notifications\Notification;
@@ -16,6 +15,11 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use PayHere\Enums\SubscriptionStatus;
+use PayHere\Http\Integrations\PayHere\PayHereConnector;
+use PayHere\Http\Integrations\PayHere\Requests\CancelSubscriptionRequest;
+use PayHere\Http\Integrations\PayHere\Requests\RetrySubscriptionRequest;
+use PayHere\Models\Subscription;
 
 class SubscriptionResource extends Resource
 {
@@ -31,10 +35,12 @@ class SubscriptionResource extends Resource
             ->columns([
                 TextColumn::make('payhere_subscription_id')
                     ->label('Subscription id')
+                    ->copyable()
                     ->sortable()
                     ->searchable(),
 
                 TextColumn::make('user.name')
+                    ->default('Guest User')
                     ->sortable()
                     ->searchable(),
 
@@ -98,8 +104,14 @@ class SubscriptionResource extends Resource
             ])
             ->filters([
                 SelectFilter::make('status')
+                    ->multiple()
                     ->options(SubscriptionStatus::class)
-                    ->default(SubscriptionStatus::Active->value),
+                    ->default([
+                        SubscriptionStatus::Active->value,
+                        SubscriptionStatus::Completed->value,
+                        SubscriptionStatus::Cancelled->value,
+                        SubscriptionStatus::Failed->value,
+                    ]),
             ])
             ->defaultSort('created_at', 'desc');
     }
@@ -113,39 +125,57 @@ class SubscriptionResource extends Resource
 
     private static function cancelSubscription(Subscription $subscription): void
     {
-        $service = app(PayHereService::class);
-        $payload = $service->cancelSubscription($subscription);
+        $connector = new PayHereConnector;
 
-        $status = $payload['status'];
+        $authenticator = $connector->getAccessToken();
+
+        $connector->authenticate($authenticator);
+
+        $response = $connector->send(new CancelSubscriptionRequest($subscription->payhere_subscription_id));
+
+        $payload = $response->json();
+
+        $statusCode = (int) $payload['status'];
         $message = $payload['msg'];
 
         $notification = Notification::make()->title($message);
 
-        if ($status === 1) {
-            $notification->success()->send();
+        if ($statusCode !== 1) {
+            $notification->danger()->send();
 
             return;
         }
 
-        $notification->danger()->send();
+        $subscription->markAsCancelled();
+
+        $notification->success()->send();
     }
 
     private static function retrySubscription(Subscription $subscription): void
     {
-        $service = app(PayHereService::class);
-        $payload = $service->retrySubscription($subscription);
+        $connector = new PayHereConnector;
 
-        $status = $payload['status'];
+        $authenticator = $connector->getAccessToken();
+
+        $connector->authenticate($authenticator);
+
+        $response = $connector->send(new RetrySubscriptionRequest($subscription->payhere_subscription_id));
+
+        $payload = $response->json();
+
+        $statusCode = (int) $payload['status'];
         $message = $payload['msg'];
 
         $notification = Notification::make()->title($message);
 
-        if ($status === 1) {
-            $notification->success()->send();
+        if ($statusCode !== 1) {
+            $notification->danger()->send();
 
             return;
         }
 
-        $notification->danger()->send();
+        $subscription->markAsActive();
+
+        $notification->success()->send();
     }
 }

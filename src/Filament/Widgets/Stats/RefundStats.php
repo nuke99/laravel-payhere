@@ -1,9 +1,11 @@
 <?php
 
-namespace LaravelPayHere\Filament\Widgets\Stats;
+declare(strict_types=1);
 
-use LaravelPayHere\Models\Payment;
+namespace PayHere\Filament\Widgets\Stats;
+
 use Illuminate\Database\Eloquent\Builder;
+use PayHere\Models\Payment;
 
 class RefundStats extends BaseStats
 {

@@ -1,8 +1,9 @@
 <?php
 
-namespace LaravelPayHere\Filament;
+declare(strict_types=1);
 
-use LaravelPayHere\Filament\Middleware\Authenticate;
+namespace PayHere\Filament;
+
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationItem;
@@ -17,6 +18,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use PayHere\Filament\Middleware\Authenticate;
 
 class PayHerePanelProvider extends PanelProvider
 {
@@ -26,15 +28,14 @@ class PayHerePanelProvider extends PanelProvider
             ->id('payhere')
             ->path('payhere')
             ->spa()
-            ->brandLogo(asset('vendor/payhere/images/logo.png'))
-            ->brandLogoHeight('3rem')
+            ->brandLogo(config('payhere.panel_brand_logo'))
             ->darkMode()
             ->login(config('payhere.panel_login') ? Login::class : null)
             ->topNavigation()
             ->navigationItems([
                 NavigationItem::make('Documentation')
                     ->icon('heroicon-o-book-open')
-                    ->url('https://www.dasun.dev/docs/laravel-payhere')
+                    ->url('https://laravel-payhere.com/docs')
                     ->hidden(config('app.env') !== 'local')
                     ->openUrlInNewTab()
                     ->sort(1),
@@ -65,19 +66,19 @@ class PayHerePanelProvider extends PanelProvider
             ])
             ->discoverPages(
                 in: __DIR__.'/../../src/Filament/Pages',
-                for: 'Dasundev\\PayHere\\Filament\\Pages'
+                for: 'PayHere\\Filament\\Pages'
             )
             ->discoverWidgets(
                 in: __DIR__.'/../../src/Filament/Widgets',
-                for: 'Dasundev\\PayHere\\Filament\\Widgets'
+                for: 'PayHere\\Filament\\Widgets'
             )
             ->discoverResources(
                 in: __DIR__.'/../../src/Filament/Resources',
-                for: 'Dasundev\\PayHere\\Filament\\Resources'
+                for: 'PayHere\\Filament\\Resources'
             )
             ->bootUsing(function () {
                 Table::$defaultCurrency = config('payhere.currency');
-                Table::$defaultDateTimeDisplayFormat = 'M 5, Y H:i:s A';
+                Table::$defaultDateTimeDisplayFormat = 'M d, Y H:i:s A';
 
                 static::ensurePayHerePanelAccessEnabled();
             });

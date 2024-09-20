@@ -1,15 +1,17 @@
 <?php
 
-namespace LaravelPayHere\Tests\Browser;
+declare(strict_types=1);
 
-use LaravelPayHere\Tests\Browser\Pages\Authorize;
-use LaravelPayHere\Tests\Browser\Pages\Checkout;
-use LaravelPayHere\Tests\Browser\Pages\Preapproval;
-use LaravelPayHere\Tests\Browser\Pages\Recurring;
-use LaravelPayHere\Tests\DuskTestCase;
+namespace PayHere\Tests\Browser;
+
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Attributes\WithMigration;
+use PayHere\Tests\Browser\Pages\Authorize;
+use PayHere\Tests\Browser\Pages\Checkout;
+use PayHere\Tests\Browser\Pages\Preapproval;
+use PayHere\Tests\Browser\Pages\Recurring;
+use PayHere\Tests\DuskTestCase;
 use PHPUnit\Framework\Attributes\Test;
 use Workbench\App\Models\User;
 

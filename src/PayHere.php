@@ -1,13 +1,18 @@
 <?php
 
-namespace LaravelPayHere;
+declare(strict_types=1);
 
-use LaravelPayHere\Concerns\HandleCheckout;
-use LaravelPayHere\Enums\PaymentStatus;
+namespace PayHere;
+
+use PayHere\Concerns\HandleCheckout;
+use PayHere\Enums\PaymentStatus;
+use PayHere\Models\Subscription;
 
 class PayHere
 {
     use HandleCheckout;
+
+    const SUPPORTED_CURRENCIES = ['LKR', 'USD', 'EUR', 'GBP', 'AUD'];
 
     /**
      * The default customer model class name.
@@ -15,32 +20,14 @@ class PayHere
     public static string $customerModel = 'App\\Models\\User';
 
     /**
-     * The default order model class name.
+     * The default subscription model class name.
      */
-    public static string $orderModel = 'App\\Models\\Order';
-
-    /**
-     * The default order lines relationship name.
-     */
-    public static string $orderLinesRelationship = 'lines';
-
-    /**
-     * The default customer relationship name.
-     */
-    public static string $customerRelationship = 'user';
-
-    /**
-     * The default payment relationship name.
-     */
-    public static string $paymentRelationship = 'payment';
-
-    /**
-     * The default subscription relationship name.
-     */
-    public static string $subscriptionRelationship = 'subscription';
+    public static string $subscriptionModel = Subscription::class;
 
     /**
      * Set the customer model class name.
+     *
+     * @param  $customerModel
      */
     public static function useCustomerModel($customerModel): void
     {
@@ -48,43 +35,13 @@ class PayHere
     }
 
     /**
-     * Set the order model class name.
+     * Set the subscription model class name.
+     *
+     * @param  $subscriptionModel
      */
-    public static function useOrderModel($orderModel): void
+    public static function useSubscriptionModel($subscriptionModel): void
     {
-        static::$orderModel = $orderModel;
-    }
-
-    /**
-     * Set the order lines relationship name.
-     */
-    public static function useOrderLinesRelationship(string $relationship): void
-    {
-        self::$orderLinesRelationship = $relationship;
-    }
-
-    /**
-     * Set the customer relationship name.
-     */
-    public static function useCustomerRelationship(string $relationship): void
-    {
-        self::$customerRelationship = $relationship;
-    }
-
-    /**
-     * Set the customer relationship name.
-     */
-    public static function usePaymentRelationship(string $relationship): void
-    {
-        self::$paymentRelationship = $relationship;
-    }
-
-    /**
-     * Set the subscription relationship name.
-     */
-    public static function useSubscriptionRelationship(string $relationship): void
-    {
-        self::$subscriptionRelationship = $relationship;
+        static::$subscriptionModel = $subscriptionModel;
     }
 
     /**
@@ -108,14 +65,27 @@ class PayHere
             )
         );
 
-        return $localMd5Sig === $md5sig && ($statusCode === PaymentStatus::SUCCESS->value || $statusCode === PaymentStatus::AUTHORIZATION_SUCCESS->value);
+        return $localMd5Sig === $md5sig && ($statusCode === PaymentStatus::Success->value || $statusCode === PaymentStatus::AuthorizationSuccess->value);
     }
 
     /**
      * Verify if the provided merchant ID matches the configured PayHere merchant ID.
+     *
+     * @param  string  $merchantId
+     * @return bool
      */
     public static function verifyMerchantId(string $merchantId): bool
     {
         return config('payhere.merchant_id') === $merchantId;
+    }
+
+    /**
+     * Return a new static instance.
+     *
+     * @return static
+     */
+    public static function builder(): static
+    {
+        return new static;
     }
 }

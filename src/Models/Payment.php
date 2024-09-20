@@ -1,15 +1,18 @@
 <?php
 
-namespace LaravelPayHere\Models;
+declare(strict_types=1);
 
-use LaravelPayHere\Enums\MessageType;
-use LaravelPayHere\Enums\PaymentMethod;
-use LaravelPayHere\Enums\PaymentStatus;
-use LaravelPayHere\PayHere;
+namespace PayHere\Models;
+
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use PayHere\Enums\MessageType;
+use PayHere\Enums\PaymentMethod;
+use PayHere\Enums\PaymentStatus;
+use PayHere\Events\PaymentRefunded;
+use PayHere\PayHere;
 use Workbench\Database\Factories\PaymentFactory;
 
 class Payment extends Model
@@ -25,14 +28,6 @@ class Payment extends Model
         'status_code' => PaymentStatus::class,
         'message_type' => MessageType::class,
         'refunded' => 'boolean',
-        'payment_id' => 'encrypted',
-        'subscription_id' => 'encrypted',
-        'md5sig' => 'encrypted',
-        'authorization_token' => 'encrypted',
-        'customer_token' => 'encrypted',
-        'card_holder_name' => 'encrypted',
-        'card_expiry' => 'encrypted',
-        'card_no' => 'encrypted',
     ];
 
     protected $hidden = [
@@ -51,12 +46,11 @@ class Payment extends Model
         return $this->belongsTo(PayHere::$orderModel);
     }
 
-    public function markAsRefunded(?string $reason = null): bool
+    public function markAsRefunded(?string $reason = null): void
     {
-        return $this->update([
-            'refunded' => true,
-            'refund_reason' => $reason,
-        ]);
+        $this->update(['refunded' => true, 'refund_reason' => $reason]);
+
+        PaymentRefunded::dispatch($this);
     }
 
     public function isRefundable(): bool

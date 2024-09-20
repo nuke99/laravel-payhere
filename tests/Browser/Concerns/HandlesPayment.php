@@ -1,6 +1,8 @@
 <?php
 
-namespace LaravelPayHere\Tests\Browser\Concerns;
+declare(strict_types=1);
+
+namespace PayHere\Tests\Browser\Concerns;
 
 use Laravel\Dusk\Browser;
 use Workbench\App\Models\User;

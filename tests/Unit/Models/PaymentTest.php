@@ -1,7 +1,8 @@
 <?php
 
-use LaravelPayHere\Models\Payment;
-use Workbench\App\Models\Order;
+declare(strict_types=1);
+
+use PayHere\Models\Payment;
 use Workbench\App\Models\User;
 
 test('to array', function () {
@@ -42,6 +43,5 @@ test('to array', function () {
 test('relations', function () {
     $payment = Payment::factory()->create();
 
-    expect($payment->user)->toBeInstanceOf(User::class)
-        ->and($payment->order)->toBeInstanceOf(Order::class);
+    expect($payment->user)->toBeInstanceOf(User::class);
 });

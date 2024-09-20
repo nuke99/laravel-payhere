@@ -1,6 +1,8 @@
 <?php
 
-namespace LaravelPayHere\Models\Contracts;
+declare(strict_types=1);
+
+namespace PayHere\Models\Contracts;
 
 interface PayHereCustomer
 {

@@ -1,12 +1,14 @@
 <?php
 
-namespace LaravelPayHere\Filament\Widgets;
+declare(strict_types=1);
 
-use LaravelPayHere\Filament\Widgets\Stats\PaymentStats;
-use LaravelPayHere\Filament\Widgets\Stats\RefundStats;
-use LaravelPayHere\Filament\Widgets\Stats\SubscriptionStats;
+namespace PayHere\Filament\Widgets;
+
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
+use PayHere\Filament\Widgets\Stats\PaymentStats;
+use PayHere\Filament\Widgets\Stats\RefundStats;
+use PayHere\Filament\Widgets\Stats\SubscriptionStats;
 
 class StatsOverview extends BaseWidget
 {

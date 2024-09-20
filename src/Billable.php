@@ -1,14 +1,14 @@
 <?php
 
-namespace LaravelPayHere;
+declare(strict_types=1);
 
-use LaravelPayHere\Concerns\HandleCheckout;
-use LaravelPayHere\Concerns\ManagesPayments;
-use LaravelPayHere\Concerns\ManagesSubscriptions;
+namespace PayHere;
+
+use PayHere\Concerns\ManagesPayments;
+use PayHere\Concerns\ManagesSubscriptions;
 
 trait Billable
 {
-    use HandleCheckout;
     use ManagesPayments;
     use ManagesSubscriptions;
 }

@@ -1,22 +1,24 @@
 <?php
 
-namespace LaravelPayHere\Http\Controllers;
+declare(strict_types=1);
 
-use LaravelPayHere\Enums\SubscriptionStatus;
-use LaravelPayHere\Events\PaymentVerified;
-use LaravelPayHere\Events\SubscriptionActivated;
-use LaravelPayHere\Events\SubscriptionRenewed;
-use LaravelPayHere\Models\Payment;
-use LaravelPayHere\Models\Subscription;
-use LaravelPayHere\PayHere;
+namespace PayHere\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
+use PayHere\Enums\SubscriptionStatus;
+use PayHere\Events\PaymentVerified;
+use PayHere\Models\Payment;
+use PayHere\Models\Subscription;
+use PayHere\PayHere;
 
 class WebhookController extends Controller
 {
     /**
      * Handle incoming webhook notification from PayHere.
+     *
+     * @param  \Illuminate\Http\Request  $request
      */
     public function handleWebhook(Request $request)
     {
@@ -28,9 +30,9 @@ class WebhookController extends Controller
 
         $verifiedPayment = PayHere::verifyPaymentNotification(
             orderId: $orderId,
-            amount: $request->payhere_amount,
+            amount: (float) $request->payhere_amount,
             currency: $request->payhere_currency,
-            statusCode: $request->status_code,
+            statusCode: (int) $request->status_code,
             md5sig: $request->md5sig,
         );
 
@@ -38,40 +40,39 @@ class WebhookController extends Controller
 
         $verifiedMerchant = PayHere::verifyMerchantId($merchantId);
 
-        // Verify that both the payment and the merchant are validated before proceeding.
-        if (! $verifiedPayment || ! $verifiedMerchant) {
-            Log::error('[PayHere] Verification failed', [
-                'verifiedPayment' => $verifiedPayment,
-                'verifiedMerchant' => $verifiedMerchant,
-            ]);
+        // Verify the merchant is validated before proceeding.
+        if (! $verifiedMerchant) {
+            Log::error('PayHere merchant verification failed');
 
             return;
         }
 
-        // Abort if order not found.
-        if (! $order = PayHere::$orderModel::find($orderId)) {
-            Log::warning('[PayHere] Order not found', ['order_id' => $orderId]);
+        // Verify the payment is validated before proceeding.
+        if (! $verifiedPayment) {
+            Log::error('PayHere payment verification failed');
 
             return;
         }
 
-        $relationship = PayHere::$customerRelationship;
-
-        $user = $order->{$relationship};
-
-        $payment = $this->createPayment($user, $request);
+        $payment = $this->createPayment($request);
 
         event(new PaymentVerified($payment));
 
-        if ($this->isRecurringPayment($request)) {
-            $this->updateSubscription($user, $request);
+        if ($this->isPaymentRecurring($request)) {
+            $this->updateSubscription($request);
         }
     }
 
-    private function createPayment($user, Request $request): Payment
+    /**
+     * Create a new payment.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \PayHere\Models\Payment
+     */
+    private function createPayment(Request $request): Payment
     {
         return Payment::create([
-            'user_id' => $user?->id,
+            'user_id' => $request->custom_1,
             'merchant_id' => $request->merchant_id,
             'order_id' => $request->order_id,
             'payment_id' => $request->payment_id,
@@ -100,52 +101,58 @@ class WebhookController extends Controller
         ]);
     }
 
-    public function updateSubscription($user, Request $request): void
+    /**
+     * Update the subscription.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    private function updateSubscription(Request $request): void
     {
-        $subscriptionId = $request->custom_1;
+        $userId = $request->custom_1;
+        $subscriptionId = $request->custom_2;
 
         if (! $subscription = Subscription::find($subscriptionId)) {
-            Log::warning('[PayHere] Subscription not found', ['subscription_id' => $subscriptionId]);
+            Log::error('PayHere subscription not found', ['subscription_id' => $subscriptionId]);
 
             return;
         }
 
-        $daysUntilNextRecurrence = now()->diffInDays($request->item_rec_date_next);
-
         $subscription->update([
-            'user_id' => $user->id,
+            'user_id' => $userId,
             'payhere_subscription_id' => $request->subscription_id,
-            'ends_at' => now()->addDays($daysUntilNextRecurrence),
         ]);
 
-        $subscription->refresh();
+        $nextInstallmentDate = $request->item_rec_date_next;
 
-        match ((int) $request->item_rec_status) {
+        // If the PayHere webhook provides the 'item_rec_date_next' parameter,
+        // calculate the number of days until the next recurring installment
+        // and update the subscription's end date accordingly.
+        if (! is_null($nextInstallmentDate)) {
+            $daysUntilNextRecurrence = now()->diffInDays($nextInstallmentDate);
+
+            $subscription->update([
+                'ends_at' => now()->addDays($daysUntilNextRecurrence),
+            ]);
+        }
+
+        $subscriptionStatus = (string) $request->item_rec_status;
+
+        match ($subscriptionStatus) {
             SubscriptionStatus::Active->value => $subscription->markAsActive(),
             SubscriptionStatus::Cancelled->value => $subscription->markAsCancelled(),
             SubscriptionStatus::Completed->value => $subscription->markAsCompleted(),
         };
-
-        if ($this->isNewSubscription($request)) {
-            event(new SubscriptionActivated($subscription));
-        } else {
-            event(new SubscriptionRenewed($subscription));
-        }
     }
 
     /**
      * Check if the payment is recurring.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
      */
-    private function isRecurringPayment($request)
+    private function isPaymentRecurring(Request $request): bool
     {
-        return (int) $request->recurring === 1;
-    }
-
-    /**
-     * Check if the subscription is new.
-     */
-    private function isNewSubscription($request): bool
-    {
-        return (int) $request->item_rec_install_paid === 1;
+        return $request->boolean('recurring');
     }
 }

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Workbench\App\Models;
 
-use LaravelPayHere\Billable;
-use LaravelPayHere\Models\Contracts\PayHereCustomer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use PayHere\Billable;
+use PayHere\Models\Contracts\PayHereCustomer;
 use Workbench\Database\Factories\UserFactory;
 
 class User extends Authenticatable implements PayHereCustomer

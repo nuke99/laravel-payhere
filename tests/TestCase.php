@@ -1,10 +1,12 @@
 <?php
 
-namespace LaravelPayHere\Tests;
+declare(strict_types=1);
 
-use LaravelPayHere\PayHereServiceProvider;
+namespace PayHere\Tests;
+
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use PayHere\PayHereServiceProvider;
 use Workbench\App\Providers\WorkbenchServiceProvider;
 
 abstract class TestCase extends BaseTestCase

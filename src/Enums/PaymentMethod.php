@@ -1,6 +1,8 @@
 <?php
 
-namespace LaravelPayHere\Enums;
+declare(strict_types=1);
+
+namespace PayHere\Enums;
 
 /**
  * Payment methods supported by PayHere.

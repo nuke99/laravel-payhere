@@ -1,6 +1,8 @@
 <?php
 
-namespace LaravelPayHere\Http\Integrations\PayHere\Requests;
+declare(strict_types=1);
+
+namespace PayHere\Http\Integrations\PayHere\Requests;
 
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
@@ -14,9 +16,7 @@ class CapturePaymentRequest extends Request implements HasBody
     protected Method $method = Method::POST;
 
     public function __construct(
-        private readonly string $description,
-        private readonly string $authorizationToken,
-        private readonly float $amount,
+        private readonly array $data
     ) {}
 
     public function resolveEndpoint(): string
@@ -26,10 +26,6 @@ class CapturePaymentRequest extends Request implements HasBody
 
     protected function defaultBody(): array
     {
-        return [
-            'deduction_details' => $this->description,
-            'authorization_token' => $this->authorizationToken,
-            'amount' => $this->amount,
-        ];
+        return $this->data;
     }
 }

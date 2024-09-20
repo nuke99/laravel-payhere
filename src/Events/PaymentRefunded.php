@@ -1,11 +1,13 @@
 <?php
 
-namespace LaravelPayHere\Events;
+declare(strict_types=1);
 
-use LaravelPayHere\Models\Payment;
+namespace PayHere\Events;
+
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use PayHere\Models\Payment;
 
 class PaymentRefunded
 {

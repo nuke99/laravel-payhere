@@ -1,6 +1,8 @@
 <?php
 
-namespace LaravelPayHere\Exceptions;
+declare(strict_types=1);
+
+namespace PayHere\Exceptions;
 
 use Exception;
 

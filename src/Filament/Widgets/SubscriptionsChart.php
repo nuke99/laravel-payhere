@@ -1,11 +1,13 @@
 <?php
 
-namespace LaravelPayHere\Filament\Widgets;
+declare(strict_types=1);
 
-use LaravelPayHere\Models\Subscription;
+namespace PayHere\Filament\Widgets;
+
 use Filament\Widgets\ChartWidget;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
+use PayHere\Models\Subscription;
 
 class SubscriptionsChart extends ChartWidget
 {

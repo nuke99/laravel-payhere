@@ -1,15 +1,18 @@
 <?php
 
-namespace LaravelPayHere\Http\Controllers\Api;
+declare(strict_types=1);
 
-use LaravelPayHere\Http\Integrations\PayHere\PayHereConnector;
-use LaravelPayHere\Http\Integrations\PayHere\Requests\CapturePaymentRequest;
-use LaravelPayHere\Http\Integrations\PayHere\Requests\ListPaymentsRequest;
-use LaravelPayHere\Http\Integrations\PayHere\Requests\PaymentChargeRequest;
-use LaravelPayHere\Http\Integrations\PayHere\Requests\RefundPaymentRequest;
-use LaravelPayHere\Rules\ChargeType;
+namespace PayHere\Http\Controllers\Api;
+
 use Illuminate\Http\Request;
 use JsonException;
+use PayHere\Http\Integrations\PayHere\PayHereConnector;
+use PayHere\Http\Integrations\PayHere\Requests\CapturePaymentRequest;
+use PayHere\Http\Integrations\PayHere\Requests\ListPaymentsRequest;
+use PayHere\Http\Integrations\PayHere\Requests\PaymentChargeRequest;
+use PayHere\Http\Integrations\PayHere\Requests\RefundPaymentRequest;
+use PayHere\Models\Payment;
+use PayHere\Rules\ChargeType;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
 
@@ -27,16 +30,14 @@ class PaymentController
     }
 
     /**
-     * Search for payments by order ID.
+     * Retrieve payments by order ID.
      *
      * @throws FatalRequestException
      * @throws RequestException
      * @throws JsonException
      */
-    public function search(Request $request)
+    public function show($orderId)
     {
-        $orderId = $request->input('order_id');
-
         $response = $this->connector->send(new ListPaymentsRequest($orderId));
 
         return $response->json();
@@ -58,12 +59,7 @@ class PaymentController
             'custom_2' => ['sometimes', 'string'],
         ]);
 
-        $response = $this->connector->send(new PaymentChargeRequest(
-            orderId: $request->order_id,
-            type: $request->type,
-            customOne: $request->custom_1,
-            customTwo: $request->custom_2
-        ));
+        $response = $this->connector->send(new PaymentChargeRequest($request->all()));
 
         return $response->json();
     }
@@ -83,11 +79,7 @@ class PaymentController
             'amount' => ['required', 'numeric'],
         ]);
 
-        $response = $this->connector->send(new CapturePaymentRequest(
-            description: $request->description,
-            authorizationToken: $request->authorization_token,
-            amount: $request->amount
-        ));
+        $response = $this->connector->send(new CapturePaymentRequest($request->all()));
 
         return $response->json();
     }
@@ -107,11 +99,7 @@ class PaymentController
             'authorization_token' => ['sometimes', 'string'],
         ]);
 
-        $response = $this->connector->send(new RefundPaymentRequest(
-            paymentId: $request->payment_id,
-            description: $request->description,
-            authorizationToken: $request->authorization_token
-        ));
+        $response = $this->connector->send(new RefundPaymentRequest($request->all()));
 
         return $response->json();
     }

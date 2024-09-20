@@ -1,12 +1,9 @@
 <?php
 
-namespace LaravelPayHere\Filament\Resources\PaymentResource;
+declare(strict_types=1);
 
-use LaravelPayHere\Enums\PaymentMethod;
-use LaravelPayHere\Enums\PaymentStatus;
-use LaravelPayHere\Enums\RefundStatus;
-use LaravelPayHere\Models\Payment;
-use LaravelPayHere\Services\Contracts\PayHereService;
+namespace PayHere\Filament\Resources\PaymentResource;
+
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\Textarea;
@@ -21,6 +18,11 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use PayHere\Enums\PaymentMethod;
+use PayHere\Enums\PaymentStatus;
+use PayHere\Http\Integrations\PayHere\PayHereConnector;
+use PayHere\Http\Integrations\PayHere\Requests\RefundPaymentRequest;
+use PayHere\Models\Payment;
 
 class PaymentResource extends Resource
 {
@@ -35,10 +37,12 @@ class PaymentResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('payment_id')
+                    ->copyable()
                     ->sortable()
                     ->searchable(),
 
                 TextColumn::make('user.name')
+                    ->default('Guest User')
                     ->sortable()
                     ->searchable(),
 
@@ -98,6 +102,7 @@ class PaymentResource extends Resource
                     ->sortable(),
 
                 TextColumn::make('subscription_id')
+                    ->copyable()
                     ->searchable()
                     ->sortable(),
 
@@ -167,7 +172,8 @@ class PaymentResource extends Resource
 
                 SelectFilter::make('status_code')
                     ->label('Status')
-                    ->options(PaymentStatus::class),
+                    ->options(PaymentStatus::class)
+                    ->multiple(),
 
             ], layout: FiltersLayout::AboveContentCollapsible)
             ->actions([
@@ -194,18 +200,34 @@ class PaymentResource extends Resource
 
     public static function refund(Payment $payment, ?string $reason = null): void
     {
-        $service = app(PayHereService::class);
-        $payload = $service->refundPayment($payment, $reason);
+        $connector = new PayHereConnector;
 
-        $status = $payload['status'];
+        $authenticator = $connector->getAccessToken();
+
+        $connector->authenticate($authenticator);
+
+        $data = [
+            'payment_id' => $payment->payment_id,
+            'description' => $reason,
+        ];
+
+        $response = $connector->send(new RefundPaymentRequest($data));
+
+        $payload = $response->json();
+
+        $statusCode = (int) $payload['status'];
         $message = $payload['msg'];
 
         $notification = Notification::make()->title($message);
 
-        if ($status === RefundStatus::REFUND_SUCCESS->value) {
-            $notification->success()->send();
-        } else {
+        if ($statusCode !== 1) {
             $notification->danger()->send();
+
+            return;
         }
+
+        $payment->markAsRefunded($reason);
+
+        $notification->success()->send();
     }
 }

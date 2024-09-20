@@ -1,21 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
     |--------------------------------------------------------------------------
-    | PayHere API Base URL
+    | PayHere Sandbox Mode
     |--------------------------------------------------------------------------
     |
-    | This API Base URL is important for connecting to the PayHere API. By default,
-    | it's set to the sandbox URL. Make sure to switch to the live URL when your
-    | application goes live.
-    |
-    | Live URL:    https://www.payhere.lk
-    | Sandbox URL: https://sandbox.payhere.lk
+    | Toggle between sandbox (test) and live environments.
     */
 
-    'base_url' => env('PAYHERE_BASE_URL', 'https://sandbox.payhere.lk'),
+    'sandbox' => env('PAYHERE_SANDBOX', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -132,4 +129,16 @@ return [
     */
 
     'panel_login' => env('PAYHERE_PANEL_LOGIN', true),
+
+    /*
+    |--------------------------------------------------------------------------
+    | PayHere Panel Brand Logo
+    |--------------------------------------------------------------------------
+    |
+    | Path to the default brand logo for the PayHere panel.
+    |
+    */
+
+    'panel_brand_logo' => asset('vendor/payhere/images/logo.svg'),
+
 ];

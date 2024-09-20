@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Workbench\Database\Factories;
 
-use LaravelPayHere\Enums\SubscriptionStatus;
-use LaravelPayHere\Models\Subscription;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use PayHere\Enums\SubscriptionStatus;
+use PayHere\Models\Subscription;
 use Workbench\App\Models\Order;
 use Workbench\App\Models\User;
 

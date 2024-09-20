@@ -1,8 +1,10 @@
 <?php
 
-namespace LaravelPayHere\Tests\Browser\Concerns;
+declare(strict_types=1);
 
-trait HasPayHereSiteElements
+namespace PayHere\Tests\Browser\Concerns;
+
+trait PayHereSiteElements
 {
     public static function siteElements(): array
     {

@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Workbench\App\Providers;
 
-use LaravelPayHere\PayHere;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
-use Workbench\App\Models\Order;
+use PayHere\PayHere;
 use Workbench\App\Models\User;
 
 class WorkbenchServiceProvider extends ServiceProvider
@@ -15,6 +16,5 @@ class WorkbenchServiceProvider extends ServiceProvider
         Config::set('auth.providers.users.model', User::class);
 
         PayHere::useCustomerModel(User::class);
-        PayHere::useOrderModel(Order::class);
     }
 }

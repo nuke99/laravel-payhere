@@ -1,13 +1,15 @@
 <?php
 
-namespace LaravelPayHere\Http\Controllers\Api;
+declare(strict_types=1);
 
-use LaravelPayHere\Http\Integrations\PayHere\PayHereConnector;
-use LaravelPayHere\Http\Integrations\PayHere\Requests\CancelSubscriptionRequest;
-use LaravelPayHere\Http\Integrations\PayHere\Requests\GetSubscriptionRequest;
-use LaravelPayHere\Http\Integrations\PayHere\Requests\ListSubscriptionsRequest;
-use LaravelPayHere\Http\Integrations\PayHere\Requests\RetrySubscriptionRequest;
+namespace PayHere\Http\Controllers\Api;
+
 use JsonException;
+use PayHere\Http\Integrations\PayHere\PayHereConnector;
+use PayHere\Http\Integrations\PayHere\Requests\CancelSubscriptionRequest;
+use PayHere\Http\Integrations\PayHere\Requests\GetSubscriptionRequest;
+use PayHere\Http\Integrations\PayHere\Requests\ListSubscriptionsRequest;
+use PayHere\Http\Integrations\PayHere\Requests\RetrySubscriptionRequest;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
 
@@ -45,9 +47,9 @@ class SubscriptionController
      * @throws RequestException
      * @throws JsonException
      */
-    public function show(string $subscription)
+    public function show(string $subscriptionId)
     {
-        $response = $this->connector->send(new GetSubscriptionRequest($subscription));
+        $response = $this->connector->send(new GetSubscriptionRequest($subscriptionId));
 
         return $response->json();
     }
@@ -59,9 +61,9 @@ class SubscriptionController
      * @throws RequestException
      * @throws JsonException
      */
-    public function retry(string $subscription)
+    public function retry(string $subscriptionId)
     {
-        $response = $this->connector->send(new RetrySubscriptionRequest($subscription));
+        $response = $this->connector->send(new RetrySubscriptionRequest($subscriptionId));
 
         return $response->json();
     }
@@ -73,9 +75,9 @@ class SubscriptionController
      * @throws RequestException
      * @throws JsonException
      */
-    public function cancel(string $subscription)
+    public function cancel(string $subscriptionId)
     {
-        $response = $this->connector->send(new CancelSubscriptionRequest($subscription));
+        $response = $this->connector->send(new CancelSubscriptionRequest($subscriptionId));
 
         return $response->json();
     }

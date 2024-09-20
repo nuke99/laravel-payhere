@@ -1,7 +1,8 @@
 <?php
 
-use LaravelPayHere\Models\Subscription;
-use Workbench\App\Models\Order;
+declare(strict_types=1);
+
+use PayHere\Models\Subscription;
 use Workbench\App\Models\User;
 
 test('to array', function () {
@@ -23,6 +24,5 @@ test('to array', function () {
 test('relations', function () {
     $subscription = Subscription::factory()->create();
 
-    expect($subscription->user)->toBeInstanceOf(User::class)
-        ->and($subscription->order)->toBeInstanceOf(Order::class);
+    expect($subscription->user)->toBeInstanceOf(User::class);
 });

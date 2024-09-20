@@ -1,11 +1,13 @@
 <?php
 
-namespace LaravelPayHere\Filament\Widgets;
+declare(strict_types=1);
 
-use LaravelPayHere\Models\Payment;
+namespace PayHere\Filament\Widgets;
+
 use Filament\Widgets\ChartWidget;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
+use PayHere\Models\Payment;
 
 class PaymentsChart extends ChartWidget
 {

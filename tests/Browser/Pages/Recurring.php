@@ -1,18 +1,20 @@
 <?php
 
-namespace LaravelPayHere\Tests\Browser\Pages;
+declare(strict_types=1);
 
-use LaravelPayHere\Tests\Browser\Concerns\HandlesPayment;
-use LaravelPayHere\Tests\Browser\Concerns\HasPayHereSiteElements;
-use LaravelPayHere\Tests\Browser\Concerns\PayHereBrowserAssertions;
+namespace PayHere\Tests\Browser\Pages;
+
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Page;
+use PayHere\Tests\Browser\Concerns\HandlesPayment;
+use PayHere\Tests\Browser\Concerns\PayHereBrowserAssertions;
+use PayHere\Tests\Browser\Concerns\PayHereSiteElements;
 
 class Recurring extends Page
 {
     use HandlesPayment;
-    use HasPayHereSiteElements;
     use PayHereBrowserAssertions;
+    use PayHereSiteElements;
 
     public function url(): string
     {
