@@ -7,7 +7,6 @@ namespace Workbench\Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use PayHere\Enums\SubscriptionStatus;
 use PayHere\Models\Subscription;
-use Workbench\App\Models\Order;
 use Workbench\App\Models\User;
 
 class SubscriptionFactory extends Factory
@@ -18,7 +17,7 @@ class SubscriptionFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'order_id' => Order::factory(),
+            'order_id' => rand(),
             'trial_ends_at' => now()->addMonth(),
             'ends_at' => now()->addYear(),
             'status' => SubscriptionStatus::Active,

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PayHere\Tests;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase;
 use PayHere\Filament\PayHerePanelProvider;
@@ -13,6 +14,7 @@ use Workbench\App\Providers\WorkbenchServiceProvider;
 
 abstract class DuskTestCase extends TestCase
 {
+    use DatabaseMigrations;
     use WithWorkbench;
 
     protected static $baseServeHost = 'localhost';

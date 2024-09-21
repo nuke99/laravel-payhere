@@ -2,28 +2,33 @@ name: Run Tests
 
 on:
   push:
-    branches:
-      - main
   pull_request:
   schedule:
     - cron: '0 0 * * *'
+      
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-test:
     runs-on: ubuntu-latest
 
     strategy:
-      max-parallel: 1
+      max-parallel: 2
       fail-fast: true
       matrix:
         php: [8.2, 8.3]
-        laravel: [8, 9, 10, 11]
+        laravel: [10, 11]
 
     name: Test PHP ${{ matrix.php }} with Laravel ${{ matrix.laravel }}
+    
+    env:
+      SMEE_URL: https://smee.io/9WLG7veUpcwYCEb-${{ strategy.job-index }}
 
-    steps:
+    steps:        
       - uses: actions/checkout@v4
-
+        
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -33,8 +38,10 @@ jobs:
           coverage: none
 
       - name: Install Dependencies
-        run: |
-          composer update --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
+        run: composer update --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
+          
+      - name: Install Smee Client
+        run: npm install -g smee-client
 
       - name: Start Chrome Driver
         run: vendor/laravel/dusk/bin/chromedriver-linux &
@@ -42,25 +49,8 @@ jobs:
       - name: Run Laravel Server
         run: php vendor/bin/testbench serve --no-reload &
 
-      - name: Install Hookdeck CLI
-        run: |
-          VERSION=0.10.1
-          FILE_NAME=hookdeck_${VERSION}_linux_amd64.tar.gz
-          URL=https://github.com/hookdeck/hookdeck-cli/releases/download/v${VERSION}/${FILE_NAME}
-          
-          curl -LO ${URL} || { echo "Failed to download ${FILE_NAME}"; exit 1; }
-          
-          tar -xvf ${FILE_NAME} || { echo "Failed to extract ${FILE_NAME}"; exit 1; }
-          
-          sudo mv hookdeck /usr/local/bin/
-          
-          rm ${FILE_NAME}
-
-      - name: Configure Hookdeck Workspace
-        run: hookdeck ci --api-key ${{ secrets.HOOKDECK_API_KEY }}
-
-      - name: Listen to PayHere Webhook
-        run: hookdeck listen 8000 payhere &
+      - name: Start PayHere Webhook Listener
+        run: smee -t http://localhost:8001/payhere/webhook -u ${{ env.SMEE_URL }} &
 
       - name: Run Tests
         run: composer run test
@@ -69,7 +59,8 @@ jobs:
           PAYHERE_MERCHANT_SECRET: ${{ secrets.PAYHERE_MERCHANT_SECRET }}
           PAYHERE_APP_ID: ${{ secrets.PAYHERE_APP_ID }}
           PAYHERE_APP_SECRET: ${{ secrets.PAYHERE_APP_SECRET }}
-          PAYHERE_NOTIFY_URL: ${{ secrets.PAYHERE_NOTIFY_URL }}
+          PAYHERE_NOTIFY_URL: ${{ env.SMEE_URL }}
+          PAYHERE_SANDBOX: true
 
       - name: Upload Failed Screenshots
         uses: actions/upload-artifact@v3

@@ -35,7 +35,7 @@ trait HandleCheckout
      *
      * @var bool
      */
-    private bool $preapproval = false;
+    private bool $preapprove = false;
 
     /**
      * Indicates if authorization is required.
@@ -165,9 +165,9 @@ trait HandleCheckout
      *
      * @return static
      */
-    public function preapproval(): static
+    public function preapprove(): static
     {
-        $this->preapproval = true;
+        $this->preapprove = true;
 
         return $this;
     }
@@ -321,6 +321,20 @@ trait HandleCheckout
     }
 
     /**
+     * Get the title for the transaction.
+     *
+     * @return string
+     */
+    private function getTitle(): string
+    {
+        if (is_null($this->title)) {
+            return __('Order #:id', ['id' => $this->getOrderId()]);
+        }
+        
+        return $this->title;
+    }
+
+    /**
      * Get the customer details for the transaction.
      *
      * @return array
@@ -370,7 +384,7 @@ trait HandleCheckout
         $baseUrl = config('payhere.base_url');
         $action = 'checkout';
 
-        if ($this->preapproval) {
+        if ($this->preapprove) {
             $action = 'preapprove';
         }
 
@@ -413,7 +427,7 @@ trait HandleCheckout
     public function getFormData(): array
     {
         return [
-            'title' => $this->title,
+            'title' => $this->getTitle(),
             'customer' => $this->getCustomer(),
             'items' => $this->getItems(),
             'action' => $this->getActionUrl(),

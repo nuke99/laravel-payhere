@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use PayHere\Tests\TestCase;
 
 /*
@@ -15,10 +14,10 @@ use PayHere\Tests\TestCase;
 | need to change it using the "uses()" function to bind a different classes or traits.
 |
 */
+
 uses(
-    TestCase::class,
-    RefreshDatabase::class
-)->in(__DIR__);
+    TestCase::class
+)->in('Unit', 'Feature');
 
 /*
 |--------------------------------------------------------------------------
