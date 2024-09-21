@@ -1,9 +1,9 @@
 <p align="center">
-    <a href="https://www.dasun.dev/docs/laravel-payhere" target="_blank"><img src="./art/logo.svg" alt="PayHere" width="400"/></a>
+    <img src="./art/logo.svg" alt="PayHere" width="400"/>
 </p>
 
 <p align="center">
-    <a href="https://github.com/dasundev/laravel-payhere/actions"><img src="https://img.shields.io/github/actions/workflow/status/laravel-payhere/laravel-payhere/tests.yml?label=tests" alt="Build Status"></a>
+    <a href="https://github.com/laravel-payhere/laravel-payhere/actions"><img src="https://img.shields.io/github/actions/workflow/status/laravel-payhere/laravel-payhere/tests.yml?label=tests" alt="Build Status"></a>
 </p>
 
 ## Introduction
