@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.0.0
+> 23 Sep, 2024
+
+- Initial release 🎉
+
 ## Version 1.0-beta.21
 > 21 Sep, 2024
 
