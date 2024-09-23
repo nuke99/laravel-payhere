@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/laravel-payhere/laravel-payhere/actions"><img src="https://img.shields.io/github/actions/workflow/status/laravel-payhere/laravel-payhere/tests.yml?label=tests" alt="Build Status"></a>
+    <a href="https://github.com/laravel-payhere/laravel-payhere/actions"><img src="https://github.com/laravel-payhere/laravel-payhere/actions/workflows/tests.yml/badge.svg" alt="Build Status"></a>
 </p>
 
 ## Introduction
