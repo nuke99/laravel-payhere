@@ -5,107 +5,107 @@
 
 - Initial release 🎉
 
-## Version 1.0-beta.21
+## Version 1.0.0-beta.21
 > 21 Sep, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.20
+## Version 1.0.0-beta.20
 > 20 Sep, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.19
+## Version 1.0.0-beta.19
 > 6 August, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.18
+## Version 1.0.0-beta.18
 > 9 Jul, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.17
+## Version 1.0.0-beta.17
 > 6 Jul, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.16
+## Version 1.0.0-beta.16
 > 5 Jul, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.15
+## Version 1.0.0-beta.15
 > 1 Jul, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.14
+## Version 1.0.0-beta.14
 > 30 Jun, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.13
+## Version 1.0.0-beta.13
 > 29 Jun, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.12
+## Version 1.0.0-beta.12
 > 29 Jun, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.11
+## Version 1.0.0-beta.11
 > 27 Jun, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.10
+## Version 1.0.0-beta.10
 > 26 Jun, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.9
+## Version 1.0.0-beta.9
 > 25 Jun, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.8
+## Version 1.0.0-beta.8
 > 25 Jun, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.7
+## Version 1.0.0-beta.7
 > 19 Jun, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.6
+## Version 1.0.0-beta.6
 > 3 Jun, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.5
+## Version 1.0.0-beta.5
 > 31 May, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.4
+## Version 1.0.0-beta.4
 > 29 May, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.3
+## Version 1.0.0-beta.3
 > 27 May, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.2
+## Version 1.0.0-beta.2
 > 27 May, 2024
 
 - Internal improvements and bug fixes.
 
-## Version 1.0-beta.1
+## Version 1.0.0-beta.1
 > 27 May, 2024
 
 - Internal improvements and bug fixes.
