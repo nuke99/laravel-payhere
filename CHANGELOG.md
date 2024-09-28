@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.0.1
+> 28 Sep, 2024
+
+- Upgrade depedencies.
+
 ## Version 1.0.0
 > 23 Sep, 2024
 
