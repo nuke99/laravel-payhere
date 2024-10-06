@@ -1,9 +1,14 @@
 # Changelog
 
+## Version 1.0.2
+> 28 Sep, 2024
+
+- Fix the path of the panel brand logo.
+
 ## Version 1.0.1
 > 28 Sep, 2024
 
-- Upgrade depedencies.
+- Upgrade dependencies.
 
 ## Version 1.0.0
 > 23 Sep, 2024
