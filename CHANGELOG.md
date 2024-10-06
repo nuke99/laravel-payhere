@@ -3,7 +3,7 @@
 ## Version 1.0.2
 > 06 Oct, 2024
 
-- Fix the path of the panel brand logo.
+- Add dark mode logo for the panel.
 
 ## Version 1.0.1
 > 28 Sep, 2024
