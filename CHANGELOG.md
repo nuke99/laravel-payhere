@@ -1,7 +1,7 @@
 # Changelog
 
 ## Version 1.0.2
-> 28 Sep, 2024
+> 06 Oct, 2024
 
 - Fix the path of the panel brand logo.
 
