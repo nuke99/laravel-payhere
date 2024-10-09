@@ -12,7 +12,7 @@ Easily and securely integrate [PayHere](https://payhere.lk) into your Laravel ap
 
 ## Official Documentation
 
-You can find the documentation [here](https://dasun.dev/docs/laravel-payhere).
+You can find the documentation [here](https://laravel-payhere.com/docs).
 
 ## Changelog
 
