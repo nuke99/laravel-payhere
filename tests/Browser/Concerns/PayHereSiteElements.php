@@ -16,6 +16,7 @@ trait PayHereSiteElements
             '@card-secure-id' => "input[name='cardSecureId']",
             '@card-expiry-date' => "input[name='cardExpiry']",
             '@pay' => "button[type='submit'].btn-primary",
+            '@iframe' => '#ph-iframe',
         ];
     }
 }

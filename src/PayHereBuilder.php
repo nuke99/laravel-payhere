@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PayHere\Concerns;
+namespace PayHere;
 
 use Exception;
 use Illuminate\Contracts\View\View;
@@ -12,9 +12,8 @@ use Illuminate\Support\Facades\URL;
 use PayHere\Exceptions\UnsupportedCurrencyException;
 use PayHere\Models\Contracts\PayHereCustomer;
 use PayHere\Models\Subscription;
-use PayHere\PayHere;
 
-trait HandleCheckout
+class PayHereBuilder
 {
     /**
      * The PayHere customer.
@@ -26,9 +25,9 @@ trait HandleCheckout
     /**
      * Recurring payment details.
      *
-     * @var array|null
+     * @var array
      */
-    private ?array $recurring = null;
+    private array $recurring = [];
 
     /**
      * Indicates if preapproval is required.
@@ -109,6 +108,13 @@ trait HandleCheckout
      * @var string|null
      */
     private ?string $custom2 = null;
+
+    /**
+     * Indicates whether onsite checkout is enabled.
+     *
+     * @var bool
+     */
+    private bool $onsiteCheckout = true;
 
     /**
      * Set the customer for the transaction.
@@ -418,19 +424,20 @@ trait HandleCheckout
     }
 
     /**
-     * Get the form data for the checkout.
+     * Get the order data for the checkout.
      *
      * @return array
      *
      * @throws \PayHere\Exceptions\UnsupportedCurrencyException
      */
-    public function getFormData(): array
+    public function getOrder(): array
     {
-        return [
-            'title' => $this->getTitle(),
-            'customer' => $this->getCustomer(),
-            'items' => $this->getItems(),
-            'action' => $this->getActionUrl(),
+        $data = [
+            ...$this->getCustomer(),
+            ...$this->getItems(),
+            ...$this->recurring,
+            'items' => $this->getTitle(),
+            'action_url' => $this->getActionUrl(),
             'merchant_id' => config('payhere.merchant_id'),
             'notify_url' => config('payhere.notify_url') ?? URL::signedRoute('payhere.webhook'),
             'return_url' => config('payhere.return_url') ?? URL::signedRoute('payhere.return'),
@@ -439,12 +446,20 @@ trait HandleCheckout
             'currency' => $this->getCurrency(),
             'amount' => $this->amount - $this->startupFee,
             'hash' => $this->generateHash(),
-            'recurring' => $this->recurring,
             'startup_fee' => $this->startupFee,
             'custom_1' => $this->custom1,
             'custom_2' => $this->custom2,
-            'platform' => 'Laravel',
+            'platform' => 'Web (Powered by Laravel PayHere)',
         ];
+
+        // Remove unnecessary data for payhere onsite checkout.
+        if ($this->onsiteCheckout) {
+            $data = array_filter($data, function ($value, $key) {
+                return ! in_array($key, ['startup_fee', 'action_url', 'recurrence', 'duration']);
+            }, ARRAY_FILTER_USE_BOTH);
+        }
+
+        return $data;
     }
 
     /**
@@ -456,8 +471,20 @@ trait HandleCheckout
      */
     public function checkout(): View
     {
+        $this->onsiteCheckout = false;
+
         return view('payhere::checkout', [
-            'data' => $this->getFormData(),
+            'order' => $this->getOrder(),
         ]);
+    }
+
+    /**
+     * Return a new static instance.
+     *
+     * @return static
+     */
+    public static function builder(): static
+    {
+        return new static;
     }
 }

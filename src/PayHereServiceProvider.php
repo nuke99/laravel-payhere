@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PayHere;
 
+use Illuminate\Support\Facades\Blade;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -46,5 +47,12 @@ class PayHereServiceProvider extends PackageServiceProvider
     public function packageRegistered(): void
     {
         $this->app['config']->set('payhere.base_url', config('payhere.sandbox') ? 'https://sandbox.payhere.lk' : 'https://www.payhere.lk');
+    }
+
+    public function packageBooted(): void
+    {
+        Blade::directive('payhereJS', function () {
+            return "<?php echo view('payhere::js'); ?>";
+        });
     }
 }

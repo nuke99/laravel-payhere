@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace PayHere;
 
-use PayHere\Concerns\HandleCheckout;
+use Illuminate\Support\Facades\Facade;
 use PayHere\Enums\PaymentStatus;
 use PayHere\Models\Subscription;
 
-class PayHere
+final class PayHere extends Facade
 {
-    use HandleCheckout;
-
     const SUPPORTED_CURRENCIES = ['LKR', 'USD', 'EUR', 'GBP', 'AUD'];
 
     /**
@@ -31,7 +29,7 @@ class PayHere
      */
     public static function useCustomerModel($customerModel): void
     {
-        static::$customerModel = $customerModel;
+        self::$customerModel = $customerModel;
     }
 
     /**
@@ -41,7 +39,7 @@ class PayHere
      */
     public static function useSubscriptionModel($subscriptionModel): void
     {
-        static::$subscriptionModel = $subscriptionModel;
+        self::$subscriptionModel = $subscriptionModel;
     }
 
     /**
@@ -80,12 +78,10 @@ class PayHere
     }
 
     /**
-     * Return a new static instance.
-     *
-     * @return static
+     * Get the registered name of the component.
      */
-    public static function builder(): static
+    protected static function getFacadeAccessor(): string
     {
-        return new static;
+        return PayHereBuilder::class;
     }
 }
