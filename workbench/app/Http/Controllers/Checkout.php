@@ -14,7 +14,7 @@ class Checkout extends Controller
     {
         return PayHere::builder()
             ->guest()
-            ->title('Test')
+            ->title('Normal Checkout Test')
             ->amount(100)
             ->checkout();
     }

@@ -7,6 +7,7 @@ namespace PayHere\Tests\Browser;
 use Laravel\Dusk\Browser;
 use PayHere\Tests\Browser\Pages\Authorize;
 use PayHere\Tests\Browser\Pages\Checkout;
+use PayHere\Tests\Browser\Pages\OnsiteCheckout;
 use PayHere\Tests\Browser\Pages\Preapproval;
 use PayHere\Tests\Browser\Pages\Recurring;
 use PayHere\Tests\DuskTestCase;
@@ -71,6 +72,22 @@ class CheckoutTest extends DuskTestCase
                 ->assertAuthenticatedAs($user);
 
             $browser->visit(new Recurring)
+                ->payAs($user)
+                ->assertPaymentApproved();
+        });
+
+        $this->assertDatabaseCount('payhere_payments', 1);
+    }
+
+    public function test_onsite_checkout()
+    {
+        $user = User::factory()->create();
+
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->loginAs($user)
+                ->assertAuthenticatedAs($user);
+
+            $browser->visit(new OnsiteCheckout)
                 ->payAs($user)
                 ->assertPaymentApproved();
         });

@@ -1,0 +1,1 @@
+<script src="https://www.payhere.lk/lib/payhere.js"></script>

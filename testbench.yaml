@@ -20,5 +20,5 @@ workbench:
     - migrate:fresh
     - db:seed
   sync:
-    - from: ./resources/dist/
+    - from: ./dist/
       to: public/vendor/payhere

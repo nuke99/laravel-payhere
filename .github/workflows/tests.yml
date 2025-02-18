@@ -1,8 +1,11 @@
 name: Run Tests
 
 on:
-  push:
   pull_request:
+  push:
+    branches:
+      - "main"
+      - "*.x"
   schedule:
     - cron: '0 0 * * *'
       
@@ -19,9 +22,8 @@ jobs:
       fail-fast: true
       matrix:
         php: [8.2, 8.3]
-        laravel: [10, 11]
 
-    name: Test PHP ${{ matrix.php }} with Laravel ${{ matrix.laravel }}
+    name: Test PHP ${{ matrix.php }}
     
     env:
       SMEE_URL: https://smee.io/9WLG7veUpcwYCEb-${{ strategy.job-index }}
@@ -63,7 +65,7 @@ jobs:
           PAYHERE_SANDBOX: true
 
       - name: Upload Failed Screenshots
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: screenshots

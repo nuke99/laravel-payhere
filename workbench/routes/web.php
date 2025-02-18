@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use PayHere\Http\Controllers\WebhookController;
 use Workbench\App\Http\Controllers\Authorize;
 use Workbench\App\Http\Controllers\Checkout;
+use Workbench\App\Http\Controllers\OnsiteCheckout;
 use Workbench\App\Http\Controllers\Preapprove;
 use Workbench\App\Http\Controllers\Recurring;
 
@@ -20,6 +21,8 @@ use Workbench\App\Http\Controllers\Recurring;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/onsite-checkout', OnsiteCheckout::class);
 
 Route::get('/checkout', Checkout::class);
 
