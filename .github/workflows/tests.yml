@@ -1,8 +1,11 @@
 name: Run Tests
 
 on:
-  push:
   pull_request:
+  push:
+    branches:
+      - "main"
+      - "*.x"
   schedule:
     - cron: '0 0 * * *'
       
