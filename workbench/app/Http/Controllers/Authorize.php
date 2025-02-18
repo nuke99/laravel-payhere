@@ -13,7 +13,7 @@ class Authorize extends Controller
     {
         return PayHere::builder()
             ->guest()
-            ->title('Test')
+            ->title('Authorize Checkout Test')
             ->authorize()
             ->amount(100)
             ->checkout();
