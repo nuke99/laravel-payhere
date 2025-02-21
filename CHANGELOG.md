@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.1.0
+> 21 Feb, 2025
+
+- Add support for onsite checkout.
+
 ## Version 1.0.2
 > 06 Oct, 2024
 
