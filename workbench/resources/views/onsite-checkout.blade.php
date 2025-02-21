@@ -12,9 +12,9 @@
 
 <noscript>Your browser does not support JavaScript!</noscript>
 
-<x-payhere::onsite-checkout :$order>
-    <button>Buy Now</button>
-</x-payhere::onsite-checkout>
+<x-payhere::button :$order class="py-5">
+    Buy Now
+</x-payhere::button>
 
 </body>
 </html>
