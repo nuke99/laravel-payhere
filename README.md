@@ -3,10 +3,10 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/laravel-payhere/laravel-payhere/actions"><img src="https://github.com/laravel-payhere/laravel-payhere/workflows/tests/badge.svg" alt="Build Status"></a>
+    <a href="https://github.com/laravel-payhere/laravel-payhere/actions"><img src="https://img.shields.io/github/actions/workflow/status/laravel-payhere/laravel-payhere/tests.yml?label=tests" alt="Build Status"></a>
     <a href="https://packagist.org/packages/laravel-payhere/laravel-payhere"><img src="https://img.shields.io/packagist/dt/laravel-payhere/laravel-payhere" alt="Total Downloads"></a>
     <a href="https://packagist.org/packages/laravel-payhere/laravel-payhere"><img src="https://img.shields.io/packagist/v/laravel-payhere/laravel-payhere" alt="Latest Stable Version"></a>
-    <a href="https://packagist.org/packages/laravel-payhere/laravel-payhere"><img src="https://img.shields.io/packagist/l/laravel-payhere/laravel-payhere" alt="License"></a>
+    <a href="https://packagist.org/packages/laravel-payhere/laravel-payhere"><img src="https://img.shields.io/github/license/laravel-payhere/laravel-payhere" alt="License"></a>
 </p>
 
 ## Introduction
