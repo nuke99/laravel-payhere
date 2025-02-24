@@ -13,6 +13,23 @@
 
 Easily and securely integrate [PayHere](https://payhere.lk) into your Laravel application.
 
+```php
+// A super simple example to show how easy it is to integrate PayHere!
+
+use PayHere\PayHere;
+
+class CheckoutController extends Controller
+{
+    public function __invoke()
+    {
+        return PayHere::builder()
+            ->title('iPhone 16 Pro')
+            ->amount(329900)
+            ->checkout();
+    }
+}
+```
+
 ## Official Documentation
 
 You can find the documentation [here](https://laravel-payhere.com/docs).
