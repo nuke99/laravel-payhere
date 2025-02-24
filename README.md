@@ -27,4 +27,4 @@ Please review [our security policy](SECURITY.md) on how to report security vulne
 
 ## License
 
-Laravel PayHere is a open-source plugin licensed under the terms specified in the [License Agreement](LICENSE.md).
+The Laravel PayHere is open-sourced software licensed under the [MIT license](LICENSE.md).
