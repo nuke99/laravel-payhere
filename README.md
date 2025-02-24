@@ -11,7 +11,7 @@
 
 ## Introduction
 
-Easily and securely integrate [PayHere](https://payhere.lk) into your Laravel application with our trusted third-party plugin.
+Easily and securely integrate [PayHere](https://payhere.lk) into your Laravel application.
 
 ## Official Documentation
 
